@@ -1,0 +1,560 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9AA8D0E8-C3C2-42D4-A73D-A7AF5C9C67CF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mong</RootNamespace>
+    <AssemblyName>SWLHMS</AssemblyName>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>false</GenerateManifests>
+    <ManifestCertificateThumbprint>4596C66F049EC3BC123630E67533EAE13E60DF4F</ManifestCertificateThumbprint>
+    <ManifestKeyFile>SWLHMS_TemporaryKey.pfx</ManifestKeyFile>
+    <SignManifests>true</SignManifests>
+    <StartupObject>
+    </StartupObject>
+    <PublishUrl>C:\Documents and Settings\Mong\桌面\swlhms\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ButtonTextBoxCell\NGReasonCell.cs" />
+    <Compile Include="ButtonTextBoxCell\NGReasonColumn.cs" />
+    <Compile Include="ButtonTextBoxCell\ButtonTextboxEditingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ButtonTextBoxCell\ButtonTextboxEditingControl.designer.cs">
+      <DependentUpon>ButtonTextboxEditingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ButtonTextBoxCell\NGReasonEditingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ButtonTextBoxCell\NGReasonEditingControl.Designer.cs">
+      <DependentUpon>NGReasonEditingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\DataTableHelper.cs" />
+    <Compile Include="Class\Global.cs" />
+    <Compile Include="Class\LaborWageHelper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Class\Settings.cs" />
+    <Compile Include="Class\User.cs" />
+    <Compile Include="DatabaseSet.cs">
+      <DependentUpon>DatabaseSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DatabaseSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ITWReport\Form\InspectListReportSortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ITWReport\Form\InspectListReportSortForm.Designer.cs">
+      <DependentUpon>InspectListReportSortForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ITWReport\Form\DateLineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ITWReport\Form\DateLineForm.Designer.cs">
+      <DependentUpon>DateLineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DbConnection.cs" />
+    <Compile Include="EditState.cs" />
+    <Compile Include="Form\QualityItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\QualityItemForm.Designer.cs">
+      <DependentUpon>QualityItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\InspectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\InspectForm.Designer.cs">
+      <DependentUpon>InspectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\InspectedDeleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\InspectedDeleteForm.Designer.cs">
+      <DependentUpon>InspectedDeleteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\InspectListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\InspectListForm.Designer.cs">
+      <DependentUpon>InspectListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ITWReport\Form\InspectListReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ITWReport\Form\InspectListReportForm.Designer.cs">
+      <DependentUpon>InspectListReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ITWReport\Form\DateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ITWReport\Form\DateForm.Designer.cs">
+      <DependentUpon>DateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExcelApplication.cs" />
+    <Compile Include="ExcelLib\CaseLib.cs" />
+    <Compile Include="ExcelLib\BookLib.cs" />
+    <Compile Include="ExcelLib\WorksheetAdapter.cs" />
+    <Compile Include="Form\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\ProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\ProductForm.Designer.cs">
+      <DependentUpon>ProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\ImportProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\ImportProductForm.Designer.cs">
+      <DependentUpon>ImportProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\LineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\LineForm.Designer.cs">
+      <DependentUpon>LineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\LaborForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\LaborForm.Designer.cs">
+      <DependentUpon>LaborForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NonProduceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NonProduceForm.Designer.cs">
+      <DependentUpon>NonProduceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\EditWorksheetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\EditWorksheetForm.Designer.cs">
+      <DependentUpon>EditWorksheetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HourDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HourDataForm.Designer.cs">
+      <DependentUpon>HourDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\EditHourDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\EditHourDataForm.Designer.cs">
+      <DependentUpon>EditHourDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ITWReport\WorksheetDetail.cs" />
+    <Compile Include="ITWReport\FinishedWorksheetReporterLine.cs" />
+    <Compile Include="ITWReport\UninishedWorksheetReporterLine.cs" />
+    <Compile Include="ITWReport\InspectListReport.cs" />
+    <Compile Include="Form\NGReasonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NGReasonForm.Designer.cs">
+      <DependentUpon>NGReasonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NGTipForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NGTipForm.Designer.cs">
+      <DependentUpon>NGTipForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ITWReport\HourDataReport.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ButtonTextBoxCell\ButtonTextboxEditingControl.resx">
+      <DependentUpon>ButtonTextboxEditingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ITWReport\Form\DateLineForm.resx">
+      <DependentUpon>DateLineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\InspectForm.resx">
+      <DependentUpon>InspectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\InspectListForm.resx">
+      <DependentUpon>InspectListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NGReasonForm.resx">
+      <DependentUpon>NGReasonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NGTipForm.resx">
+      <DependentUpon>NGTipForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\QAForm.resx">
+      <DependentUpon>QAForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\QualityItemForm.resx">
+      <DependentUpon>QualityItemForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\UserForm.resx">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\InspectedDeleteForm.resx">
+      <DependentUpon>InspectedDeleteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ITWReport\Form\DateForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HourDataForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>HourDataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\LoginForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\ProductForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\ImportProductForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ImportProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\LineForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\LaborForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LaborForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NonProduceForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NonProduceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\EditWorksheetForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditWorksheetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\EditHourDataForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditHourDataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ITWReport\Form\InspectListReportForm.resx">
+      <DependentUpon>InspectListReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ITWReport\Form\InspectListReportSortForm.resx">
+      <DependentUpon>InspectListReportSortForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ITWReport\Form\WorksheetDateForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WorksheetDateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\SettingForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\ReinspectForm.resx">
+      <DependentUpon>ReinspectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\Header.resx">
+      <DependentUpon>Header.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\InfoContainer.resx">
+      <DependentUpon>InfoContainer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\InfoPage.resx">
+      <DependentUpon>InfoPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\Wizard.resx">
+      <DependentUpon>Wizard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\WizardPage.resx">
+      <DependentUpon>WizardPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\WorkingHourForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WorkingHourForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\WorksheetForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WorksheetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ITWReport\Form\WorksheetInputForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WorksheetInputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="DatabaseSet.xsc">
+      <DependentUpon>DatabaseSet.xsd</DependentUpon>
+    </None>
+    <None Include="DatabaseSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatabaseSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DatabaseSet.xss">
+      <DependentUpon>DatabaseSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </None>
+    <Compile Include="Form\SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\QAForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\QAForm.Designer.cs">
+      <DependentUpon>QAForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\ReinspectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\ReinspectForm.Designer.cs">
+      <DependentUpon>ReinspectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDataSet.cs">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\IFormSettable.cs" />
+    <Compile Include="ITWReport\MetrialsOrder.cs" />
+    <Compile Include="Report\MulitSheetReporter.cs" />
+    <Compile Include="Report\Reporter.cs" />
+    <Compile Include="Report\ReportSourceProfile.cs" />
+    <Compile Include="Report\SingleSheetReporter.cs" />
+    <Compile Include="ITWReport\UninishedWorksheetReporter.cs" />
+    <Compile Include="ITWReport\FinishedWorksheetReporter.cs" />
+    <Compile Include="ITWReport\LineLaborHourReporter.cs" />
+    <Compile Include="ITWReport\UnitPriceReporter.cs" />
+    <Compile Include="ITWReport\LaborHourDetailReporter.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Form\UserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\UserForm.Designer.cs">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\Header.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\HeaderDesigner.cs" />
+    <Compile Include="Wizard\InfoContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\InfoContainerDesigner.cs" />
+    <Compile Include="Wizard\InfoPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\InfoPageDesigner.cs" />
+    <Compile Include="Wizard\PageCollection.cs" />
+    <Compile Include="Wizard\PageEventHandler.cs" />
+    <Compile Include="Wizard\Wizard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\WizardDesigner.cs" />
+    <Compile Include="Wizard\WizardPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Wizard\WizardPageDesigner.cs" />
+    <Compile Include="Form\WorkingHourForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\WorkingHourForm.Designer.cs">
+      <DependentUpon>WorkingHourForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\WorksheetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\WorksheetForm.Designer.cs">
+      <DependentUpon>WorksheetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ITWReport\Form\WorksheetInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ITWReport\Form\WorksheetInputForm.Designer.cs">
+      <DependentUpon>WorksheetInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ITWReport\Form\WorksheetDateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ITWReport\Form\WorksheetDateForm.Designer.cs">
+      <DependentUpon>WorksheetDateForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="48.png" />
+    <Content Include="db.mdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="icon.ico" />
+    <None Include="Properties\app.manifest" />
+    <None Include="ReportDataSet.xsc">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ReportDataSet.xss">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ReportDataSet.xsx">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </None>
+    <Content Include="Settings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Wizard\Wizard.bmp" />
+    <Content Include="Wizard\wizBigOnlineFolder.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Microsoft.Office.Interop.Excel">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
