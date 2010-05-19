@@ -273,14 +273,6 @@ namespace Mong.Report
 
         protected override void AfterContentWritten()
         {
-			//刪除不需要的欄位
-			/*Range range = this.SheetAdapter.GetRange(1, _table.Columns.IndexOf("np其他") + 1).EntireColumn;
-			if (_table.Columns.IndexOf("np代工") != -1)
-				range = this.SheetAdapter.UnionRange(range, this.SheetAdapter.GetRange(1, _table.Columns.IndexOf("np代工") + 1).EntireColumn)
-			 */
-			Range range = this.SheetAdapter.GetRange(1, _table.Columns.IndexOf("np代工") + 1).EntireColumn;
-			range.Delete(Missing);
-
             //設定外觀樣式
             Range reportBodyRange = this.SheetAdapter.GetUsedRange(3);
             reportBodyRange.Columns.AutoFit();
