@@ -29,7 +29,7 @@ using System.Runtime.InteropServices;
 //      組建編號
 //      修訂編號
 //
-[assembly: AssemblyVersion("1.08.20")]
-[assembly: AssemblyFileVersion("1.08.20")]
+[assembly: AssemblyVersion("1.08.21")]
+[assembly: AssemblyFileVersion("1.08.21")]
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestProject")]

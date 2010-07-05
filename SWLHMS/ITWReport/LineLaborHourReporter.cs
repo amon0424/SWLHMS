@@ -239,7 +239,7 @@ namespace Mong.Report
                 foreach (DataRow row in rows)
                 {
                     if (!row.IsNull("借入"))
-                        row["產線"] = "借入" + row["借入"];
+						row["產線"] = "由" + row["借入"] + "借入";
                 }
 
                 writeRow = this.SheetAdapter.PasteDataRows(rows, options);
