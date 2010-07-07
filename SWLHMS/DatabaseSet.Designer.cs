@@ -4635,6 +4635,8 @@ namespace Mong {
             
             private global::System.Data.DataColumn column最後檢驗紀錄;
             
+            private global::System.Data.DataColumn column送檢日期;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public 產品檢驗DataTable() {
                 this.TableName = "產品檢驗";
@@ -4743,6 +4745,13 @@ namespace Mong {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn 送檢日期Column {
+                get {
+                    return this.column送檢日期;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4771,7 +4780,7 @@ namespace Mong {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public 產品檢驗Row Add產品檢驗Row(工時Row parent工時RowBy工時產品檢驗, bool 檢驗, bool 檢驗結果, string QCN, int 待驗數量, bool 特許, int 送檢次數, System.DateTime 日期, bool 重驗, string 最後送檢編號, bool 最後檢驗紀錄) {
+            public 產品檢驗Row Add產品檢驗Row(工時Row parent工時RowBy工時產品檢驗, bool 檢驗, bool 檢驗結果, string QCN, int 待驗數量, bool 特許, int 送檢次數, System.DateTime 日期, bool 重驗, string 最後送檢編號, bool 最後檢驗紀錄, System.DateTime 送檢日期) {
                 產品檢驗Row row產品檢驗Row = ((產品檢驗Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4784,7 +4793,8 @@ namespace Mong {
                         日期,
                         重驗,
                         最後送檢編號,
-                        最後檢驗紀錄};
+                        最後檢驗紀錄,
+                        送檢日期};
                 if ((parent工時RowBy工時產品檢驗 != null)) {
                     columnValuesArray[0] = parent工時RowBy工時產品檢驗[0];
                 }
@@ -4829,6 +4839,7 @@ namespace Mong {
                 this.column重驗 = base.Columns["重驗"];
                 this.column最後送檢編號 = base.Columns["最後送檢編號"];
                 this.column最後檢驗紀錄 = base.Columns["最後檢驗紀錄"];
+                this.column送檢日期 = base.Columns["送檢日期"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4855,6 +4866,8 @@ namespace Mong {
                 base.Columns.Add(this.column最後送檢編號);
                 this.column最後檢驗紀錄 = new global::System.Data.DataColumn("最後檢驗紀錄", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column最後檢驗紀錄);
+                this.column送檢日期 = new global::System.Data.DataColumn("送檢日期", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.column送檢日期);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.column工時資料編號}, true));
                 this.column工時資料編號.AllowDBNull = false;
@@ -7260,6 +7273,21 @@ namespace Mong {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.DateTime 送檢日期 {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.table產品檢驗.送檢日期Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("資料表 \'產品檢驗\' 中資料行 \'送檢日期\' 的值是 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.table產品檢驗.送檢日期Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public 工時Row 工時Row {
                 get {
                     return ((工時Row)(this.GetParentRow(this.Table.ParentRelations["工時產品檢驗"])));
@@ -7367,6 +7395,16 @@ namespace Mong {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void Set最後檢驗紀錄Null() {
                 this[this.table產品檢驗.最後檢驗紀錄Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Is送檢日期Null() {
+                return this.IsNull(this.table產品檢驗.送檢日期Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Set送檢日期Null() {
+                this[this.table產品檢驗.送檢日期Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -13292,10 +13330,11 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
             tableMapping.ColumnMappings.Add("重驗", "重驗");
             tableMapping.ColumnMappings.Add("最後送檢編號", "最後送檢編號");
             tableMapping.ColumnMappings.Add("最後檢驗紀錄", "最後檢驗紀錄");
+            tableMapping.ColumnMappings.Add("送檢日期", "送檢日期");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `產品檢驗` WHERE ((`工時資料編號` = ?) AND ((? = 1 AND `檢驗` IS NULL) OR (`檢驗` = ?)) AND ((? = 1 AND `檢驗結果` IS NULL) OR (`檢驗結果` = ?)) AND ((? = 1 AND `QCN` IS NULL) OR (`QCN` = ?)) AND ((? = 1 AND `待驗數量` IS NULL) OR (`待驗數量` = ?)) AND ((? = 1 AND `特許` IS NULL) OR (`特許` = ?)) AND ((? = 1 AND `送檢次數` IS NULL) OR (`送檢次數` = ?)) AND ((? = 1 AND `日期` IS NULL) OR (`日期` = ?)) AND ((? = 1 AND `重驗` IS NULL) OR (`重驗` = ?)) AND ((? = 1 AND `最後送檢編號` IS NULL) OR (`最後送檢編號` = ?)) AND ((? = 1 AND `最後檢驗紀錄` IS NULL) OR (`最後檢驗紀錄` = ?)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `產品檢驗` WHERE ((`工時資料編號` = ?) AND ((? = 1 AND `檢驗` IS NULL) OR (`檢驗` = ?)) AND ((? = 1 AND `檢驗結果` IS NULL) OR (`檢驗結果` = ?)) AND ((? = 1 AND `QCN` IS NULL) OR (`QCN` = ?)) AND ((? = 1 AND `待驗數量` IS NULL) OR (`待驗數量` = ?)) AND ((? = 1 AND `特許` IS NULL) OR (`特許` = ?)) AND ((? = 1 AND `送檢次數` IS NULL) OR (`送檢次數` = ?)) AND ((? = 1 AND `日期` IS NULL) OR (`日期` = ?)) AND ((? = 1 AND `重驗` IS NULL) OR (`重驗` = ?)) AND ((? = 1 AND `最後送檢編號` IS NULL) OR (`最後送檢編號` = ?)) AND ((? = 1 AND `最後檢驗紀錄` IS NULL) OR (`最後檢驗紀錄` = ?)) AND ((? = 1 AND `送檢日期` IS NULL) OR (`送檢日期` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_工時資料編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工時資料編號", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_檢驗", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "檢驗", global::System.Data.DataRowVersion.Original, true, null));
@@ -13318,10 +13357,12 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_最後送檢編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "最後送檢編號", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_最後檢驗紀錄", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "最後檢驗紀錄", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_最後檢驗紀錄", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "最後檢驗紀錄", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_送檢日期", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "送檢日期", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_送檢日期", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "送檢日期", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO `產品檢驗` (`工時資料編號`, `檢驗`, `檢驗結果`, `QCN`, `待驗數量`, `特許`, `送檢次數`, `日期`, `重" +
-                "驗`, `最後送檢編號`, `最後檢驗紀錄`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "驗`, `最後送檢編號`, `最後檢驗紀錄`, `送檢日期`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("工時資料編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工時資料編號", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("檢驗", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "檢驗", global::System.Data.DataRowVersion.Current, false, null));
@@ -13334,9 +13375,10 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("重驗", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "重驗", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("最後送檢編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "最後送檢編號", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("最後檢驗紀錄", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "最後檢驗紀錄", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("送檢日期", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "送檢日期", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `產品檢驗` SET `工時資料編號` = ?, `檢驗` = ?, `檢驗結果` = ?, `QCN` = ?, `待驗數量` = ?, `特許` = ?, `送檢次數` = ?, `日期` = ?, `重驗` = ?, `最後送檢編號` = ?, `最後檢驗紀錄` = ? WHERE ((`工時資料編號` = ?) AND ((? = 1 AND `檢驗` IS NULL) OR (`檢驗` = ?)) AND ((? = 1 AND `檢驗結果` IS NULL) OR (`檢驗結果` = ?)) AND ((? = 1 AND `QCN` IS NULL) OR (`QCN` = ?)) AND ((? = 1 AND `待驗數量` IS NULL) OR (`待驗數量` = ?)) AND ((? = 1 AND `特許` IS NULL) OR (`特許` = ?)) AND ((? = 1 AND `送檢次數` IS NULL) OR (`送檢次數` = ?)) AND ((? = 1 AND `日期` IS NULL) OR (`日期` = ?)) AND ((? = 1 AND `重驗` IS NULL) OR (`重驗` = ?)) AND ((? = 1 AND `最後送檢編號` IS NULL) OR (`最後送檢編號` = ?)) AND ((? = 1 AND `最後檢驗紀錄` IS NULL) OR (`最後檢驗紀錄` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `產品檢驗` SET `工時資料編號` = ?, `檢驗` = ?, `檢驗結果` = ?, `QCN` = ?, `待驗數量` = ?, `特許` = ?, `送檢次數` = ?, `日期` = ?, `重驗` = ?, `最後送檢編號` = ?, `最後檢驗紀錄` = ?, `送檢日期` = ? WHERE ((`工時資料編號` = ?) AND ((? = 1 AND `檢驗` IS NULL) OR (`檢驗` = ?)) AND ((? = 1 AND `檢驗結果` IS NULL) OR (`檢驗結果` = ?)) AND ((? = 1 AND `QCN` IS NULL) OR (`QCN` = ?)) AND ((? = 1 AND `待驗數量` IS NULL) OR (`待驗數量` = ?)) AND ((? = 1 AND `特許` IS NULL) OR (`特許` = ?)) AND ((? = 1 AND `送檢次數` IS NULL) OR (`送檢次數` = ?)) AND ((? = 1 AND `日期` IS NULL) OR (`日期` = ?)) AND ((? = 1 AND `重驗` IS NULL) OR (`重驗` = ?)) AND ((? = 1 AND `最後送檢編號` IS NULL) OR (`最後送檢編號` = ?)) AND ((? = 1 AND `最後檢驗紀錄` IS NULL) OR (`最後檢驗紀錄` = ?)) AND ((? = 1 AND `送檢日期` IS NULL) OR (`送檢日期` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("工時資料編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工時資料編號", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("檢驗", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "檢驗", global::System.Data.DataRowVersion.Current, false, null));
@@ -13349,6 +13391,7 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("重驗", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "重驗", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("最後送檢編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "最後送檢編號", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("最後檢驗紀錄", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "最後檢驗紀錄", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("送檢日期", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "送檢日期", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_工時資料編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工時資料編號", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_檢驗", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "檢驗", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_檢驗", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "檢驗", global::System.Data.DataRowVersion.Original, false, null));
@@ -13370,6 +13413,8 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_最後送檢編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "最後送檢編號", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_最後檢驗紀錄", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "最後檢驗紀錄", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_最後檢驗紀錄", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "最後檢驗紀錄", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_送檢日期", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "送檢日期", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_送檢日期", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "送檢日期", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13384,7 +13429,7 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT         工時資料編號, 檢驗, 檢驗結果, QCN, 待驗數量, 特許, 送檢次數, 日期, 重驗, \r\n                 " +
-                "         最後送檢編號, 最後檢驗紀錄\r\nFROM             產品檢驗";
+                "         最後送檢編號, 最後檢驗紀錄, 送檢日期\r\nFROM             產品檢驗";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -13438,7 +13483,7 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_工時資料編號, bool Original_檢驗, bool Original_檢驗結果, string Original_QCN, global::System.Nullable<int> Original_待驗數量, bool Original_特許, global::System.Nullable<int> Original_送檢次數, global::System.Nullable<global::System.DateTime> Original_日期, bool Original_重驗, string Original_最後送檢編號, bool Original_最後檢驗紀錄) {
+        public virtual int Delete(string Original_工時資料編號, bool Original_檢驗, bool Original_檢驗結果, string Original_QCN, global::System.Nullable<int> Original_待驗數量, bool Original_特許, global::System.Nullable<int> Original_送檢次數, global::System.Nullable<global::System.DateTime> Original_日期, bool Original_重驗, string Original_最後送檢編號, bool Original_最後檢驗紀錄, global::System.Nullable<global::System.DateTime> Original_送檢日期) {
             if ((Original_工時資料編號 == null)) {
                 this.Adapter.DeleteCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -13495,6 +13540,14 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
             }
             this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
             this.Adapter.DeleteCommand.Parameters[20].Value = ((bool)(Original_最後檢驗紀錄));
+            if ((Original_送檢日期.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[22].Value = ((System.DateTime)(Original_送檢日期.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -13514,7 +13567,7 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string 工時資料編號, bool 檢驗, bool 檢驗結果, string QCN, global::System.Nullable<int> 待驗數量, bool 特許, global::System.Nullable<int> 送檢次數, global::System.Nullable<global::System.DateTime> 日期, bool 重驗, string 最後送檢編號, bool 最後檢驗紀錄) {
+        public virtual int Insert(string 工時資料編號, bool 檢驗, bool 檢驗結果, string QCN, global::System.Nullable<int> 待驗數量, bool 特許, global::System.Nullable<int> 送檢次數, global::System.Nullable<global::System.DateTime> 日期, bool 重驗, string 最後送檢編號, bool 最後檢驗紀錄, global::System.Nullable<global::System.DateTime> 送檢日期) {
             if ((工時資料編號 == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -13556,6 +13609,12 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
                 this.Adapter.InsertCommand.Parameters[9].Value = ((string)(最後送檢編號));
             }
             this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(最後檢驗紀錄));
+            if ((送檢日期.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((System.DateTime)(送檢日期.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -13587,6 +13646,7 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
                     bool 重驗, 
                     string 最後送檢編號, 
                     bool 最後檢驗紀錄, 
+                    global::System.Nullable<global::System.DateTime> 送檢日期, 
                     string Original_工時資料編號, 
                     bool Original_檢驗, 
                     bool Original_檢驗結果, 
@@ -13597,7 +13657,8 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
                     global::System.Nullable<global::System.DateTime> Original_日期, 
                     bool Original_重驗, 
                     string Original_最後送檢編號, 
-                    bool Original_最後檢驗紀錄) {
+                    bool Original_最後檢驗紀錄, 
+                    global::System.Nullable<global::System.DateTime> Original_送檢日期) {
             if ((工時資料編號 == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -13639,62 +13700,76 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
                 this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(最後送檢編號));
             }
             this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(最後檢驗紀錄));
-            if ((Original_工時資料編號 == null)) {
+            if ((送檢日期.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(送檢日期.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_工時資料編號));
+            if ((Original_工時資料編號 == null)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(Original_檢驗));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((bool)(Original_檢驗結果));
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_工時資料編號));
+            }
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((bool)(Original_檢驗));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((bool)(Original_檢驗結果));
             if ((Original_QCN == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_QCN));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_QCN));
             }
             if ((Original_待驗數量.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_待驗數量.Value));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_待驗數量.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(Original_特許));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(Original_特許));
             if ((Original_送檢次數.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_送檢次數.Value));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(Original_送檢次數.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
             if ((Original_日期.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((System.DateTime)(Original_日期.Value));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((System.DateTime)(Original_日期.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[27].Value = ((bool)(Original_重驗));
+            this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[28].Value = ((bool)(Original_重驗));
             if ((Original_最後送檢編號 == null)) {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(Original_最後送檢編號));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(Original_最後送檢編號));
             }
-            this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[31].Value = ((bool)(Original_最後檢驗紀錄));
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[32].Value = ((bool)(Original_最後檢驗紀錄));
+            if ((Original_送檢日期.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((System.DateTime)(Original_送檢日期.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[34].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -13725,6 +13800,7 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
                     bool 重驗, 
                     string 最後送檢編號, 
                     bool 最後檢驗紀錄, 
+                    global::System.Nullable<global::System.DateTime> 送檢日期, 
                     string Original_工時資料編號, 
                     bool Original_檢驗, 
                     bool Original_檢驗結果, 
@@ -13735,8 +13811,9 @@ ORDER BY  產品品號.系列編號, 產品品號.品號";
                     global::System.Nullable<global::System.DateTime> Original_日期, 
                     bool Original_重驗, 
                     string Original_最後送檢編號, 
-                    bool Original_最後檢驗紀錄) {
-            return this.Update(Original_工時資料編號, 檢驗, 檢驗結果, QCN, 待驗數量, 特許, 送檢次數, 日期, 重驗, 最後送檢編號, 最後檢驗紀錄, Original_工時資料編號, Original_檢驗, Original_檢驗結果, Original_QCN, Original_待驗數量, Original_特許, Original_送檢次數, Original_日期, Original_重驗, Original_最後送檢編號, Original_最後檢驗紀錄);
+                    bool Original_最後檢驗紀錄, 
+                    global::System.Nullable<global::System.DateTime> Original_送檢日期) {
+            return this.Update(Original_工時資料編號, 檢驗, 檢驗結果, QCN, 待驗數量, 特許, 送檢次數, 日期, 重驗, 最後送檢編號, 最後檢驗紀錄, 送檢日期, Original_工時資料編號, Original_檢驗, Original_檢驗結果, Original_QCN, Original_待驗數量, Original_特許, Original_送檢次數, Original_日期, Original_重驗, Original_最後送檢編號, Original_最後檢驗紀錄, Original_送檢日期);
         }
     }
 }

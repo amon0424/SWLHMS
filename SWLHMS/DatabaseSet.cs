@@ -444,7 +444,7 @@ namespace Mong
 				OleDbParameter param = new OleDbParameter("日期1", OleDbType.Date);
 				param.Value = from;
 				cmd.Parameters.Add(param);
-				whereList.Add("日期 >= ?");
+				whereList.Add("送檢日期 >= ?");
 			}
 
 			if (to != DateTime.MaxValue)
@@ -453,10 +453,10 @@ namespace Mong
 				OleDbParameter param = new OleDbParameter("日期2", OleDbType.Date);
 				param.Value = to;
 				cmd.Parameters.Add(param);
-				whereList.Add("日期 <= ?");
+				whereList.Add("送檢日期 <= ?");
 			}
 
-			string cmdText = "SELECT 產線, 單據日期, 工作單號, P.品號, WP.數量 as 總數量, 待驗數量, 預計完成日, QCN, 送檢次數, 檢驗, 檢驗結果, 工時資料編號, H.日期, 工品編號" +
+			string cmdText = "SELECT 產線, 單據日期, 工作單號, P.品號, WP.數量 as 總數量, 待驗數量, 預計完成日, QCN, 送檢次數, 檢驗, 檢驗結果, 工時資料編號, 送檢日期 as 日期, 工品編號" +
 							 " FROM ((((工時 as H INNER JOIN 產品檢驗 as Q on H.編號 = Q.工時資料編號) " + 
 							 " INNER JOIN 工作單 as W on H.工作單號 = W.單號)" + 
 							 " INNER JOIN 工作單品號 as WP ON H.工作單號 = WP.單號 AND H.工品編號 = WP.編號)" +
@@ -464,7 +464,7 @@ namespace Mong
 			if (whereList.Count > 0)
 				cmdText += " WHERE " + string.Join(" AND ", whereList.ToArray());
 
-			cmdText += " ORDER BY H.日期, 單據日期, 工作單號, 工品編號";
+			cmdText += " ORDER BY 送檢日期, 單據日期, 工作單號, 工品編號";
 			
 			cmd.CommandText = cmdText;
 			OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
@@ -561,7 +561,8 @@ namespace Mong
 				OleDbParameter param = new OleDbParameter("日期", OleDbType.Date);
 				param.Value = date;
 				cmd.Parameters.Add(param);
-				whereList.Add("Q.日期 = ?");
+				whereList.Add("datediff(\"d\", ?, Q.日期)=0");
+				//whereList.Add("Q.日期 = ?");
 			}
 
 			string cmdText = "SELECT 單據日期, 工作單號, 品號, 客戶, WP.數量 as 總數量, 待驗數量, QCN, 檢驗結果, Q.日期 as 檢驗日期, 工品編號, 工時資料編號" +
@@ -747,7 +748,11 @@ namespace Mong
 			cmd.Parameters.Add(new OleDbParameter("檢驗", OleDbType.Boolean, -1, "檢驗"));
 			cmd.Parameters.Add(new OleDbParameter("檢驗結果", OleDbType.Boolean, -1, "檢驗結果"));
 			//cmd.Parameters.Add(new OleDbParameter("品質原因", OleDbType.Integer, -1, "品質原因"));
-			cmd.Parameters.Add(new OleDbParameter("日期", DateTime.Today));
+			//cmd.Parameters.Add(new OleDbParameter("日期", DateTime.Now.ToString("s")));
+			OleDbParameter paramDate = new OleDbParameter();
+			paramDate.OleDbType = OleDbType.DBTimeStamp;
+			paramDate.Value = DateTime.Now.ToString("s"); ;
+			cmd.Parameters.Add(paramDate);
 			cmd.Parameters.Add(new OleDbParameter("特許", OleDbType.Boolean,-1, "特許"));
 			cmd.Parameters.Add(new OleDbParameter("工時資料編號", OleDbType.VarWChar, 255, "工時資料編號"));
 			
@@ -962,7 +967,7 @@ namespace Mong
 		public static DataTable GetNGData(string labor)
 		{
 			OleDbConnection conn = new OleDbConnection(Properties.Settings.Default.dbConnectionString);
-			string cmdText = "SELECT H.日期,Q.日期 AS 檢驗日期, 工作單號, 工品編號, 品號, 工時資料編號, QCN, 待驗數量, 送檢次數,客戶 " +
+			string cmdText = "SELECT 送檢日期 as 日期,Q.日期 AS 檢驗日期, 工作單號, 工品編號, 品號, 工時資料編號, QCN, 待驗數量, 送檢次數,客戶 " +
 							 " FROM ((產品檢驗 as Q INNER JOIN 工時 as H ON H.編號 = Q.工時資料編號) " +
 							 " INNER JOIN 工作單品號 as WP ON WP.單號 = H.工作單號 AND WP.編號 = H.工品編號)" +
 							 " WHERE 檢驗=True AND 檢驗結果=False AND 特許=False AND 重驗=False AND 員工編號=?";
@@ -1800,7 +1805,7 @@ namespace Mong.DatabaseSetTableAdapters
 				cmd.Parameters.Add(new OleDbParameter("工時資料編號", from));
 				int num = Convert.ToInt32(cmd.ExecuteScalar());
 
-				cmdText = "INSERT INTO 產品檢驗 (工時資料編號,QCN,待驗數量,送檢次數,最後送檢編號) VALUES (?,?,?,?,?)";
+				cmdText = "INSERT INTO 產品檢驗 (工時資料編號,QCN,待驗數量,送檢次數,最後送檢編號,送檢日期) VALUES (?,?,?,?,?,?)";
 
 				cmd = new OleDbCommand(cmdText, this.Connection);
 				cmd.Transaction = transaction;
@@ -1809,6 +1814,7 @@ namespace Mong.DatabaseSetTableAdapters
 				cmd.Parameters.Add(new OleDbParameter("待驗數量", amount));
 				cmd.Parameters.Add(new OleDbParameter("送檢次數", num + 1));
 				cmd.Parameters.Add(new OleDbParameter("最後送檢編號", to));
+				cmd.Parameters.Add(new OleDbParameter("送檢日期", DateTime.Today));
 
 				result = cmd.ExecuteNonQuery();
 

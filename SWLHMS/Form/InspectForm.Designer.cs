@@ -32,12 +32,6 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -47,29 +41,13 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dgv = new System.Windows.Forms.DataGridView();
-			this.col待驗提醒 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col檢驗 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.col項次 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col產線 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col待驗工作單 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col料號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col序號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col總數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colEstShipDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col已完成 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colInspectNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colAccNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colGroupNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colReinspectNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colQCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col送檢次數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col檢驗結果 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.colNG原因 = new Mong.NGReasonColumn();
-			this.col原因 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colNG處理 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-			this.col特許 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.btnSearch = new System.Windows.Forms.Button();
 			this.btnSend = new System.Windows.Forms.Button();
@@ -97,6 +75,28 @@
 			this.ngReasonColumn2 = new Mong.NGReasonColumn();
 			this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.buttonTextboxColumn1 = new Mong.NGReasonColumn();
+			this.col待驗提醒 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col檢驗 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.col項次 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col產線 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col待驗工作單 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col料號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col序號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col總數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colEstShipDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col已完成 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colInspectNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colAccNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colGroupNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colReinspectNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colQCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col送檢次數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col檢驗結果 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.colNG原因 = new Mong.NGReasonColumn();
+			this.col原因 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colNG處理 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.col特許 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
@@ -182,211 +182,6 @@
 			this.dgv.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgv_CurrentCellDirtyStateChanged);
 			this.dgv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgv_KeyDown);
 			this.dgv.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellEnter);
-			// 
-			// col待驗提醒
-			// 
-			this.col待驗提醒.DataPropertyName = "待驗提醒";
-			this.col待驗提醒.Frozen = true;
-			this.col待驗提醒.HeaderText = "";
-			this.col待驗提醒.Name = "col待驗提醒";
-			this.col待驗提醒.ReadOnly = true;
-			this.col待驗提醒.Width = 30;
-			// 
-			// col檢驗
-			// 
-			this.col檢驗.DataPropertyName = "檢驗";
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-			dataGridViewCellStyle2.NullValue = false;
-			this.col檢驗.DefaultCellStyle = dataGridViewCellStyle2;
-			this.col檢驗.Frozen = true;
-			this.col檢驗.HeaderText = "已檢驗";
-			this.col檢驗.Name = "col檢驗";
-			this.col檢驗.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.col檢驗.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.col檢驗.Width = 60;
-			// 
-			// col項次
-			// 
-			this.col項次.DataPropertyName = "項次";
-			this.col項次.Frozen = true;
-			this.col項次.HeaderText = "項次";
-			this.col項次.Name = "col項次";
-			this.col項次.ReadOnly = true;
-			this.col項次.Width = 50;
-			// 
-			// col產線
-			// 
-			this.col產線.DataPropertyName = "產線";
-			this.col產線.Frozen = true;
-			this.col產線.HeaderText = "產線";
-			this.col產線.Name = "col產線";
-			this.col產線.ReadOnly = true;
-			this.col產線.Width = 50;
-			// 
-			// col日期
-			// 
-			this.col日期.DataPropertyName = "日期";
-			dataGridViewCellStyle3.Format = "d";
-			this.col日期.DefaultCellStyle = dataGridViewCellStyle3;
-			this.col日期.Frozen = true;
-			this.col日期.HeaderText = "送檢日期";
-			this.col日期.Name = "col日期";
-			this.col日期.ReadOnly = true;
-			this.col日期.Width = 80;
-			// 
-			// col待驗工作單
-			// 
-			this.col待驗工作單.DataPropertyName = "工作單號";
-			this.col待驗工作單.Frozen = true;
-			this.col待驗工作單.HeaderText = "工作單號";
-			this.col待驗工作單.Name = "col待驗工作單";
-			this.col待驗工作單.ReadOnly = true;
-			this.col待驗工作單.Width = 80;
-			// 
-			// col料號
-			// 
-			this.col料號.DataPropertyName = "品號";
-			this.col料號.Frozen = true;
-			this.col料號.HeaderText = "料號";
-			this.col料號.Name = "col料號";
-			this.col料號.ReadOnly = true;
-			this.col料號.Width = 50;
-			// 
-			// col序號
-			// 
-			this.col序號.DataPropertyName = "序號";
-			this.col序號.HeaderText = "序號";
-			this.col序號.Name = "col序號";
-			this.col序號.ReadOnly = true;
-			this.col序號.Visible = false;
-			this.col序號.Width = 50;
-			// 
-			// col總數量
-			// 
-			this.col總數量.DataPropertyName = "總數量";
-			dataGridViewCellStyle4.Format = "0.#";
-			this.col總數量.DefaultCellStyle = dataGridViewCellStyle4;
-			this.col總數量.HeaderText = "總數量";
-			this.col總數量.Name = "col總數量";
-			this.col總數量.ReadOnly = true;
-			this.col總數量.Width = 60;
-			// 
-			// colEstShipDate
-			// 
-			this.colEstShipDate.DataPropertyName = "預計完成日";
-			this.colEstShipDate.HeaderText = "預計交貨日期";
-			this.colEstShipDate.Name = "colEstShipDate";
-			this.colEstShipDate.ReadOnly = true;
-			this.colEstShipDate.Width = 120;
-			// 
-			// col已完成
-			// 
-			this.col已完成.DataPropertyName = "已完成";
-			this.col已完成.HeaderText = "已完成";
-			this.col已完成.Name = "col已完成";
-			this.col已完成.ReadOnly = true;
-			this.col已完成.Width = 60;
-			// 
-			// colInspectNum
-			// 
-			this.colInspectNum.DataPropertyName = "待驗數量";
-			this.colInspectNum.HeaderText = "待驗數量";
-			this.colInspectNum.Name = "colInspectNum";
-			this.colInspectNum.ReadOnly = true;
-			this.colInspectNum.Width = 80;
-			// 
-			// colAccNum
-			// 
-			this.colAccNum.DataPropertyName = "累計待驗數";
-			this.colAccNum.HeaderText = "累計待驗數";
-			this.colAccNum.Name = "colAccNum";
-			this.colAccNum.ReadOnly = true;
-			// 
-			// colGroupNum
-			// 
-			this.colGroupNum.DataPropertyName = "筆數";
-			this.colGroupNum.HeaderText = "待驗QC#總筆數";
-			this.colGroupNum.Name = "colGroupNum";
-			this.colGroupNum.ReadOnly = true;
-			this.colGroupNum.Width = 130;
-			// 
-			// colReinspectNum
-			// 
-			this.colReinspectNum.DataPropertyName = "重檢";
-			this.colReinspectNum.HeaderText = "重檢QC#筆數";
-			this.colReinspectNum.Name = "colReinspectNum";
-			this.colReinspectNum.ReadOnly = true;
-			// 
-			// colQCN
-			// 
-			this.colQCN.DataPropertyName = "QCN";
-			this.colQCN.HeaderText = "QC#";
-			this.colQCN.Name = "colQCN";
-			this.colQCN.ReadOnly = true;
-			this.colQCN.Width = 50;
-			// 
-			// col送檢次數
-			// 
-			this.col送檢次數.DataPropertyName = "送檢次數";
-			this.col送檢次數.HeaderText = "送檢次數";
-			this.col送檢次數.Name = "col送檢次數";
-			this.col送檢次數.ReadOnly = true;
-			this.col送檢次數.Width = 80;
-			// 
-			// col檢驗結果
-			// 
-			this.col檢驗結果.DataPropertyName = "檢驗結果";
-			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-			dataGridViewCellStyle5.NullValue = false;
-			this.col檢驗結果.DefaultCellStyle = dataGridViewCellStyle5;
-			this.col檢驗結果.HeaderText = "檢驗狀態";
-			this.col檢驗結果.Name = "col檢驗結果";
-			this.col檢驗結果.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.col檢驗結果.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.col檢驗結果.Width = 80;
-			// 
-			// colNG原因
-			// 
-			this.colNG原因.DataPropertyName = "NG原因";
-			dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-			this.colNG原因.DefaultCellStyle = dataGridViewCellStyle6;
-			this.colNG原因.HeaderText = "NG原因";
-			this.colNG原因.Name = "colNG原因";
-			this.colNG原因.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.colNG原因.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			// 
-			// col原因
-			// 
-			this.col原因.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-			this.col原因.DataPropertyName = "舊NG原因";
-			dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.col原因.DefaultCellStyle = dataGridViewCellStyle7;
-			this.col原因.HeaderText = "舊NG原因";
-			this.col原因.Name = "col原因";
-			this.col原因.ReadOnly = true;
-			this.col原因.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.col原因.Width = 101;
-			// 
-			// colNG處理
-			// 
-			this.colNG處理.DataPropertyName = "NG處理";
-			this.colNG處理.HeaderText = "NG處理";
-			this.colNG處理.Items.AddRange(new object[] {
-            "Reject",
-            "Concession"});
-			this.colNG處理.Name = "colNG處理";
-			this.colNG處理.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.colNG處理.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			// 
-			// col特許
-			// 
-			this.col特許.DataPropertyName = "特許";
-			this.col特許.HeaderText = "特許";
-			this.col特許.Name = "col特許";
-			this.col特許.ReadOnly = true;
-			this.col特許.Visible = false;
 			// 
 			// bindingSource
 			// 
@@ -642,6 +437,211 @@
 			this.buttonTextboxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.buttonTextboxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
 			// 
+			// col待驗提醒
+			// 
+			this.col待驗提醒.DataPropertyName = "待驗提醒";
+			this.col待驗提醒.Frozen = true;
+			this.col待驗提醒.HeaderText = "";
+			this.col待驗提醒.Name = "col待驗提醒";
+			this.col待驗提醒.ReadOnly = true;
+			this.col待驗提醒.Width = 30;
+			// 
+			// col檢驗
+			// 
+			this.col檢驗.DataPropertyName = "檢驗";
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+			dataGridViewCellStyle2.NullValue = false;
+			this.col檢驗.DefaultCellStyle = dataGridViewCellStyle2;
+			this.col檢驗.Frozen = true;
+			this.col檢驗.HeaderText = "已檢驗";
+			this.col檢驗.Name = "col檢驗";
+			this.col檢驗.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.col檢驗.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.col檢驗.Width = 60;
+			// 
+			// col項次
+			// 
+			this.col項次.DataPropertyName = "項次";
+			this.col項次.Frozen = true;
+			this.col項次.HeaderText = "項次";
+			this.col項次.Name = "col項次";
+			this.col項次.ReadOnly = true;
+			this.col項次.Width = 50;
+			// 
+			// col產線
+			// 
+			this.col產線.DataPropertyName = "產線";
+			this.col產線.Frozen = true;
+			this.col產線.HeaderText = "產線";
+			this.col產線.Name = "col產線";
+			this.col產線.ReadOnly = true;
+			this.col產線.Width = 50;
+			// 
+			// col日期
+			// 
+			this.col日期.DataPropertyName = "日期";
+			dataGridViewCellStyle3.Format = "d";
+			this.col日期.DefaultCellStyle = dataGridViewCellStyle3;
+			this.col日期.Frozen = true;
+			this.col日期.HeaderText = "送檢日期";
+			this.col日期.Name = "col日期";
+			this.col日期.ReadOnly = true;
+			this.col日期.Width = 80;
+			// 
+			// col待驗工作單
+			// 
+			this.col待驗工作單.DataPropertyName = "工作單號";
+			this.col待驗工作單.Frozen = true;
+			this.col待驗工作單.HeaderText = "工作單號";
+			this.col待驗工作單.Name = "col待驗工作單";
+			this.col待驗工作單.ReadOnly = true;
+			this.col待驗工作單.Width = 80;
+			// 
+			// col料號
+			// 
+			this.col料號.DataPropertyName = "品號";
+			this.col料號.Frozen = true;
+			this.col料號.HeaderText = "料號";
+			this.col料號.Name = "col料號";
+			this.col料號.ReadOnly = true;
+			this.col料號.Width = 50;
+			// 
+			// col序號
+			// 
+			this.col序號.DataPropertyName = "序號";
+			this.col序號.HeaderText = "序號";
+			this.col序號.Name = "col序號";
+			this.col序號.ReadOnly = true;
+			this.col序號.Visible = false;
+			this.col序號.Width = 50;
+			// 
+			// col總數量
+			// 
+			this.col總數量.DataPropertyName = "總數量";
+			dataGridViewCellStyle4.Format = "0.#";
+			this.col總數量.DefaultCellStyle = dataGridViewCellStyle4;
+			this.col總數量.HeaderText = "總數量";
+			this.col總數量.Name = "col總數量";
+			this.col總數量.ReadOnly = true;
+			this.col總數量.Width = 60;
+			// 
+			// colEstShipDate
+			// 
+			this.colEstShipDate.DataPropertyName = "預計完成日";
+			this.colEstShipDate.HeaderText = "預計交貨日期";
+			this.colEstShipDate.Name = "colEstShipDate";
+			this.colEstShipDate.ReadOnly = true;
+			this.colEstShipDate.Width = 120;
+			// 
+			// col已完成
+			// 
+			this.col已完成.DataPropertyName = "已完成";
+			this.col已完成.HeaderText = "已完成";
+			this.col已完成.Name = "col已完成";
+			this.col已完成.ReadOnly = true;
+			this.col已完成.Width = 60;
+			// 
+			// colInspectNum
+			// 
+			this.colInspectNum.DataPropertyName = "待驗數量";
+			this.colInspectNum.HeaderText = "待驗數量";
+			this.colInspectNum.Name = "colInspectNum";
+			this.colInspectNum.ReadOnly = true;
+			this.colInspectNum.Width = 80;
+			// 
+			// colAccNum
+			// 
+			this.colAccNum.DataPropertyName = "累計待驗數";
+			this.colAccNum.HeaderText = "累計待驗數";
+			this.colAccNum.Name = "colAccNum";
+			this.colAccNum.ReadOnly = true;
+			// 
+			// colGroupNum
+			// 
+			this.colGroupNum.DataPropertyName = "筆數";
+			this.colGroupNum.HeaderText = "待驗QC#總筆數";
+			this.colGroupNum.Name = "colGroupNum";
+			this.colGroupNum.ReadOnly = true;
+			this.colGroupNum.Width = 130;
+			// 
+			// colReinspectNum
+			// 
+			this.colReinspectNum.DataPropertyName = "重檢";
+			this.colReinspectNum.HeaderText = "重檢QC#筆數";
+			this.colReinspectNum.Name = "colReinspectNum";
+			this.colReinspectNum.ReadOnly = true;
+			// 
+			// colQCN
+			// 
+			this.colQCN.DataPropertyName = "QCN";
+			this.colQCN.HeaderText = "QC#";
+			this.colQCN.Name = "colQCN";
+			this.colQCN.ReadOnly = true;
+			this.colQCN.Width = 50;
+			// 
+			// col送檢次數
+			// 
+			this.col送檢次數.DataPropertyName = "送檢次數";
+			this.col送檢次數.HeaderText = "送檢次數";
+			this.col送檢次數.Name = "col送檢次數";
+			this.col送檢次數.ReadOnly = true;
+			this.col送檢次數.Width = 80;
+			// 
+			// col檢驗結果
+			// 
+			this.col檢驗結果.DataPropertyName = "檢驗結果";
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+			dataGridViewCellStyle5.NullValue = false;
+			this.col檢驗結果.DefaultCellStyle = dataGridViewCellStyle5;
+			this.col檢驗結果.HeaderText = "檢驗狀態";
+			this.col檢驗結果.Name = "col檢驗結果";
+			this.col檢驗結果.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.col檢驗結果.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.col檢驗結果.Width = 80;
+			// 
+			// colNG原因
+			// 
+			this.colNG原因.DataPropertyName = "NG原因";
+			dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+			this.colNG原因.DefaultCellStyle = dataGridViewCellStyle6;
+			this.colNG原因.HeaderText = "NG原因";
+			this.colNG原因.Name = "colNG原因";
+			this.colNG原因.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.colNG原因.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			// 
+			// col原因
+			// 
+			this.col原因.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			this.col原因.DataPropertyName = "舊NG原因";
+			dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.col原因.DefaultCellStyle = dataGridViewCellStyle7;
+			this.col原因.HeaderText = "舊NG原因";
+			this.col原因.Name = "col原因";
+			this.col原因.ReadOnly = true;
+			this.col原因.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.col原因.Width = 101;
+			// 
+			// colNG處理
+			// 
+			this.colNG處理.DataPropertyName = "NG處理";
+			this.colNG處理.HeaderText = "NG處理";
+			this.colNG處理.Items.AddRange(new object[] {
+            "Reject",
+            "Concession"});
+			this.colNG處理.Name = "colNG處理";
+			this.colNG處理.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.colNG處理.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			// 
+			// col特許
+			// 
+			this.col特許.DataPropertyName = "特許";
+			this.col特許.HeaderText = "特許";
+			this.col特許.Name = "col特許";
+			this.col特許.ReadOnly = true;
+			this.col特許.Visible = false;
+			// 
 			// InspectForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -690,6 +690,11 @@
 		private NGReasonColumn ngReasonColumn1;
 		private System.Windows.Forms.RadioButton rbInspectByPn;
 		private System.Windows.Forms.RadioButton rbInspectByQcN;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+		private NGReasonColumn ngReasonColumn2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col待驗提醒;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn col檢驗;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col項次;
@@ -712,11 +717,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn col原因;
 		private System.Windows.Forms.DataGridViewComboBoxColumn colNG處理;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn col特許;
-		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
-		private NGReasonColumn ngReasonColumn2;
-		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
 
 	}
 }

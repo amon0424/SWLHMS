@@ -19,7 +19,7 @@
     <Shape ID="DesignTable:假日" ZOrder="24" X="872" Y="-19" Height="128" Width="102" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="61" />
     <Shape ID="DesignTable:假日View" ZOrder="13" X="996" Y="-15" Height="128" Width="121" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="79" />
     <Shape ID="DesignTable:品質原因" ZOrder="15" X="1006" Y="235" Height="110" Width="181" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="61" />
-    <Shape ID="DesignTable:產品檢驗" ZOrder="2" X="1003" Y="372" Height="218" Width="181" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="169" />
+    <Shape ID="DesignTable:產品檢驗" ZOrder="2" X="1003" Y="372" Height="290" Width="181" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="241" />
     <Shape ID="DesignTable:待驗清單" ZOrder="10" X="1023" Y="571" Height="173" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="169" />
   </Shapes>
   <Connectors>
@@ -178,16 +178,20 @@
     <Connector ID="DesignRelation:工時產品檢驗" ZOrder="12" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>1018</X>
-          <Y>598</Y>
+          <X>1010</X>
+          <Y>336</Y>
         </Point>
         <Point>
-          <X>1035</X>
-          <Y>598</Y>
+          <X>1010</X>
+          <Y>306</Y>
         </Point>
         <Point>
-          <X>1035</X>
-          <Y>590</Y>
+          <X>1026</X>
+          <Y>306</Y>
+        </Point>
+        <Point>
+          <X>1026</X>
+          <Y>372</Y>
         </Point>
       </RoutePoints>
     </Connector>
