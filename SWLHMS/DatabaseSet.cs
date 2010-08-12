@@ -886,7 +886,7 @@ namespace Mong
 				conn.Close();
 
 				if (result != DBNull.Value)
-					finishDate = (DateTime)result;		
+					finishDate = ((DateTime)result).Date;		
 			}
 
 			return finish;
