@@ -74,6 +74,10 @@ namespace Mong
 		{
 			get { return ckbDate.Checked; }
 		}
+		public bool OnlyNG
+		{
+			get { return rbOnlyNg.Checked; }
+		}
 		public string Line
 		{
 			get
@@ -94,7 +98,7 @@ namespace Mong
 		{
 			get
 			{
-				return rbInspectByPn.Checked ? InspeceMode.ByPn : InspeceMode.ByQcNo;
+				return rbOnlyNg.Checked ? InspeceMode.OnlyNg : (rbInspectByPn.Checked ? InspeceMode.ByPn : InspeceMode.ByQcNo);
 			}
 		}
 
@@ -159,7 +163,20 @@ namespace Mong
 			ckbGroup.Enabled = rbInspectByQcN.Checked;
 			if (!ckbGroup.Enabled)
 				ckbGroup.Checked = false;
-			txtQCN.Enabled = rbInspectByQcN.Checked;
+			
+		}
+
+		private void rbOnlyNg_CheckedChanged(object sender, EventArgs e)
+		{
+			bool isChecked = rbOnlyNg.Checked;
+			if(isChecked)
+				ckbGroup.Checked = ckbStatistic.Checked = false;
+			ckbGroup.Enabled = ckbStatistic.Enabled = !isChecked;
+		}
+
+		private void rbInspectByPn_CheckedChanged(object sender, EventArgs e)
+		{
+			txtQCN.Enabled = !rbInspectByPn.Checked;
 		}
 	}
 }

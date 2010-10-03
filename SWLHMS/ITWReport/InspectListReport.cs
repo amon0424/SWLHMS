@@ -56,7 +56,7 @@ namespace Mong.Report
 
 
 			_table = ReportDataSet.InspectListReportDataTable.GetData(from, to, partNumber, qcn, worksheetFrom, worksheetTo, 
-				_form.InspeceMode == InspeceMode.ByPn ? true : _form.Group, _form.Line);
+				_form.InspeceMode == InspeceMode.ByPn ? true : _form.Group, _form.Line, _form.OnlyNG);
 
 			//_table.Columns.Add("Remark");
 			if (_form.InspeceMode == InspeceMode.ByPn)

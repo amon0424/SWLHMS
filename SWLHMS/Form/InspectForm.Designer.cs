@@ -30,6 +30,7 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -40,13 +41,11 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dgv = new System.Windows.Forms.DataGridView();
 			this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.btnSearch = new System.Windows.Forms.Button();
@@ -75,6 +74,7 @@
 			this.ngReasonColumn2 = new Mong.NGReasonColumn();
 			this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.buttonTextboxColumn1 = new Mong.NGReasonColumn();
+			this.rbOnlyUnreinspect = new System.Windows.Forms.RadioButton();
 			this.col待驗提醒 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.col檢驗 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.col項次 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,6 +111,7 @@
 						| System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.dgv.AutoGenerateColumns = false;
+			this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
 			this.dgv.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
 			this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -148,40 +149,40 @@
             this.colNG處理,
             this.col特許});
 			this.dgv.DataSource = this.bindingSource;
-			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-			dataGridViewCellStyle8.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgv.DefaultCellStyle = dataGridViewCellStyle8;
+			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+			dataGridViewCellStyle7.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgv.DefaultCellStyle = dataGridViewCellStyle7;
 			this.dgv.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
 			this.dgv.EnableHeadersVisualStyles = false;
 			this.dgv.GridColor = System.Drawing.Color.LightGray;
 			this.dgv.Location = new System.Drawing.Point(12, 50);
 			this.dgv.Name = "dgv";
 			this.dgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle9.BackColor = System.Drawing.Color.CornflowerBlue;
-			dataGridViewCellStyle9.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-			dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle8.BackColor = System.Drawing.Color.CornflowerBlue;
+			dataGridViewCellStyle8.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+			dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
 			this.dgv.RowHeadersVisible = false;
 			this.dgv.RowHeadersWidth = 20;
 			this.dgv.RowTemplate.Height = 25;
 			this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgv.Size = new System.Drawing.Size(806, 337);
+			this.dgv.Size = new System.Drawing.Size(879, 368);
 			this.dgv.TabIndex = 34;
-			this.dgv.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellValueChanged);
+			this.dgv.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellEnter);
 			this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_CellFormatting);
+			this.dgv.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellValueChanged);
 			this.dgv.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgv_CurrentCellDirtyStateChanged);
 			this.dgv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgv_KeyDown);
-			this.dgv.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellEnter);
 			// 
 			// bindingSource
 			// 
@@ -204,7 +205,7 @@
 			this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnSend.Enabled = false;
 			this.btnSend.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.btnSend.Location = new System.Drawing.Point(651, 393);
+			this.btnSend.Location = new System.Drawing.Point(724, 424);
 			this.btnSend.Name = "btnSend";
 			this.btnSend.Size = new System.Drawing.Size(167, 33);
 			this.btnSend.TabIndex = 49;
@@ -214,7 +215,7 @@
 			// 
 			// btnNGReason
 			// 
-			this.btnNGReason.Location = new System.Drawing.Point(12, 414);
+			this.btnNGReason.Location = new System.Drawing.Point(12, 440);
 			this.btnNGReason.Name = "btnNGReason";
 			this.btnNGReason.Size = new System.Drawing.Size(22, 22);
 			this.btnNGReason.TabIndex = 50;
@@ -252,8 +253,8 @@
 			// ngReasonColumn1
 			// 
 			this.ngReasonColumn1.DataPropertyName = "NG原因";
-			dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-			this.ngReasonColumn1.DefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+			this.ngReasonColumn1.DefaultCellStyle = dataGridViewCellStyle9;
 			this.ngReasonColumn1.HeaderText = "NG原因";
 			this.ngReasonColumn1.Name = "ngReasonColumn1";
 			this.ngReasonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -289,8 +290,8 @@
 			// dataGridViewTextBoxColumn4
 			// 
 			this.dataGridViewTextBoxColumn4.DataPropertyName = "工作單號";
-			dataGridViewCellStyle11.Format = "d";
-			this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle11;
+			dataGridViewCellStyle10.Format = "d";
+			this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle10;
 			this.dataGridViewTextBoxColumn4.Frozen = true;
 			this.dataGridViewTextBoxColumn4.HeaderText = "工作單號";
 			this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
@@ -318,8 +319,8 @@
 			// dataGridViewTextBoxColumn7
 			// 
 			this.dataGridViewTextBoxColumn7.DataPropertyName = "總數量";
-			dataGridViewCellStyle12.Format = "0.#";
-			this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle12;
+			dataGridViewCellStyle11.Format = "0.#";
+			this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle11;
 			this.dataGridViewTextBoxColumn7.HeaderText = "總數量";
 			this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
 			this.dataGridViewTextBoxColumn7.ReadOnly = true;
@@ -329,8 +330,8 @@
 			// dataGridViewTextBoxColumn8
 			// 
 			this.dataGridViewTextBoxColumn8.DataPropertyName = "已完成";
-			dataGridViewCellStyle13.Format = "0.#";
-			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle13;
+			dataGridViewCellStyle12.Format = "0.#";
+			this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle12;
 			this.dataGridViewTextBoxColumn8.HeaderText = "已完成";
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
 			this.dataGridViewTextBoxColumn8.ReadOnly = true;
@@ -364,8 +365,8 @@
 			// 
 			this.dataGridViewTextBoxColumn12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
 			this.dataGridViewTextBoxColumn12.DataPropertyName = "NG原因";
-			dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
-			this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle14;
+			dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+			this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle13;
 			this.dataGridViewTextBoxColumn12.HeaderText = "NG原因";
 			this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
 			this.dataGridViewTextBoxColumn12.ReadOnly = true;
@@ -375,8 +376,8 @@
 			// 
 			this.dataGridViewTextBoxColumn13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
 			this.dataGridViewTextBoxColumn13.DataPropertyName = "舊NG原因";
-			dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle15;
+			dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle14;
 			this.dataGridViewTextBoxColumn13.HeaderText = "舊NG原因";
 			this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
 			this.dataGridViewTextBoxColumn13.ReadOnly = true;
@@ -408,8 +409,8 @@
 			// ngReasonColumn2
 			// 
 			this.ngReasonColumn2.DataPropertyName = "NG原因";
-			dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-			this.ngReasonColumn2.DefaultCellStyle = dataGridViewCellStyle16;
+			dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+			this.ngReasonColumn2.DefaultCellStyle = dataGridViewCellStyle15;
 			this.ngReasonColumn2.HeaderText = "NG原因";
 			this.ngReasonColumn2.Name = "ngReasonColumn2";
 			this.ngReasonColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -419,8 +420,8 @@
 			// 
 			this.dataGridViewTextBoxColumn17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
 			this.dataGridViewTextBoxColumn17.DataPropertyName = "舊NG原因";
-			dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridViewTextBoxColumn17.DefaultCellStyle = dataGridViewCellStyle17;
+			dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridViewTextBoxColumn17.DefaultCellStyle = dataGridViewCellStyle16;
 			this.dataGridViewTextBoxColumn17.HeaderText = "舊NG原因";
 			this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
 			this.dataGridViewTextBoxColumn17.ReadOnly = true;
@@ -429,13 +430,25 @@
 			// buttonTextboxColumn1
 			// 
 			this.buttonTextboxColumn1.DataPropertyName = "NG原因";
-			dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-			this.buttonTextboxColumn1.DefaultCellStyle = dataGridViewCellStyle18;
+			dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
+			this.buttonTextboxColumn1.DefaultCellStyle = dataGridViewCellStyle17;
 			this.buttonTextboxColumn1.HeaderText = "NG原因";
 			this.buttonTextboxColumn1.Name = "buttonTextboxColumn1";
 			this.buttonTextboxColumn1.ReadOnly = true;
 			this.buttonTextboxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.buttonTextboxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			// 
+			// rbOnlyUnreinspect
+			// 
+			this.rbOnlyUnreinspect.AutoSize = true;
+			this.rbOnlyUnreinspect.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			this.rbOnlyUnreinspect.Location = new System.Drawing.Point(597, 16);
+			this.rbOnlyUnreinspect.Name = "rbOnlyUnreinspect";
+			this.rbOnlyUnreinspect.Size = new System.Drawing.Size(280, 20);
+			this.rbOnlyUnreinspect.TabIndex = 54;
+			this.rbOnlyUnreinspect.Text = "僅列出 NG 且尚未重新送檢之檢驗批";
+			this.rbOnlyUnreinspect.UseVisualStyleBackColor = true;
+			this.rbOnlyUnreinspect.CheckedChanged += new System.EventHandler(this.rbOnlyUnreinspect_CheckedChanged);
 			// 
 			// col待驗提醒
 			// 
@@ -443,7 +456,6 @@
 			this.col待驗提醒.Frozen = true;
 			this.col待驗提醒.HeaderText = "";
 			this.col待驗提醒.Name = "col待驗提醒";
-			this.col待驗提醒.ReadOnly = true;
 			this.col待驗提醒.Width = 30;
 			// 
 			// col檢驗
@@ -481,8 +493,6 @@
 			// col日期
 			// 
 			this.col日期.DataPropertyName = "日期";
-			dataGridViewCellStyle3.Format = "d";
-			this.col日期.DefaultCellStyle = dataGridViewCellStyle3;
 			this.col日期.Frozen = true;
 			this.col日期.HeaderText = "送檢日期";
 			this.col日期.Name = "col日期";
@@ -519,8 +529,8 @@
 			// col總數量
 			// 
 			this.col總數量.DataPropertyName = "總數量";
-			dataGridViewCellStyle4.Format = "0.#";
-			this.col總數量.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle3.Format = "0.#";
+			this.col總數量.DefaultCellStyle = dataGridViewCellStyle3;
 			this.col總數量.HeaderText = "總數量";
 			this.col總數量.Name = "col總數量";
 			this.col總數量.ReadOnly = true;
@@ -591,10 +601,10 @@
 			// col檢驗結果
 			// 
 			this.col檢驗結果.DataPropertyName = "檢驗結果";
-			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-			dataGridViewCellStyle5.NullValue = false;
-			this.col檢驗結果.DefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+			dataGridViewCellStyle4.NullValue = false;
+			this.col檢驗結果.DefaultCellStyle = dataGridViewCellStyle4;
 			this.col檢驗結果.HeaderText = "檢驗狀態";
 			this.col檢驗結果.Name = "col檢驗結果";
 			this.col檢驗結果.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -604,8 +614,8 @@
 			// colNG原因
 			// 
 			this.colNG原因.DataPropertyName = "NG原因";
-			dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-			this.colNG原因.DefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+			this.colNG原因.DefaultCellStyle = dataGridViewCellStyle5;
 			this.colNG原因.HeaderText = "NG原因";
 			this.colNG原因.Name = "colNG原因";
 			this.colNG原因.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -615,8 +625,8 @@
 			// 
 			this.col原因.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
 			this.col原因.DataPropertyName = "舊NG原因";
-			dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.col原因.DefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.col原因.DefaultCellStyle = dataGridViewCellStyle6;
 			this.col原因.HeaderText = "舊NG原因";
 			this.col原因.Name = "col原因";
 			this.col原因.ReadOnly = true;
@@ -639,14 +649,14 @@
 			this.col特許.DataPropertyName = "特許";
 			this.col特許.HeaderText = "特許";
 			this.col特許.Name = "col特許";
-			this.col特許.ReadOnly = true;
 			this.col特許.Visible = false;
 			// 
 			// InspectForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(830, 438);
+			this.ClientSize = new System.Drawing.Size(903, 469);
+			this.Controls.Add(this.rbOnlyUnreinspect);
 			this.Controls.Add(this.rbInspectByQcN);
 			this.Controls.Add(this.rbInspectByPn);
 			this.Controls.Add(this.btnNGReason);
@@ -695,6 +705,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
 		private NGReasonColumn ngReasonColumn2;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+		private System.Windows.Forms.RadioButton rbOnlyUnreinspect;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col待驗提醒;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn col檢驗;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col項次;

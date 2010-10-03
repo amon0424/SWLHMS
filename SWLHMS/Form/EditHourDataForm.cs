@@ -905,7 +905,7 @@ namespace Mong
 					qaRow["最後檢驗紀錄"] = false;
 					qaRow["檢驗"] = false;
 					qaRow["重驗"] = false;
-					qaRow["送檢日期"] = DateTime.Today;
+					qaRow["送檢日期"] = DateTime.Now;
 					qaTable.Add產品檢驗Row(qaRow);
 				}
 			}

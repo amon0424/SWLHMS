@@ -537,6 +537,106 @@ namespace Mong
 			return table;
 		}
 
+		public static 待驗清單DataTable GetUnreinspectList(string line, string name)
+		{
+			OleDbConnection conn = new OleDbConnection(Properties.Settings.Default.dbConnectionString);
+			OleDbCommand cmd = new OleDbCommand();
+			cmd.Connection = conn;
+
+			System.Collections.Generic.List<string> whereList = new System.Collections.Generic.List<string>();
+			whereList.Add("檢驗 = True AND 檢驗結果=False AND 特許=False AND 重驗=False");
+			if (line != null && line.Trim() != string.Empty)
+			{
+				cmd.Parameters.Add(new OleDbParameter("產線", line));
+				whereList.Add("產線 = ?");
+			}
+			if (name != null && name.Trim() != string.Empty)
+			{
+				cmd.Parameters.Add(new OleDbParameter("姓名", name));
+				whereList.Add("姓名 = ?");
+			}
+
+			string cmdText = "SELECT 產線, 單據日期, 工作單號, P.品號, WP.數量 as 總數量, 待驗數量, 預計完成日, QCN, 送檢次數, 檢驗, 檢驗結果, 工時資料編號, 送檢日期 as 日期, 工品編號" +
+							 " FROM ((((工時 as H INNER JOIN 產品檢驗 as Q on H.編號 = Q.工時資料編號) " +
+							 " INNER JOIN 工作單 as W on H.工作單號 = W.單號)" +
+							 " INNER JOIN 工作單品號 as WP ON H.工作單號 = WP.單號 AND H.工品編號 = WP.編號)" +
+							 " INNER JOIN 產品品號 as P ON P.品號 = WP.品號)";
+			if (whereList.Count > 0)
+				cmdText += " WHERE " + string.Join(" AND ", whereList.ToArray());
+
+			cmdText += " ORDER BY 送檢日期, 單據日期, 工作單號, 工品編號";
+
+			cmd.CommandText = cmdText;
+			OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
+
+			待驗清單DataTable table = new 待驗清單DataTable();
+			adapter.Fill(table);
+
+			//檢查是否立即待驗及取得完成數量
+			table.Columns.Add("序號", typeof(int));
+			table.Columns.Add("待驗提醒", typeof(string));
+			table.Columns.Add("已完成", typeof(decimal)).DefaultValue = 0;
+			table.Columns.Add("NG原因", typeof(string)).DefaultValue = null;
+			table.Columns.Add("舊NG原因", typeof(string));
+			table.Columns.Add("特許", typeof(bool));
+
+			cmd = new OleDbCommand("SELECT SUM(待驗數量) + SUM(H.數量) >= WP.數量, SUM(H.數量) as 已完成" +
+									" FROM ((工時 as H LEFT JOIN (SELECT * FROM 產品檢驗 WHERE 檢驗 = FALSE) as Q on H.編號 = Q.工時資料編號) " +
+									" INNER JOIN 工作單品號 as WP ON H.工作單號 = WP.單號 AND H.工品編號 = WP.編號)" +
+									" WHERE WP.單號=? AND WP.編號=? " +
+									" GROUP BY 單號, WP.編號, WP.數量", conn);
+			cmd.Parameters.Add("單號", OleDbType.VarWChar);
+			cmd.Parameters.Add("編號", OleDbType.Integer);
+
+			conn.Open();
+			string curWorksheet = null;
+			int curWpid = -1;
+
+			foreach (DataRow row in table)
+			{
+				string worksheet = row["工作單號"].ToString();
+				int wpid = (int)row["工品編號"];
+
+				if (worksheet != curWorksheet || wpid != curWpid)
+				{
+					curWorksheet = worksheet;
+					curWpid = wpid;
+					DataRow[] rows = table.Select("工作單號='" + worksheet + "' AND 工品編號=" + wpid);
+					int sn = 1;
+					foreach (DataRow r in rows)
+						r["序號"] = sn++;
+				}
+
+				cmd.Parameters[0].Value = worksheet;
+				cmd.Parameters[1].Value = wpid;
+
+				//bool inspectImm = false;
+
+				OleDbDataReader dr = cmd.ExecuteReader();
+				if (dr.Read())
+				{
+					//object result = dr[0];
+					//if (result != DBNull.Value)
+					//    inspectImm = Convert.ToInt32(result) != 0;
+
+					object complete = dr[1];
+					if (complete != DBNull.Value)
+						row["已完成"] = complete;
+				}
+				dr.Close();
+				//if (inspectImm)
+				//    row["待驗提醒"] = "待驗";
+
+				//取得舊NG原因
+				string id = row["工時資料編號"].ToString();
+				string[] ngReasons = GetNGReason(id);
+				row["舊NG原因"] = string.Join("\n", ngReasons);
+			}
+			conn.Close();
+
+			return table;
+		}
+
 		public static 待驗清單DataTable GetInspectCompleteList(string qcn, string partnumber, DateTime date)
 		{
 			OleDbConnection conn = new OleDbConnection(Properties.Settings.Default.dbConnectionString);
@@ -751,7 +851,7 @@ namespace Mong
 			//cmd.Parameters.Add(new OleDbParameter("日期", DateTime.Now.ToString("s")));
 			OleDbParameter paramDate = new OleDbParameter();
 			paramDate.OleDbType = OleDbType.DBTimeStamp;
-			paramDate.Value = DateTime.Now.ToString("s"); ;
+			paramDate.Value = DateTime.Now.ToString("s");
 			cmd.Parameters.Add(paramDate);
 			cmd.Parameters.Add(new OleDbParameter("特許", OleDbType.Boolean,-1, "特許"));
 			cmd.Parameters.Add(new OleDbParameter("工時資料編號", OleDbType.VarWChar, 255, "工時資料編號"));
@@ -1814,7 +1914,11 @@ namespace Mong.DatabaseSetTableAdapters
 				cmd.Parameters.Add(new OleDbParameter("待驗數量", amount));
 				cmd.Parameters.Add(new OleDbParameter("送檢次數", num + 1));
 				cmd.Parameters.Add(new OleDbParameter("最後送檢編號", to));
-				cmd.Parameters.Add(new OleDbParameter("送檢日期", DateTime.Today));
+				//cmd.Parameters.Add(new OleDbParameter("送檢日期", DateTime.Today));
+				OleDbParameter paramDate = new OleDbParameter();
+				paramDate.OleDbType = OleDbType.DBTimeStamp;
+				paramDate.Value = DateTime.Now.ToString("s");
+				cmd.Parameters.Add(paramDate);
 
 				result = cmd.ExecuteNonQuery();
 

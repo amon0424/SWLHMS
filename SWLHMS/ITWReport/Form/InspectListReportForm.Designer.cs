@@ -52,13 +52,14 @@
 			this.btnSort = new System.Windows.Forms.Button();
 			this.rbInspectByQcN = new System.Windows.Forms.RadioButton();
 			this.rbInspectByPn = new System.Windows.Forms.RadioButton();
+			this.rbOnlyNg = new System.Windows.Forms.RadioButton();
 			this.pnlDate.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(38, 41);
+			this.label1.Location = new System.Drawing.Point(36, 43);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(27, 12);
 			this.label1.TabIndex = 0;
@@ -67,14 +68,14 @@
 			// txtQCN
 			// 
 			this.txtQCN.Enabled = false;
-			this.txtQCN.Location = new System.Drawing.Point(71, 38);
+			this.txtQCN.Location = new System.Drawing.Point(69, 40);
 			this.txtQCN.Name = "txtQCN";
 			this.txtQCN.Size = new System.Drawing.Size(133, 22);
 			this.txtQCN.TabIndex = 1;
 			// 
 			// txtPartNumber
 			// 
-			this.txtPartNumber.Location = new System.Drawing.Point(71, 66);
+			this.txtPartNumber.Location = new System.Drawing.Point(69, 68);
 			this.txtPartNumber.Name = "txtPartNumber";
 			this.txtPartNumber.Size = new System.Drawing.Size(133, 22);
 			this.txtPartNumber.TabIndex = 3;
@@ -82,7 +83,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(36, 71);
+			this.label2.Location = new System.Drawing.Point(34, 73);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(29, 12);
 			this.label2.TabIndex = 2;
@@ -90,7 +91,7 @@
 			// 
 			// txtWorksheetFrom
 			// 
-			this.txtWorksheetFrom.Location = new System.Drawing.Point(71, 94);
+			this.txtWorksheetFrom.Location = new System.Drawing.Point(69, 96);
 			this.txtWorksheetFrom.Name = "txtWorksheetFrom";
 			this.txtWorksheetFrom.Size = new System.Drawing.Size(133, 22);
 			this.txtWorksheetFrom.TabIndex = 4;
@@ -98,7 +99,7 @@
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(12, 99);
+			this.label7.Location = new System.Drawing.Point(10, 101);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(53, 12);
 			this.label7.TabIndex = 5;
@@ -111,7 +112,7 @@
 			this.pnlDate.Controls.Add(this.label6);
 			this.pnlDate.Controls.Add(this.dtpTo);
 			this.pnlDate.Enabled = false;
-			this.pnlDate.Location = new System.Drawing.Point(89, 121);
+			this.pnlDate.Location = new System.Drawing.Point(87, 123);
 			this.pnlDate.Name = "pnlDate";
 			this.pnlDate.Size = new System.Drawing.Size(286, 25);
 			this.pnlDate.TabIndex = 42;
@@ -155,7 +156,7 @@
 			// ckbDate
 			// 
 			this.ckbDate.AutoSize = true;
-			this.ckbDate.Location = new System.Drawing.Point(71, 127);
+			this.ckbDate.Location = new System.Drawing.Point(69, 129);
 			this.ckbDate.Name = "ckbDate";
 			this.ckbDate.Size = new System.Drawing.Size(15, 14);
 			this.ckbDate.TabIndex = 41;
@@ -165,7 +166,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(12, 127);
+			this.label3.Location = new System.Drawing.Point(10, 129);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(53, 12);
 			this.label3.TabIndex = 43;
@@ -173,8 +174,9 @@
 			// 
 			// btnCancel
 			// 
+			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(392, 155);
+			this.btnCancel.Location = new System.Drawing.Point(299, 268);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 55;
@@ -183,7 +185,8 @@
 			// 
 			// btnExport
 			// 
-			this.btnExport.Location = new System.Drawing.Point(311, 155);
+			this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnExport.Location = new System.Drawing.Point(218, 268);
 			this.btnExport.Name = "btnExport";
 			this.btnExport.Size = new System.Drawing.Size(75, 23);
 			this.btnExport.TabIndex = 54;
@@ -193,7 +196,7 @@
 			// 
 			// txtWorksheetTo
 			// 
-			this.txtWorksheetTo.Location = new System.Drawing.Point(227, 94);
+			this.txtWorksheetTo.Location = new System.Drawing.Point(225, 96);
 			this.txtWorksheetTo.Name = "txtWorksheetTo";
 			this.txtWorksheetTo.Size = new System.Drawing.Size(133, 22);
 			this.txtWorksheetTo.TabIndex = 56;
@@ -201,7 +204,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(210, 99);
+			this.label4.Location = new System.Drawing.Point(208, 101);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(11, 12);
 			this.label4.TabIndex = 57;
@@ -210,7 +213,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(36, 15);
+			this.label8.Location = new System.Drawing.Point(34, 17);
 			this.label8.Margin = new System.Windows.Forms.Padding(3, 8, 3, 0);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(29, 12);
@@ -221,7 +224,7 @@
 			// 
 			this.cbxLine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbxLine.FormattingEnabled = true;
-			this.cbxLine.Location = new System.Drawing.Point(71, 12);
+			this.cbxLine.Location = new System.Drawing.Point(69, 14);
 			this.cbxLine.Name = "cbxLine";
 			this.cbxLine.Size = new System.Drawing.Size(133, 20);
 			this.cbxLine.TabIndex = 62;
@@ -229,7 +232,7 @@
 			// ckbStatistic
 			// 
 			this.ckbStatistic.AutoSize = true;
-			this.ckbStatistic.Location = new System.Drawing.Point(227, 54);
+			this.ckbStatistic.Location = new System.Drawing.Point(12, 218);
 			this.ckbStatistic.Name = "ckbStatistic";
 			this.ckbStatistic.Size = new System.Drawing.Size(96, 16);
 			this.ckbStatistic.TabIndex = 64;
@@ -240,7 +243,7 @@
 			// 
 			this.ckbGroup.AutoSize = true;
 			this.ckbGroup.Enabled = false;
-			this.ckbGroup.Location = new System.Drawing.Point(227, 72);
+			this.ckbGroup.Location = new System.Drawing.Point(12, 236);
 			this.ckbGroup.Name = "ckbGroup";
 			this.ckbGroup.Size = new System.Drawing.Size(244, 16);
 			this.ckbGroup.TabIndex = 65;
@@ -249,7 +252,8 @@
 			// 
 			// btnSort
 			// 
-			this.btnSort.Location = new System.Drawing.Point(230, 155);
+			this.btnSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnSort.Location = new System.Drawing.Point(137, 268);
 			this.btnSort.Name = "btnSort";
 			this.btnSort.Size = new System.Drawing.Size(75, 23);
 			this.btnSort.TabIndex = 66;
@@ -261,7 +265,7 @@
 			// 
 			this.rbInspectByQcN.AutoSize = true;
 			this.rbInspectByQcN.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.rbInspectByQcN.Location = new System.Drawing.Point(227, 30);
+			this.rbInspectByQcN.Location = new System.Drawing.Point(12, 179);
 			this.rbInspectByQcN.Name = "rbInspectByQcN";
 			this.rbInspectByQcN.Size = new System.Drawing.Size(105, 16);
 			this.rbInspectByQcN.TabIndex = 68;
@@ -274,19 +278,33 @@
 			this.rbInspectByPn.AutoSize = true;
 			this.rbInspectByPn.Checked = true;
 			this.rbInspectByPn.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			this.rbInspectByPn.Location = new System.Drawing.Point(227, 12);
+			this.rbInspectByPn.Location = new System.Drawing.Point(12, 163);
 			this.rbInspectByPn.Name = "rbInspectByPn";
 			this.rbInspectByPn.Size = new System.Drawing.Size(251, 16);
 			this.rbInspectByPn.TabIndex = 67;
 			this.rbInspectByPn.TabStop = true;
 			this.rbInspectByPn.Text = "依工作單號及料號顯示累計總檢驗數及結果";
 			this.rbInspectByPn.UseVisualStyleBackColor = true;
+			this.rbInspectByPn.CheckedChanged += new System.EventHandler(this.rbInspectByPn_CheckedChanged);
+			// 
+			// rbOnlyNg
+			// 
+			this.rbOnlyNg.AutoSize = true;
+			this.rbOnlyNg.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			this.rbOnlyNg.Location = new System.Drawing.Point(12, 196);
+			this.rbOnlyNg.Name = "rbOnlyNg";
+			this.rbOnlyNg.Size = new System.Drawing.Size(168, 16);
+			this.rbOnlyNg.TabIndex = 69;
+			this.rbOnlyNg.Text = "僅列出 有 NG 紀錄之檢驗批";
+			this.rbOnlyNg.UseVisualStyleBackColor = true;
+			this.rbOnlyNg.CheckedChanged += new System.EventHandler(this.rbOnlyNg_CheckedChanged);
 			// 
 			// InspectListReportForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(481, 188);
+			this.ClientSize = new System.Drawing.Size(386, 303);
+			this.Controls.Add(this.rbOnlyNg);
 			this.Controls.Add(this.rbInspectByQcN);
 			this.Controls.Add(this.rbInspectByPn);
 			this.Controls.Add(this.btnSort);
@@ -348,5 +366,6 @@
 		private System.Windows.Forms.Button btnSort;
 		private System.Windows.Forms.RadioButton rbInspectByQcN;
 		private System.Windows.Forms.RadioButton rbInspectByPn;
+		private System.Windows.Forms.RadioButton rbOnlyNg;
 	}
 }

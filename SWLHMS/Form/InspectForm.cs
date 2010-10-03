@@ -11,7 +11,7 @@ namespace Mong
 {
 	public enum InspeceMode
 	{
-		ByPn, ByQcNo
+		ByPn, ByQcNo, OnlyUnre, OnlyNg
 	}
 
 	public partial class InspectForm : Form
@@ -22,10 +22,11 @@ namespace Mong
 		DataGridViewCellStyle _unableStyle;
 		DataGridViewCellStyle _concessionStyle;
 		DataGridViewCellStyle _inspectImmStyle;
+		DataGridViewCellStyle _expiredStyle;
+		DataGridViewCellStyle _unexpiredStyle;
 
 		DatabaseSet.待驗清單DataTable _table;
 		DataTable _groupTable;
-
 		
 		InspeceMode _inspectMode;
 
@@ -47,7 +48,11 @@ namespace Mong
 				colReinspectNum.Visible = inspectByPn;
 				colGroupNum.Visible = inspectByPn;
 
-				
+				bool onlyUnre = _inspectMode == InspeceMode.OnlyUnre;
+
+				this.colInspectNum.HeaderText = (onlyUnre ? "檢驗數量" : "待驗數量");
+				this.colNG原因.Visible = !onlyUnre;
+				this.colNG處理.Visible = !onlyUnre;
 			}
 		}
 		public DataTable GroupTable
@@ -90,8 +95,6 @@ namespace Mong
 			}
 			set { _groupTable = value; }
 		}
-
-
 		public InspectForm()
 		{
 			InitializeComponent();
@@ -119,6 +122,14 @@ namespace Mong
 			_unableStyle = new DataGridViewCellStyle(dgv.DefaultCellStyle);
 			_unableStyle.BackColor = _unableStyle.SelectionBackColor = Color.DarkGray;
 
+			_expiredStyle = new DataGridViewCellStyle(dgv.DefaultCellStyle);
+			_expiredStyle.BackColor = _ngStyle.SelectionBackColor = Color.Red;
+			_expiredStyle.ForeColor = Color.White;
+
+			_unexpiredStyle = new DataGridViewCellStyle(dgv.DefaultCellStyle);
+			_unexpiredStyle.BackColor = Color.Yellow;
+			_unexpiredStyle.ForeColor = Color.Blue;
+
 			//dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 			dgv.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
 
@@ -126,11 +137,15 @@ namespace Mong
 			//col檢驗結果.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
 			this.InspectMode = InspeceMode.ByPn;
+			this.WindowState = FormWindowState.Maximized;
 		}
 
 		private void btnSearch_Click(object sender, EventArgs e)
 		{
-			SearchList();
+			if (rbOnlyUnreinspect.Checked)
+				SearchUnreinspectList();
+			else
+				SearchList();
 		}
 
 		private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -323,6 +338,9 @@ namespace Mong
 		{
 			if (rbInspectByPn.Checked)
 			{
+				if (this.InspectMode == InspeceMode.OnlyUnre)
+					SearchList();
+
 				this.InspectMode = InspeceMode.ByPn;
 				bindingSource.DataSource = this.GroupTable;
 			}
@@ -332,8 +350,22 @@ namespace Mong
 		{
 			if (rbInspectByQcN.Checked)
 			{
+				if (this.InspectMode == InspeceMode.OnlyUnre)
+					SearchList();
+
 				this.InspectMode = InspeceMode.ByQcNo;
 				bindingSource.DataSource = _table;
+			}
+		}
+
+		private void rbOnlyUnreinspect_CheckedChanged(object sender, EventArgs e)
+		{
+			if (rbOnlyUnreinspect.Checked)
+			{
+				if (this.InspectMode != InspeceMode.OnlyUnre)
+					SearchUnreinspectList();
+
+				this.InspectMode = InspeceMode.OnlyUnre;
 			}
 		}
 
@@ -409,6 +441,21 @@ namespace Mong
 				ngCell.ReadOnly = true;
 				//reasonCell.Tag = null;
 			}
+
+			cell = dgv[colEstShipDate.Index, rowIndex];
+			if (cell.Value != DBNull.Value)
+			{
+				DateTime date = (DateTime)cell.Value;
+				TimeSpan interval = date.Subtract(DateTime.Today);
+				if (interval.TotalDays <= 0)
+					cell.Style = _expiredStyle;
+				else if (interval.TotalDays <= 3)
+					cell.Style = _unexpiredStyle;
+				else
+					cell.Style = null;
+			}
+			else
+				cell.Style = null;
 		}
 
 		void SearchList()
@@ -438,6 +485,29 @@ namespace Mong
 			bindingSource.Sort = sort;
 
 			btnSend.Enabled = _table.Rows.Count > 0;
+			dgv.EditMode = DataGridViewEditMode.EditOnEnter;
 		}
+
+		void SearchUnreinspectList()
+		{
+			string line = null;
+			string name = null;
+
+			_table = DatabaseSet.GetUnreinspectList(line, name);
+			_table.Columns.Add("NG處理", typeof(string));
+
+			string sort = bindingSource.Sort;
+			bindingSource.Sort = null;
+
+			this.GroupTable = null;
+			this.InspectMode = InspeceMode.OnlyUnre;
+			bindingSource.DataSource = _table;
+			bindingSource.Sort = sort;
+
+			btnSend.Enabled = false;
+			dgv.EditMode = DataGridViewEditMode.EditProgrammatically;
+			
+		}
+		
 	}
 }

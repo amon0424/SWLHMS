@@ -9,7 +9,7 @@ namespace Mong {
 	{
 		partial class InspectListReportDataTable
 		{
-			public static InspectListReportDataTable GetData(DateTime from, DateTime to, string partNumber, string qcn, string worksheetFrom, string worksheetTo, bool group, string line)
+			public static InspectListReportDataTable GetData(DateTime from, DateTime to, string partNumber, string qcn, string worksheetFrom, string worksheetTo, bool group, string line, bool onlyNg)
 			{
 				OleDbConnection conn = new OleDbConnection(Properties.Settings.Default.dbConnectionString);
 				OleDbCommand cmd = new OleDbCommand();
@@ -68,6 +68,11 @@ namespace Mong {
 				if (group)
 				{
 					whereList.Add("最後檢驗紀錄 = True");
+				}
+
+				if (onlyNg)
+				{
+					whereList.Add("檢驗結果 = False");
 				}
 
 				string cmdText = "SELECT Q.日期 as 檢驗日期, 產線, W.單號 as 工作單號, P.品號, 客戶 as 客戶名稱, WP.數量 as 總數量, 待驗數量 as 檢驗數量, 送檢次數, QCN, IIF(檢驗結果,'OK',IIF(特許,'Concession','NG')) as 檢驗狀態, 工時資料編號, 最後送檢編號, 最後檢驗紀錄, WP.編號 as 工品編號" +
