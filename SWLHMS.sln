@@ -1,15 +1,15 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWLHMS", "SWLHMS\SWLHMS.csproj", "{9AA8D0E8-C3C2-42D4-A73D-A7AF5C9C67CF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{E3596264-024A-4B31-A489-4B15B0EB25C4}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3254648C-E269-4BDA-91B2-A33C060D2336}"
 	ProjectSection(SolutionItems) = preProject
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 		SWLHMS.vsmdi = SWLHMS.vsmdi
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWLHMS", "SWLHMS\SWLHMS.csproj", "{9AA8D0E8-C3C2-42D4-A73D-A7AF5C9C67CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{E3596264-024A-4B31-A489-4B15B0EB25C4}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
