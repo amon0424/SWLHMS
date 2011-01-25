@@ -1579,6 +1579,8 @@ namespace Mong {
             
             private global::System.Data.DataColumn column工品編號;
             
+            private global::System.Data.DataColumn column工時類型;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public 工時DataTable() {
@@ -1726,6 +1728,14 @@ namespace Mong {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn 工時類型Column {
+                get {
+                    return this.column工時類型;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1761,7 +1771,7 @@ namespace Mong {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public 工時Row Add工時Row(string 編號, 員工Row parent員工RowBy員工工時, System.DateTime 日期, 工作單Row parent工作單RowBy工作單工時, decimal 工時, 非生產Row parent非生產RowBy非生產工時, string 備註, string 非生產名稱, string 員工姓名, string 新舊, int 數量, string 借入產線, string QCN, int 工品編號) {
+            public 工時Row Add工時Row(string 編號, 員工Row parent員工RowBy員工工時, System.DateTime 日期, 工作單Row parent工作單RowBy工作單工時, decimal 工時, 非生產Row parent非生產RowBy非生產工時, string 備註, string 非生產名稱, string 員工姓名, string 新舊, int 數量, string 借入產線, string QCN, int 工品編號, int 工時類型) {
                 工時Row row工時Row = ((工時Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         編號,
@@ -1777,7 +1787,8 @@ namespace Mong {
                         數量,
                         借入產線,
                         QCN,
-                        工品編號};
+                        工品編號,
+                        工時類型};
                 if ((parent員工RowBy員工工時 != null)) {
                     columnValuesArray[1] = parent員工RowBy員工工時[0];
                 }
@@ -1836,6 +1847,7 @@ namespace Mong {
                 this.column借入產線 = base.Columns["借入產線"];
                 this.columnQCN = base.Columns["QCN"];
                 this.column工品編號 = base.Columns["工品編號"];
+                this.column工時類型 = base.Columns["工時類型"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1869,6 +1881,8 @@ namespace Mong {
                 base.Columns.Add(this.columnQCN);
                 this.column工品編號 = new global::System.Data.DataColumn("工品編號", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column工品編號);
+                this.column工時類型 = new global::System.Data.DataColumn("工時類型", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.column工時類型);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.column編號}, true));
                 this.column編號.AllowDBNull = false;
@@ -1880,6 +1894,7 @@ namespace Mong {
                 this.column數量.DefaultValue = ((int)(0));
                 this.column借入產線.MaxLength = 255;
                 this.columnQCN.Caption = "QC#";
+                this.column工時類型.DefaultValue = ((int)(0));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6399,6 +6414,22 @@ namespace Mong {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int 工時類型 {
+                get {
+                    try {
+                        return ((int)(this[this.table工時.工時類型Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("資料表 \'工時\' 中資料行 \'工時類型\' 的值是 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.table工時.工時類型Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public 工作單Row 工作單Row {
                 get {
                     return ((工作單Row)(this.GetParentRow(this.Table.ParentRelations["工作單工時"])));
@@ -6595,6 +6626,18 @@ namespace Mong {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Set工品編號Null() {
                 this[this.table工時.工品編號Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Is工時類型Null() {
+                return this.IsNull(this.table工時.工時類型Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Set工時類型Null() {
+                this[this.table工時.工時類型Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10108,16 +10151,37 @@ namespace Mong.DatabaseSetTableAdapters {
             tableMapping.ColumnMappings.Add("數量", "數量");
             tableMapping.ColumnMappings.Add("借入產線", "借入產線");
             tableMapping.ColumnMappings.Add("工品編號", "工品編號");
+            tableMapping.ColumnMappings.Add("工時類型", "工時類型");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM 工時\r\nWHERE         (編號 = ?)";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `工時` WHERE ((`編號` = ?) AND ((? = 1 AND `借入產線` IS NULL) OR (`借入產線` = ?)) AND ((? = 1 AND `員工編號` IS NULL) OR (`員工編號` = ?)) AND ((? = 1 AND `日期` IS NULL) OR (`日期` = ?)) AND ((? = 1 AND `工作單號` IS NULL) OR (`工作單號` = ?)) AND ((? = 1 AND `工時` IS NULL) OR (`工時` = ?)) AND ((? = 1 AND `數量` IS NULL) OR (`數量` = ?)) AND ((? = 1 AND `非生產編號` IS NULL) OR (`非生產編號` = ?)) AND ((? = 1 AND `備註` IS NULL) OR (`備註` = ?)) AND ((? = 1 AND `工品編號` IS NULL) OR (`工品編號` = ?)) AND ((? = 1 AND `工時類型` IS NULL) OR (`工時類型` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("編號", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "編號", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "編號", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_借入產線", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "借入產線", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_借入產線", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "借入產線", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_員工編號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "員工編號", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_員工編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "員工編號", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_日期", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "日期", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_日期", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "日期", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_工作單號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工作單號", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_工作單號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工作單號", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_工時", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工時", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_工時", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(18)), ((byte)(4)), "工時", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_數量", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "數量", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_數量", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "數量", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_非生產編號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "非生產編號", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_非生產編號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "非生產編號", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_備註", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "備註", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_備註", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "備註", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_工品編號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工品編號", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_工品編號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工品編號", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_工時類型", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工時類型", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_工時類型", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工時類型", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO `工時` (`編號`, `借入產線`, `員工編號`, `日期`, `工作單號`, `工時`, `數量`, `非生產編號`, `備註`, " +
-                "`工品編號`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "`工品編號`, `工時類型`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "編號", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("借入產線", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "借入產線", global::System.Data.DataRowVersion.Current, false, null));
@@ -10129,9 +10193,10 @@ namespace Mong.DatabaseSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("非生產編號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "非生產編號", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("備註", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "備註", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("工品編號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工品編號", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("工時類型", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工時類型", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `工時` SET `編號` = ?, `借入產線` = ?, `員工編號` = ?, `日期` = ?, `工作單號` = ?, `工時` = ?, `數量` = ?, `非生產編號` = ?, `備註` = ?, `工品編號` = ? WHERE ((`編號` = ?) AND ((? = 1 AND `借入產線` IS NULL) OR (`借入產線` = ?)) AND ((? = 1 AND `員工編號` IS NULL) OR (`員工編號` = ?)) AND ((? = 1 AND `日期` IS NULL) OR (`日期` = ?)) AND ((? = 1 AND `工作單號` IS NULL) OR (`工作單號` = ?)) AND ((? = 1 AND `工時` IS NULL) OR (`工時` = ?)) AND ((? = 1 AND `數量` IS NULL) OR (`數量` = ?)) AND ((? = 1 AND `非生產編號` IS NULL) OR (`非生產編號` = ?)) AND ((? = 1 AND `備註` IS NULL) OR (`備註` = ?)) AND ((? = 1 AND `工品編號` IS NULL) OR (`工品編號` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `工時` SET `編號` = ?, `借入產線` = ?, `員工編號` = ?, `日期` = ?, `工作單號` = ?, `工時` = ?, `數量` = ?, `非生產編號` = ?, `備註` = ?, `工品編號` = ?, `工時類型` = ? WHERE ((`編號` = ?) AND ((? = 1 AND `借入產線` IS NULL) OR (`借入產線` = ?)) AND ((? = 1 AND `員工編號` IS NULL) OR (`員工編號` = ?)) AND ((? = 1 AND `日期` IS NULL) OR (`日期` = ?)) AND ((? = 1 AND `工作單號` IS NULL) OR (`工作單號` = ?)) AND ((? = 1 AND `工時` IS NULL) OR (`工時` = ?)) AND ((? = 1 AND `數量` IS NULL) OR (`數量` = ?)) AND ((? = 1 AND `非生產編號` IS NULL) OR (`非生產編號` = ?)) AND ((? = 1 AND `備註` IS NULL) OR (`備註` = ?)) AND ((? = 1 AND `工品編號` IS NULL) OR (`工品編號` = ?)) AND ((? = 1 AND `工時類型` IS NULL) OR (`工時類型` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "編號", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("借入產線", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "借入產線", global::System.Data.DataRowVersion.Current, false, null));
@@ -10143,6 +10208,7 @@ namespace Mong.DatabaseSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("非生產編號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "非生產編號", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("備註", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "備註", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("工品編號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工品編號", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("工時類型", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工時類型", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_編號", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "編號", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_借入產線", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "借入產線", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_借入產線", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "借入產線", global::System.Data.DataRowVersion.Original, false, null));
@@ -10162,6 +10228,8 @@ namespace Mong.DatabaseSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_備註", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "備註", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_工品編號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工品編號", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_工品編號", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工品編號", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_工時類型", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工時類型", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_工時類型", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "工時類型", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10178,7 +10246,7 @@ namespace Mong.DatabaseSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT         編號, 借入產線, 員工編號, 日期, 工作單號, 工時, 數量, 非生產編號, 備註, \r\n                   " +
-                "       工品編號\r\nFROM             工時";
+                "       工品編號, 工時類型\r\nFROM             工時";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -10250,12 +10318,73 @@ namespace Mong.DatabaseSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string 編號) {
-            if ((編號 == null)) {
+        public virtual int Delete(string Original_編號, string Original_借入產線, string Original_員工編號, System.DateTime Original_日期, string Original_工作單號, decimal Original_工時, global::System.Nullable<int> Original_數量, int Original_非生產編號, string Original_備註, global::System.Nullable<int> Original_工品編號, global::System.Nullable<int> Original_工時類型) {
+            if ((Original_編號 == null)) {
                 this.Adapter.DeleteCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(編號));
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_編號));
+            }
+            if ((Original_借入產線 == null)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_借入產線));
+            }
+            if ((Original_員工編號 == null)) {
+                throw new global::System.ArgumentNullException("Original_員工編號");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_員工編號));
+            }
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_日期));
+            if ((Original_工作單號 == null)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_工作單號));
+            }
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[10].Value = ((decimal)(Original_工時));
+            if ((Original_數量.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_數量.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[14].Value = ((int)(Original_非生產編號));
+            if ((Original_備註 == null)) {
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((string)(Original_備註));
+            }
+            if ((Original_工品編號.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((int)(Original_工品編號.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            if ((Original_工時類型.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((int)(Original_工時類型.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -10277,7 +10406,7 @@ namespace Mong.DatabaseSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string 編號, string 借入產線, string 員工編號, System.DateTime 日期, string 工作單號, decimal 工時, global::System.Nullable<int> 數量, int 非生產編號, string 備註, global::System.Nullable<int> 工品編號) {
+        public virtual int Insert(string 編號, string 借入產線, string 員工編號, System.DateTime 日期, string 工作單號, decimal 工時, global::System.Nullable<int> 數量, int 非生產編號, string 備註, global::System.Nullable<int> 工品編號, global::System.Nullable<int> 工時類型) {
             if ((編號 == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -10323,6 +10452,12 @@ namespace Mong.DatabaseSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
+            if ((工時類型.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((int)(工時類型.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10354,6 +10489,7 @@ namespace Mong.DatabaseSetTableAdapters {
                     int 非生產編號, 
                     string 備註, 
                     global::System.Nullable<int> 工品編號, 
+                    global::System.Nullable<int> 工時類型, 
                     string Original_編號, 
                     string Original_借入產線, 
                     string Original_員工編號, 
@@ -10363,7 +10499,8 @@ namespace Mong.DatabaseSetTableAdapters {
                     global::System.Nullable<int> Original_數量, 
                     int Original_非生產編號, 
                     string Original_備註, 
-                    global::System.Nullable<int> Original_工品編號) {
+                    global::System.Nullable<int> Original_工品編號, 
+                    global::System.Nullable<int> Original_工時類型) {
             if ((編號 == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -10409,64 +10546,78 @@ namespace Mong.DatabaseSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((Original_編號 == null)) {
+            if ((工時類型.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(工時類型.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
+            if ((Original_編號 == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_編號));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_編號));
             }
             if ((Original_借入產線 == null)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_借入產線));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_借入產線));
             }
             if ((Original_員工編號 == null)) {
                 throw new global::System.ArgumentNullException("Original_員工編號");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_員工編號));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_員工編號));
             }
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(Original_日期));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((System.DateTime)(Original_日期));
             if ((Original_工作單號 == null)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_工作單號));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_工作單號));
             }
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((decimal)(Original_工時));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((decimal)(Original_工時));
             if ((Original_數量.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(Original_數量.Value));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_數量.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(Original_非生產編號));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_非生產編號));
             if ((Original_備註 == null)) {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(Original_備註));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(Original_備註));
             }
             if ((Original_工品編號.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((int)(Original_工品編號.Value));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((int)(Original_工品編號.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
+            }
+            if ((Original_工時類型.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((int)(Original_工時類型.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -10498,6 +10649,7 @@ namespace Mong.DatabaseSetTableAdapters {
                     int 非生產編號, 
                     string 備註, 
                     global::System.Nullable<int> 工品編號, 
+                    global::System.Nullable<int> 工時類型, 
                     string Original_編號, 
                     string Original_借入產線, 
                     string Original_員工編號, 
@@ -10507,8 +10659,9 @@ namespace Mong.DatabaseSetTableAdapters {
                     global::System.Nullable<int> Original_數量, 
                     int Original_非生產編號, 
                     string Original_備註, 
-                    global::System.Nullable<int> Original_工品編號) {
-            return this.Update(Original_編號, 借入產線, 員工編號, 日期, 工作單號, 工時, 數量, 非生產編號, 備註, 工品編號, Original_編號, Original_借入產線, Original_員工編號, Original_日期, Original_工作單號, Original_工時, Original_數量, Original_非生產編號, Original_備註, Original_工品編號);
+                    global::System.Nullable<int> Original_工品編號, 
+                    global::System.Nullable<int> Original_工時類型) {
+            return this.Update(Original_編號, 借入產線, 員工編號, 日期, 工作單號, 工時, 數量, 非生產編號, 備註, 工品編號, 工時類型, Original_編號, Original_借入產線, Original_員工編號, Original_日期, Original_工作單號, Original_工時, Original_數量, Original_非生產編號, Original_備註, Original_工品編號, Original_工時類型);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

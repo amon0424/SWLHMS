@@ -320,7 +320,7 @@ namespace Mong
 
         public partial class 工時Row : global::System.Data.DataRow
         {
-            public void FillRow(string 員工編號, DateTime 日期, string 工作單號, decimal 工時, int 數量, string 借入產線, string QCN, int 工品編號)
+            public void FillRow(string 員工編號, DateTime 日期, string 工作單號, decimal 工時, int 數量, string 借入產線, string QCN, int 工品編號, HourType 工時類型)
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
@@ -360,6 +360,7 @@ namespace Mong
                 this.借入產線 = 借入產線;
 				this.QCN = QCN;
 				this.工品編號 = 工品編號;
+				this.工時類型 = (int)工時類型;
 
                 this["備註"] = DBNull.Value;
             }
@@ -385,6 +386,7 @@ namespace Mong
                 this.工時 = 工時;
                 this.非生產編號 = 非生產編號;
                 this.非生產名稱 = 非生產名稱;
+				this.工時類型 = (int)HourType.一般工時;
                 this.備註 = 備註;
             }
         }
@@ -2054,7 +2056,7 @@ namespace Mong.DatabaseSetTableAdapters
             品號 = 品號.Replace("'", "''");
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-			sb.Append("SELECT 工時.編號, 借入產線, 員工編號, 工時.日期, 工作單號, 品號, 工時, 工時.數量, 待驗數量, 非生產編號, 備註, '無' AS 非生產名稱, 員工.姓名 AS 員工姓名, WP.編號 as 工品編號 " + 
+			sb.Append("SELECT 工時.編號, 借入產線, 員工編號, 工時.日期, 工作單號, 品號, 工時, 工時類型, 工時.數量, 待驗數量, 非生產編號, 備註, '無' AS 非生產名稱, 員工.姓名 AS 員工姓名, WP.編號 as 工品編號 " + 
 						"FROM (((工時 INNER JOIN 員工 ON 工時.員工編號 = 員工.編號) "  +
 								"LEFT JOIN 產品檢驗 ON 工時.編號 = 產品檢驗.工時資料編號 )" +
 								"INNER JOIN 工作單品號 as WP ON 工時.工作單號 = WP.單號 AND 工時.工品編號 = WP.編號 )"
@@ -2097,7 +2099,7 @@ namespace Mong.DatabaseSetTableAdapters
             員工編號 = 員工編號.Replace("'", "''");
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-			sb.Append("SELECT 工時.編號, 借入產線, 員工編號, 日期, 工作單號, NULL as 品號, 工時, 數量, NULL as 待驗數量, 非生產編號, 備註, 非生產.名稱 AS 非生產名稱, 員工.姓名 AS 員工姓名 FROM ( 工時 INNER JOIN 非生產 ON 工時.非生產編號 = 非生產.編號 ) INNER JOIN 員工 ON 工時.員工編號 = 員工.編號 ");
+			sb.Append("SELECT 工時.編號, 借入產線, 員工編號, 日期, 工作單號, NULL as 品號, 工時, 工時類型, 數量, NULL as 待驗數量, 非生產編號, 備註, 非生產.名稱 AS 非生產名稱, 員工.姓名 AS 員工姓名 FROM ( 工時 INNER JOIN 非生產 ON 工時.非生產編號 = 非生產.編號 ) INNER JOIN 員工 ON 工時.員工編號 = 員工.編號 ");
 
             System.Collections.Generic.List<string> whereCond = new System.Collections.Generic.List<string>();
 
@@ -2132,7 +2134,7 @@ namespace Mong.DatabaseSetTableAdapters
             員工編號 = 員工編號.Replace("'", "''");
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-			sb.Append("SELECT 工時.編號, 借入產線, 員工編號, 工時.日期, 工作單號, WP.編號 as 工品編號, 品號, 工時, 工時.數量, 待驗數量, QCN, 非生產編號, 備註, 非生產.名稱 as 非生產名稱, 員工.姓名 as 員工姓名 " + 
+			sb.Append("SELECT 工時.編號, 借入產線, 員工編號, 工時.日期, 工作單號, WP.編號 as 工品編號, 品號, 工時, 工時類型, 工時.數量, 待驗數量, QCN, 非生產編號, 備註, 非生產.名稱 as 非生產名稱, 員工.姓名 as 員工姓名 " + 
 					  "FROM ((( 工時 INNER JOIN 非生產 ON 工時.非生產編號 = 非生產.編號 ) " +
 						" LEFT JOIN 產品檢驗 ON 工時.編號 = 產品檢驗.工時資料編號 )" +
 						" LEFT JOIN 工作單品號 as WP ON 工時.工作單號 = WP.單號 AND 工時.工品編號 = WP.編號) " +

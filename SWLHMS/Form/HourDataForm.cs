@@ -73,6 +73,12 @@ namespace Mong
                 count = 工時TableAdapter.Instance.Fill(table, laborNumber,nonProduce, ckbDate.Checked, from, to);
             }
 
+			table.Columns.Add("工時類型名稱");
+			foreach (DataRow row in table)
+			{
+				row["工時類型名稱"] = ((HourType)row["工時類型"]).ToString();
+			}
+
             bsHourData.DataSource = table;
             dgvHourData.AutoResizeColumns();
             lbSearchResult.Text = "找到 " + count + " 筆資料";

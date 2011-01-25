@@ -146,7 +146,12 @@ namespace Mong.Report
 
                 newRow["員工名稱"] = groupRow["員工姓名"].ToString();
 
-                decimal pHour = 0, npHour = 0;
+                decimal npHour = 0;
+				Dictionary<HourType, decimal> pHours = new Dictionary<HourType, decimal>();
+				foreach (HourType hourType in Enum.GetValues(typeof(HourType)))
+				{
+					pHours.Add(hourType, 0);
+				}
 
                 //對屬於該分組的Row進行填入
                 foreach (DataRow srcRow in rows)
@@ -157,7 +162,9 @@ namespace Mong.Report
                     //為生產工時
                     if (np == -1)
                     {
-                        pHour += hour;
+						HourType hourType = (HourType)srcRow["工時類型"];
+
+						pHours[hourType] += hour;
                     }
                     else
                     {
@@ -171,10 +178,16 @@ namespace Mong.Report
 						}
                     }
                 }
-                decimal ttlHour = pHour + npHour;
+                decimal ttlHour = npHour;
+				foreach (decimal val in pHours.Values)
+					ttlHour += val;
 
-                newRow["生產工時"] = pHour;
-
+                newRow["生產工時"] = pHours[HourType.一般工時];
+				foreach (HourType hourType in Enum.GetValues(typeof(HourType)))
+				{
+					if (hourType != HourType.一般工時)
+						newRow[hourType.ToString()] = pHours[hourType];
+				}
 				/* 1.08.4
                 DataRow[] lwRows = lwTable.Select("員工姓名 = '" + groupRow["員工姓名"].ToString() + "'");
                 if (lwRows.Length > 0)
@@ -221,6 +234,11 @@ namespace Mong.Report
 			/* 1.08.4
             options.SummaryColumns.AddRange(new string[] { "生產工時", "外包工時" });*/
 			options.SummaryColumns.AddRange(new string[] { "生產工時"});
+			foreach (HourType hourType in Enum.GetValues(typeof(HourType)))
+			{
+				if(hourType != HourType.一般工時)
+					options.SummaryColumns.Add(hourType.ToString());
+			}
             options.ExcludeColumns.Add("借入");
 
             string[] npCols = new string[NpDic.Count];
@@ -263,6 +281,11 @@ namespace Mong.Report
                 this.SheetAdapter.SetFormat(4, _table.Columns.IndexOf(npCol) + 1, "G/通用格式;G/通用格式;* \"-\"_-");
 
             this.SheetAdapter.SetFormat(4, _table.Columns.IndexOf("生產工時") + 1, "G/通用格式;G/通用格式;* \"-\"_-");
+			foreach (HourType hourType in Enum.GetValues(typeof(HourType)))
+			{
+				if(hourType != HourType.一般工時)
+					this.SheetAdapter.SetFormat(4, _table.Columns.IndexOf(hourType.ToString()) + 1, "G/通用格式;G/通用格式;* \"-\"_-");
+			}
             this.SheetAdapter.SetFormat(4, _table.Columns.IndexOf("非生產TTL") + 1, "G/通用格式;G/通用格式;* \"-\"_-");
             this.SheetAdapter.SetFormat(4, _table.Columns.IndexOf("生產%") + 1, "0.00%");
             this.SheetAdapter.SetFormat(4, _table.Columns.IndexOf("非生產%") + 1, "0.00%");
@@ -280,7 +303,7 @@ namespace Mong.Report
 
             base.AfterContentWritten();
         }
-
+	
         void CreateReportTable()
         {
             _table = new DataTable();
@@ -292,6 +315,17 @@ namespace Mong.Report
             col生產工時.DefaultValue = 0;
             _table.Columns.Add(col生產工時);
 
+			foreach (HourType hourType in Enum.GetValues(typeof(HourType)))
+			{
+				if (hourType != HourType.一般工時)
+				{
+					DataColumn tmpCol = new DataColumn(hourType.ToString(), typeof(decimal));
+					tmpCol.DefaultValue = 0;
+					_table.Columns.Add(tmpCol);
+				}
+			}
+
+			_table.Columns.Add(new DataColumn("生產TTL", typeof(decimal)));
             DataColumn col生產 = new DataColumn("生產%", typeof(double));
             _table.Columns.Add(col生產);
 
@@ -314,9 +348,20 @@ namespace Mong.Report
 
 			_table.Columns["非生產TTL"].Expression = string.Join("+", npColList.ToArray());
 
-            col生產.Expression = "IIF(生產工時 + 非生產TTL = 0,0,生產工時/(生產工時 + 非生產TTL))";
+			List<string> pList = new List<string>();
+			pList.Add("生產工時");
+			foreach (HourType hourType in Enum.GetValues(typeof(HourType)))
+			{
+				if (hourType != HourType.一般工時)
+				{
+					pList.Add("[" + hourType.ToString() + "]");
+				}
+			}
+			_table.Columns["生產TTL"].Expression = string.Join("+", pList.ToArray());
 
-            _table.Columns["非生產%"].Expression = "IIF(生產工時 + 非生產TTL = 0,0,非生產TTL/(生產工時 + 非生產TTL))";
+			col生產.Expression = "IIF(生產TTL + 非生產TTL = 0,0,生產TTL/(生產TTL + 非生產TTL))";
+
+			_table.Columns["非生產%"].Expression = "IIF(生產TTL + 非生產TTL = 0,0,非生產TTL/(生產TTL + 非生產TTL))";
 
 			if (_table.Columns.Contains("np請假"))
 				_table.Columns["np請假"].SetOrdinal(_table.Columns.Count - 1);

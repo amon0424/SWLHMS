@@ -86,6 +86,7 @@
 			this.col品號2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.col非生產名稱 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.col工時 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colHourType = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.col數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.待驗數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.col非生產編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -400,6 +401,7 @@
             this.col品號2,
             this.col非生產名稱,
             this.col工時,
+            this.colHourType,
             this.col數量,
             this.待驗數量,
             this.col非生產編號,
@@ -489,8 +491,8 @@
 			this.dtpTip.Size = new System.Drawing.Size(124, 22);
 			this.dtpTip.TabIndex = 8;
 			this.toolTip1.SetToolTip(this.dtpTip, "設定提醒日期，使用者輸入工時資料時也是提醒指定日期之後的未補足的資料");
-			this.dtpTip.Validated += new System.EventHandler(this.dtpTip_Validated);
 			this.dtpTip.Enter += new System.EventHandler(this.dtpTip_Enter);
+			this.dtpTip.Validated += new System.EventHandler(this.dtpTip_Validated);
 			// 
 			// groupBox2
 			// 
@@ -636,6 +638,13 @@
 			this.col工時.ReadOnly = true;
 			this.col工時.Width = 65;
 			// 
+			// colHourType
+			// 
+			this.colHourType.DataPropertyName = "工時類型名稱";
+			this.colHourType.HeaderText = "工時類型";
+			this.colHourType.Name = "colHourType";
+			this.colHourType.ReadOnly = true;
+			// 
 			// col數量
 			// 
 			this.col數量.DataPropertyName = "數量";
@@ -769,6 +778,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn col品號2;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col非生產名稱;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col工時;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colHourType;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col數量;
 		private System.Windows.Forms.DataGridViewTextBoxColumn 待驗數量;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col非生產編號;

@@ -2274,6 +2274,8 @@ namespace Mong {
             
             private global::System.Data.DataColumn column數量;
             
+            private global::System.Data.DataColumn column工時類型;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public LineLaborHourReportSourceDataTable() {
@@ -2397,6 +2399,14 @@ namespace Mong {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn 工時類型Column {
+                get {
+                    return this.column工時類型;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2432,7 +2442,7 @@ namespace Mong {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LineLaborHourReportSourceRow AddLineLaborHourReportSourceRow(string 員工編號, System.DateTime 日期, string 工作單號, string 品號, decimal 工時, int 非生產編號, string 備註, string 員工姓名, string 產線, string 借入產線, int 數量) {
+            public LineLaborHourReportSourceRow AddLineLaborHourReportSourceRow(string 員工編號, System.DateTime 日期, string 工作單號, string 品號, decimal 工時, int 非生產編號, string 備註, string 員工姓名, string 產線, string 借入產線, int 數量, int 工時類型) {
                 LineLaborHourReportSourceRow rowLineLaborHourReportSourceRow = ((LineLaborHourReportSourceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         員工編號,
@@ -2445,7 +2455,8 @@ namespace Mong {
                         員工姓名,
                         產線,
                         借入產線,
-                        數量};
+                        數量,
+                        工時類型};
                 rowLineLaborHourReportSourceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLineLaborHourReportSourceRow);
                 return rowLineLaborHourReportSourceRow;
@@ -2485,6 +2496,7 @@ namespace Mong {
                 this.column產線 = base.Columns["產線"];
                 this.column借入產線 = base.Columns["借入產線"];
                 this.column數量 = base.Columns["數量"];
+                this.column工時類型 = base.Columns["工時類型"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2512,6 +2524,8 @@ namespace Mong {
                 base.Columns.Add(this.column借入產線);
                 this.column數量 = new global::System.Data.DataColumn("數量", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column數量);
+                this.column工時類型 = new global::System.Data.DataColumn("工時類型", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.column工時類型);
                 this.column員工編號.MaxLength = 255;
                 this.column工作單號.MaxLength = 255;
                 this.column品號.MaxLength = 255;
@@ -4882,6 +4896,22 @@ namespace Mong {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int 工時類型 {
+                get {
+                    try {
+                        return ((int)(this[this.tableLineLaborHourReportSource.工時類型Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("資料表 \'LineLaborHourReportSource\' 中資料行 \'工時類型\' 的值是 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableLineLaborHourReportSource.工時類型Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Is員工編號Null() {
                 return this.IsNull(this.tableLineLaborHourReportSource.員工編號Column);
             }
@@ -5010,6 +5040,18 @@ namespace Mong {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Set數量Null() {
                 this[this.tableLineLaborHourReportSource.數量Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Is工時類型Null() {
+                return this.IsNull(this.tableLineLaborHourReportSource.工時類型Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Set工時類型Null() {
+                this[this.tableLineLaborHourReportSource.工時類型Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -6176,6 +6218,7 @@ ORDER BY  產品品號.品號";
             tableMapping.ColumnMappings.Add("借入產線", "借入產線");
             tableMapping.ColumnMappings.Add("數量", "數量");
             tableMapping.ColumnMappings.Add("品號", "品號");
+            tableMapping.ColumnMappings.Add("工時類型", "工時類型");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -6192,7 +6235,7 @@ ORDER BY  產品品號.品號";
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT         工時.借入產線, 工時.員工編號, 工時.日期, 工時.工作單號, 品號, 工時.工時,
+            this._commandCollection[0].CommandText = @"SELECT         工時.借入產線, 工時.員工編號, 工時.日期, 工時.工作單號, 品號, 工時.工時, 工時.工時類型,
                            工時.數量, 工時.非生產編號, 工時.備註, 員工.姓名 AS 員工姓名, 
                           員工.產線
 FROM             ((工時 INNER JOIN 員工 ON 工時.員工編號 = 員工.編號)

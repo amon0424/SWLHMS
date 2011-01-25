@@ -81,22 +81,9 @@
 			this.tbxHour = new System.Windows.Forms.TextBox();
 			this.lbRemain = new System.Windows.Forms.Label();
 			this.dgvHoursData = new System.Windows.Forms.DataGridView();
-			this.col新舊 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col員工編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col工作單號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colWpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col品號2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col非生產名稱 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col工時 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col完成數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.待驗數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col借入產線 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.QCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col非生產編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col備註 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsHourData = new System.Windows.Forms.BindingSource(this.components);
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.cbxHourType = new System.Windows.Forms.ComboBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.ckbOvertime = new System.Windows.Forms.CheckBox();
 			this.btnAddList = new System.Windows.Forms.Button();
@@ -114,6 +101,21 @@
 			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
 			this.llbUnfilledTip = new System.Windows.Forms.LinkLabel();
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
+			this.col新舊 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col員工編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col工作單號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colWpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col品號2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col非生產名稱 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col工時 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colHourType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col完成數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.待驗數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col借入產線 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.QCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col非生產編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col備註 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.bsLabor)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgvPart)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsPart)).BeginInit();
@@ -483,8 +485,8 @@
 			this.txtDate.Name = "txtDate";
 			this.txtDate.Size = new System.Drawing.Size(66, 22);
 			this.txtDate.TabIndex = 1;
-			this.txtDate.Leave += new System.EventHandler(this.txtDate_Leave);
 			this.txtDate.Enter += new System.EventHandler(this.txtDate_Enter);
+			this.txtDate.Leave += new System.EventHandler(this.txtDate_Leave);
 			// 
 			// cbbWorksheetNubmerS
 			// 
@@ -586,7 +588,7 @@
 			// 
 			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(7, 193);
+			this.label9.Location = new System.Drawing.Point(149, 258);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(53, 12);
 			this.label9.TabIndex = 29;
@@ -595,7 +597,7 @@
 			// tbxHour
 			// 
 			this.tbxHour.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.tbxHour.Location = new System.Drawing.Point(66, 188);
+			this.tbxHour.Location = new System.Drawing.Point(119, 188);
 			this.tbxHour.Name = "tbxHour";
 			this.tbxHour.Size = new System.Drawing.Size(29, 22);
 			this.tbxHour.TabIndex = 1;
@@ -607,7 +609,7 @@
 			this.lbRemain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.lbRemain.AutoSize = true;
 			this.lbRemain.ForeColor = System.Drawing.Color.Red;
-			this.lbRemain.Location = new System.Drawing.Point(157, 192);
+			this.lbRemain.Location = new System.Drawing.Point(210, 192);
 			this.lbRemain.Name = "lbRemain";
 			this.lbRemain.Size = new System.Drawing.Size(83, 12);
 			this.lbRemain.TabIndex = 31;
@@ -642,6 +644,7 @@
             this.col品號2,
             this.col非生產名稱,
             this.col工時,
+            this.colHourType,
             this.col完成數量,
             this.待驗數量,
             this.col借入產線,
@@ -678,119 +681,8 @@
 			this.dgvHoursData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvHoursData.Size = new System.Drawing.Size(677, 189);
 			this.dgvHoursData.TabIndex = 32;
-			this.dgvHoursData.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvHoursData_UserDeletingRow);
 			this.dgvHoursData.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvHoursData_UserDeletedRow);
-			// 
-			// col新舊
-			// 
-			this.col新舊.DataPropertyName = "新舊";
-			this.col新舊.HeaderText = "";
-			this.col新舊.Name = "col新舊";
-			this.col新舊.ReadOnly = true;
-			this.col新舊.Width = 20;
-			// 
-			// col員工編號
-			// 
-			this.col員工編號.DataPropertyName = "員工編號";
-			this.col員工編號.HeaderText = "員工編號";
-			this.col員工編號.Name = "col員工編號";
-			this.col員工編號.ReadOnly = true;
-			this.col員工編號.Visible = false;
-			// 
-			// col日期
-			// 
-			this.col日期.DataPropertyName = "日期";
-			this.col日期.HeaderText = "日期";
-			this.col日期.Name = "col日期";
-			this.col日期.ReadOnly = true;
-			this.col日期.Visible = false;
-			// 
-			// col工作單號
-			// 
-			this.col工作單號.DataPropertyName = "工作單號";
-			this.col工作單號.HeaderText = "工作單號";
-			this.col工作單號.Name = "col工作單號";
-			this.col工作單號.ReadOnly = true;
-			// 
-			// colWpId
-			// 
-			this.colWpId.DataPropertyName = "工品編號";
-			this.colWpId.HeaderText = "序號";
-			this.colWpId.Name = "colWpId";
-			this.colWpId.ReadOnly = true;
-			this.colWpId.Width = 50;
-			// 
-			// col品號2
-			// 
-			this.col品號2.DataPropertyName = "品號";
-			this.col品號2.HeaderText = "生產品號";
-			this.col品號2.Name = "col品號2";
-			this.col品號2.ReadOnly = true;
-			// 
-			// col非生產名稱
-			// 
-			this.col非生產名稱.DataPropertyName = "非生產名稱";
-			this.col非生產名稱.HeaderText = "非生產";
-			this.col非生產名稱.Name = "col非生產名稱";
-			this.col非生產名稱.ReadOnly = true;
-			this.col非生產名稱.Width = 99;
-			// 
-			// col工時
-			// 
-			this.col工時.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.col工時.DataPropertyName = "工時";
-			dataGridViewCellStyle14.Format = "0.##";
-			this.col工時.DefaultCellStyle = dataGridViewCellStyle14;
-			this.col工時.HeaderText = "工時";
-			this.col工時.Name = "col工時";
-			this.col工時.ReadOnly = true;
-			this.col工時.Width = 65;
-			// 
-			// col完成數量
-			// 
-			this.col完成數量.DataPropertyName = "數量";
-			this.col完成數量.HeaderText = "完成數量";
-			this.col完成數量.Name = "col完成數量";
-			this.col完成數量.ReadOnly = true;
-			this.col完成數量.Width = 65;
-			// 
-			// 待驗數量
-			// 
-			this.待驗數量.DataPropertyName = "待驗數量";
-			this.待驗數量.HeaderText = "待驗數量";
-			this.待驗數量.Name = "待驗數量";
-			this.待驗數量.ReadOnly = true;
-			this.待驗數量.Width = 65;
-			// 
-			// col借入產線
-			// 
-			this.col借入產線.DataPropertyName = "借入產線";
-			this.col借入產線.HeaderText = "借入產線";
-			this.col借入產線.Name = "col借入產線";
-			this.col借入產線.ReadOnly = true;
-			this.col借入產線.Width = 65;
-			// 
-			// QCN
-			// 
-			this.QCN.DataPropertyName = "QCN";
-			this.QCN.HeaderText = "QC#";
-			this.QCN.Name = "QCN";
-			this.QCN.ReadOnly = true;
-			// 
-			// col非生產編號
-			// 
-			this.col非生產編號.DataPropertyName = "非生產編號";
-			this.col非生產編號.HeaderText = "非生產編號";
-			this.col非生產編號.Name = "col非生產編號";
-			this.col非生產編號.ReadOnly = true;
-			this.col非生產編號.Visible = false;
-			// 
-			// col備註
-			// 
-			this.col備註.DataPropertyName = "備註";
-			this.col備註.HeaderText = "備註";
-			this.col備註.Name = "col備註";
-			this.col備註.ReadOnly = true;
+			this.dgvHoursData.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvHoursData_UserDeletingRow);
 			// 
 			// bsHourData
 			// 
@@ -801,13 +693,13 @@
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 						| System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.cbxHourType);
 			this.groupBox1.Controls.Add(this.label15);
 			this.groupBox1.Controls.Add(this.ckbOvertime);
 			this.groupBox1.Controls.Add(this.rbProduce);
 			this.groupBox1.Controls.Add(this.btnAddList);
 			this.groupBox1.Controls.Add(this.rbNonProduce);
 			this.groupBox1.Controls.Add(this.panel2);
-			this.groupBox1.Controls.Add(this.label9);
 			this.groupBox1.Controls.Add(this.lbRemain);
 			this.groupBox1.Controls.Add(this.tbxHour);
 			this.groupBox1.Controls.Add(this.panel1);
@@ -817,6 +709,15 @@
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "生產資料";
+			// 
+			// cbxHourType
+			// 
+			this.cbxHourType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbxHourType.FormattingEnabled = true;
+			this.cbxHourType.Location = new System.Drawing.Point(6, 189);
+			this.cbxHourType.Name = "cbxHourType";
+			this.cbxHourType.Size = new System.Drawing.Size(107, 20);
+			this.cbxHourType.TabIndex = 40;
 			// 
 			// label15
 			// 
@@ -832,7 +733,7 @@
 			// 
 			this.ckbOvertime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ckbOvertime.AutoSize = true;
-			this.ckbOvertime.Location = new System.Drawing.Point(103, 191);
+			this.ckbOvertime.Location = new System.Drawing.Point(156, 191);
 			this.ckbOvertime.Name = "ckbOvertime";
 			this.ckbOvertime.Size = new System.Drawing.Size(48, 16);
 			this.ckbOvertime.TabIndex = 33;
@@ -844,9 +745,9 @@
 			// 
 			this.btnAddList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
-			this.btnAddList.Location = new System.Drawing.Point(246, 187);
+			this.btnAddList.Location = new System.Drawing.Point(299, 187);
 			this.btnAddList.Name = "btnAddList";
-			this.btnAddList.Size = new System.Drawing.Size(426, 23);
+			this.btnAddList.Size = new System.Drawing.Size(373, 23);
 			this.btnAddList.TabIndex = 2;
 			this.btnAddList.Text = "新增至清單";
 			this.btnAddList.UseVisualStyleBackColor = true;
@@ -1017,11 +918,130 @@
 			this.mainContainer.Panel2.Controls.Add(this.label7);
 			this.mainContainer.Panel2.Controls.Add(this.dgvHoursData);
 			this.mainContainer.Panel2.Controls.Add(this.label8);
+			this.mainContainer.Panel2.Controls.Add(this.label9);
 			this.mainContainer.Panel2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
 			this.mainContainer.Size = new System.Drawing.Size(692, 506);
 			this.mainContainer.SplitterDistance = 221;
 			this.mainContainer.SplitterWidth = 3;
 			this.mainContainer.TabIndex = 33;
+			// 
+			// col新舊
+			// 
+			this.col新舊.DataPropertyName = "新舊";
+			this.col新舊.HeaderText = "";
+			this.col新舊.Name = "col新舊";
+			this.col新舊.ReadOnly = true;
+			this.col新舊.Width = 20;
+			// 
+			// col員工編號
+			// 
+			this.col員工編號.DataPropertyName = "員工編號";
+			this.col員工編號.HeaderText = "員工編號";
+			this.col員工編號.Name = "col員工編號";
+			this.col員工編號.ReadOnly = true;
+			this.col員工編號.Visible = false;
+			// 
+			// col日期
+			// 
+			this.col日期.DataPropertyName = "日期";
+			this.col日期.HeaderText = "日期";
+			this.col日期.Name = "col日期";
+			this.col日期.ReadOnly = true;
+			this.col日期.Visible = false;
+			// 
+			// col工作單號
+			// 
+			this.col工作單號.DataPropertyName = "工作單號";
+			this.col工作單號.HeaderText = "工作單號";
+			this.col工作單號.Name = "col工作單號";
+			this.col工作單號.ReadOnly = true;
+			// 
+			// colWpId
+			// 
+			this.colWpId.DataPropertyName = "工品編號";
+			this.colWpId.HeaderText = "序號";
+			this.colWpId.Name = "colWpId";
+			this.colWpId.ReadOnly = true;
+			this.colWpId.Width = 50;
+			// 
+			// col品號2
+			// 
+			this.col品號2.DataPropertyName = "品號";
+			this.col品號2.HeaderText = "生產品號";
+			this.col品號2.Name = "col品號2";
+			this.col品號2.ReadOnly = true;
+			// 
+			// col非生產名稱
+			// 
+			this.col非生產名稱.DataPropertyName = "非生產名稱";
+			this.col非生產名稱.HeaderText = "非生產";
+			this.col非生產名稱.Name = "col非生產名稱";
+			this.col非生產名稱.ReadOnly = true;
+			this.col非生產名稱.Width = 99;
+			// 
+			// col工時
+			// 
+			this.col工時.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.col工時.DataPropertyName = "工時";
+			dataGridViewCellStyle14.Format = "0.##";
+			this.col工時.DefaultCellStyle = dataGridViewCellStyle14;
+			this.col工時.HeaderText = "工時";
+			this.col工時.Name = "col工時";
+			this.col工時.ReadOnly = true;
+			this.col工時.Width = 65;
+			// 
+			// colHourType
+			// 
+			this.colHourType.DataPropertyName = "工時類型名稱";
+			this.colHourType.HeaderText = "工時類型";
+			this.colHourType.Name = "colHourType";
+			this.colHourType.ReadOnly = true;
+			// 
+			// col完成數量
+			// 
+			this.col完成數量.DataPropertyName = "數量";
+			this.col完成數量.HeaderText = "完成數量";
+			this.col完成數量.Name = "col完成數量";
+			this.col完成數量.ReadOnly = true;
+			this.col完成數量.Width = 65;
+			// 
+			// 待驗數量
+			// 
+			this.待驗數量.DataPropertyName = "待驗數量";
+			this.待驗數量.HeaderText = "待驗數量";
+			this.待驗數量.Name = "待驗數量";
+			this.待驗數量.ReadOnly = true;
+			this.待驗數量.Width = 65;
+			// 
+			// col借入產線
+			// 
+			this.col借入產線.DataPropertyName = "借入產線";
+			this.col借入產線.HeaderText = "借入產線";
+			this.col借入產線.Name = "col借入產線";
+			this.col借入產線.ReadOnly = true;
+			this.col借入產線.Width = 65;
+			// 
+			// QCN
+			// 
+			this.QCN.DataPropertyName = "QCN";
+			this.QCN.HeaderText = "QC#";
+			this.QCN.Name = "QCN";
+			this.QCN.ReadOnly = true;
+			// 
+			// col非生產編號
+			// 
+			this.col非生產編號.DataPropertyName = "非生產編號";
+			this.col非生產編號.HeaderText = "非生產編號";
+			this.col非生產編號.Name = "col非生產編號";
+			this.col非生產編號.ReadOnly = true;
+			this.col非生產編號.Visible = false;
+			// 
+			// col備註
+			// 
+			this.col備註.DataPropertyName = "備註";
+			this.col備註.HeaderText = "備註";
+			this.col備註.Name = "col備註";
+			this.col備註.ReadOnly = true;
 			// 
 			// EditHourDataForm
 			// 
@@ -1127,6 +1147,7 @@
 		private System.Windows.Forms.LinkLabel llbNGTip;
 		private System.Windows.Forms.LinkLabel llbUnfilledTip;
 		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.ComboBox cbxHourType;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col新舊;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col員工編號;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col日期;
@@ -1135,6 +1156,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn col品號2;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col非生產名稱;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col工時;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colHourType;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col完成數量;
 		private System.Windows.Forms.DataGridViewTextBoxColumn 待驗數量;
 		private System.Windows.Forms.DataGridViewTextBoxColumn col借入產線;

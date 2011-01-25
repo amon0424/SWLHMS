@@ -91,6 +91,7 @@
     <Compile Include="ButtonTextBoxCell\NGReasonEditingControl.Designer.cs">
       <DependentUpon>NGReasonEditingControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="HourType.cs" />
     <Compile Include="Class\DataTableHelper.cs" />
     <Compile Include="Class\Global.cs" />
     <Compile Include="Class\LaborWageHelper.cs">

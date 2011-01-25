@@ -129,6 +129,11 @@ namespace Mong
         {
             panel1.Enabled = rbProduce.Checked;
             panel2.Enabled = rbNonProduce.Checked;
+
+			cbxHourType.Enabled = rbProduce.Checked;
+
+			if (rbNonProduce.Checked)
+				cbxHourType.SelectedIndex = 0;
         }
 
         private void btnSearchWorksheet_Click(object sender, EventArgs e)
@@ -242,13 +247,16 @@ namespace Mong
                             // Check the remain amount
                             if (_remainAmount < num)
 								throw new SWLHMSException("輸入數量超過剩餘數量");
-                            
+
+							// hour type
+							HourType hourType = (HourType)cbxHourType.SelectedIndex;
                             
 							string QCN = txtQCN.Text;
 
-							newRow.FillRow(this.SelectedLaborNumber, dtpDate.Value, worksheetNumber, hour, num, borrower, QCN, wpID);
+							newRow.FillRow(this.SelectedLaborNumber, dtpDate.Value, worksheetNumber, hour, num, borrower, QCN, wpID, hourType);
                             newRow.新舊 = "*";
 							newRow["品號"] = partNumber;
+							newRow["工時類型名稱"] = hourType.ToString();
 
                             _dataTable.Rows.Add(newRow);
 
@@ -271,6 +279,7 @@ namespace Mong
 
                             newRow.FillRow(cbxLaborNumber.SelectedValue.ToString(), dtpDate.Value, hour, (int)cbbNonProduce.SelectedValue, cbbNonProduce.Text, tbxRemark.Text);
                             newRow.新舊 = "*";
+							newRow["工時類型名稱"] = HourType.一般工時.ToString();
                             _dataTable.Rows.Add(newRow);
                         }
                     }
@@ -524,11 +533,12 @@ namespace Mong
 
         private void EditHourDataForm_Load(object sender, EventArgs e)
         {
-           
-
-
             txtDate.Text = DateTime.Today.ToString("yyyyMM");
             lbRemainCount.Text = string.Empty;
+
+			foreach (string hourType in Enum.GetNames(typeof(HourType)))
+				cbxHourType.Items.Add(hourType);
+			cbxHourType.SelectedIndex = 0;
         }
 
         private void dgvHoursData_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
@@ -681,6 +691,11 @@ namespace Mong
             {
                 _dataTable.Clear();
                 工時TableAdapter.Instance.Fill(_dataTable, cbxLaborNumber.SelectedValue.ToString(), true, dtpDate.Value, dtpDate.Value);
+				foreach (DataRow row in _dataTable)
+				{
+					row["工時類型名稱"] = ((HourType)row["工時類型"]).ToString();
+				}
+
                 dgvHoursData.AutoResizeColumns();
             }
         }
@@ -855,6 +870,7 @@ namespace Mong
 			table.Columns.Add(new DataColumn("待驗數量", typeof(Int32)));
 			table.Columns.Add(new DataColumn("品號", typeof(string)));
 			table.Columns.Add(new DataColumn("取代編號", typeof(string)));
+			table.Columns.Add(new DataColumn("工時類型名稱", typeof(string)));
 			return table;
 		}
 
@@ -943,11 +959,14 @@ namespace Mong
 							borrower = (string)this.cbbBorrowLine.SelectedItem;
 						}
 
+						// hour type
+						HourType hourType = (HourType)cbxHourType.SelectedIndex;
+
 						newRow["品號"] = row["品號"];
 						newRow["取代編號"] = row["取代編號"];
-						newRow.FillRow(this.SelectedLaborNumber, dtpDate.Value, row["工作單號"].ToString(), (decimal)row["工時"], (int)row["待驗數量"], borrower, row["QCN"].ToString(), (int)row["工品編號"]);
+						newRow.FillRow(this.SelectedLaborNumber, dtpDate.Value, row["工作單號"].ToString(), (decimal)row["工時"], (int)row["待驗數量"], borrower, row["QCN"].ToString(), (int)row["工品編號"], hourType);
 						newRow.新舊 = "*";
-
+						newRow["工時類型名稱"] = hourType.ToString();
 						_dataTable.Rows.Add(newRow);
 
 						dgvHoursData.AutoResizeColumns();
