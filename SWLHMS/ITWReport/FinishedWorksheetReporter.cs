@@ -13,7 +13,7 @@ namespace Mong.Report
     class FinishedWorksheetReporter : SingleSheetReporter, IFormSettable
     {
         protected DataTable _table;
-
+		protected ReportDataSet.FinishedWorksheetReportSourceDataTable _srcTable;
 		DateLineForm _form;
         DateTime _startDate = DateTime.MinValue;
         DateTime _endDate = DateTime.MaxValue;
@@ -44,19 +44,19 @@ namespace Mong.Report
             FinishedWorksheetReportSourceTableAdapter adapter = new FinishedWorksheetReportSourceTableAdapter();
 
             //取得基本報表資料
-            ReportDataSet.FinishedWorksheetReportSourceDataTable srcTable = adapter.GetData(_startDate, _endDate);
-			//srcTable.Columns.Add("退驗數量", typeof(decimal));
+            _srcTable = adapter.GetData(_startDate, _endDate);
+			//_srcTable.Columns.Add("退驗數量", typeof(decimal));
 
             //取得每月工作時數
             Dictionary<DateTime, decimal> workHoursDic = new Dictionary<DateTime, decimal>();
             DateTime minDate = _startDate;
             DateTime maxDate = _endDate;
 
-            object tmpObj = srcTable.Compute("MIN(日期)",string.Empty);
+            object tmpObj = _srcTable.Compute("MIN(日期)",string.Empty);
             if (tmpObj != DBNull.Value)
                 minDate = (DateTime)tmpObj;
 
-            tmpObj = srcTable.Compute("MAX(日期)", string.Empty);
+            tmpObj = _srcTable.Compute("MAX(日期)", string.Empty);
 			if (tmpObj != DBNull.Value)
 			{
 				maxDate = (DateTime)tmpObj;
@@ -72,7 +72,7 @@ namespace Mong.Report
             
             //重新運算實際工資
             DateTime curRowMonth = DateTime.MinValue;
-            foreach (ReportDataSet.FinishedWorksheetReportSourceRow row in srcTable)
+            foreach (ReportDataSet.FinishedWorksheetReportSourceRow row in _srcTable)
             {
                 if (!row.IsNull("年份"))
                 {
@@ -85,7 +85,7 @@ namespace Mong.Report
 
             //重新Group資料
             DataTableHelper dtHelper = new DataTableHelper();
-            _table = dtHelper.SelectGroupByInto("ReportTable", srcTable,
+            _table = dtHelper.SelectGroupByInto("ReportTable", _srcTable,
 				"產線,實際完成日,工作單號,序號,品號,品名,數量,單位," +
 				"Sum(內部工時) 內部工時, Sum(內部工資) 內部工資,外包工時,外包工資,標準工時,單位人工成本,實際總工時,實際總工資," +
 				"標準總工時,標準總工資,生產效率,單位標準工資,實際工時,實際工資,工品編號",
@@ -205,20 +205,84 @@ namespace Mong.Report
             //建立寫入前置作業
             int writeRow = 4;
             PasteDataRowsOptions options = new PasteDataRowsOptions();
-            options.IncludeSummary = true;
+            options.IncludeSummary = false;	//手動控制Summary Row
 			options.SummaryColumns.AddRange(new string[] { /*"退驗數量", */"數量"/*, "標準工時", "單位人工成本"*/, "內部工時", "內部工資", "外包工資", "外包工時", "標準總工資", "標準總工時", /*"單位標準工資", "實際工時", "實際工資"*/ });
 			options.NoSummaryColumns.AddRange(new string[] { "標準工時", "單位人工成本", "單位標準工資", "實際工時", "實際工資" });
-            //對每個產線
+
+			PasteDataRowEventHandler beforeSummary = new PasteDataRowEventHandler(BeforePasteDataRowSummary);
+			//this.SheetAdapter.BeforePasteDataRowSummary += beforeSummary;
+
+			DataTableHelper dtHelper = new DataTableHelper();
+			DataTable nonNormalHourTable = dtHelper.SelectGroupByInto("ReportTable", _srcTable,
+					"產線, Sum(內部工時) 內部工時, 工時類型",
+					null, "產線,實際完成日,工作單號,品號,品名,數量,標準工時,單位人工成本,單位標準工資,工品編號,工時類型");
+
+			//對每個產線
             foreach (DataRow lineRow in linesTable.Rows)
             {
+				//NOTICE: 當Select條件修改時也必須修改BeforePasteDataRowSummary內容
                 DataRow[] rows = _table.Select("產線 = '" + lineRow["產線"] + "'", "工作單號,序號");
 
                 //寫入內容
+				options.IncludeSummary = false;
                 options.Row = writeRow;
                 options.SummaryPrefix = lineRow["產線"] + "產線小計";
-
                 writeRow = this.SheetAdapter.PasteDataRows(rows, options);
+
+				//寫入異常生產工時,包裝工時
+				decimal unusual = 0;
+				decimal package = 0;
+
+				// 取得異常生產工時
+				object result = nonNormalHourTable.Compute("SUM(內部工時)", "產線 = '" + lineRow["產線"] + "' AND 工時類型=" + (int)HourType.異常生產工時);
+				if (result != null && result != DBNull.Value)
+					unusual = (decimal)result;
+
+				// 取得包裝工時
+				result = nonNormalHourTable.Compute("SUM(內部工時)", "產線 = '" + lineRow["產線"] + "' AND 工時類型=" + (int)HourType.包裝);
+				if (result != null && result != DBNull.Value)
+					package = (decimal)result;
+
+				DataRow tmpRow = _table.NewRow();
+				tmpRow["單位"] = null;
+				tmpRow[0] = "異常生產工時";
+				tmpRow["實際總工時"] = unusual;
+				writeRow = this.SheetAdapter.PasteDataRow(tmpRow, writeRow, options.Column);
+
+				tmpRow[0] = "包裝";
+				tmpRow["實際總工時"] = package;
+				writeRow = this.SheetAdapter.PasteDataRow(tmpRow, writeRow, options.Column);
+
+				//寫入小計
+				options.Row = writeRow;
+				writeRow = this.SheetAdapter.PasteSummaryRow(rows, options);
+
             }
+			//this.SheetAdapter.BeforePasteDataRowSummary -= beforeSummary;
+
+			//寫入異常,包裝總計
+			decimal ttlUnusual = 0;
+			decimal ttlPackage = 0;
+
+			// 取得異常生產工時
+			object tmpResult = nonNormalHourTable.Compute("SUM(內部工時)", "工時類型=" + (int)HourType.異常生產工時);
+			if (tmpResult != null && tmpResult != DBNull.Value)
+				ttlUnusual = (decimal)tmpResult;
+
+			// 取得包裝工時
+			tmpResult = nonNormalHourTable.Compute("SUM(內部工時)", "工時類型=" + (int)HourType.包裝);
+			if (tmpResult != null && tmpResult != DBNull.Value)
+				ttlPackage = (decimal)tmpResult;
+
+			DataRow abnormalTotalRow = _table.NewRow();
+			abnormalTotalRow["單位"] = null;
+			abnormalTotalRow[0] = "異常生產工時";
+			abnormalTotalRow["實際總工時"] = ttlUnusual;
+			writeRow = this.SheetAdapter.PasteDataRow(abnormalTotalRow, writeRow, options.Column);
+
+			abnormalTotalRow[0] = "包裝";
+			abnormalTotalRow["實際總工時"] = ttlPackage;
+			writeRow = this.SheetAdapter.PasteDataRow(abnormalTotalRow, writeRow, options.Column);
 
             //寫入總計
 			DataTable tmpTable = _table.Clone();
@@ -301,6 +365,37 @@ namespace Mong.Report
 
             base.AfterContentWritten();
         }
+
+		void BeforePasteDataRowSummary(object sender, DataRow[] rows, PasteDataRowsOptions options, ref int writeRow, int col, object args)
+		{
+			decimal unusual = 0;
+			decimal package = 0;
+			if (rows.Length > 0)
+			{
+				DataTable table = rows[0].Table;
+				string line = rows[0]["產線"].ToString();
+
+				// 取得異常生產工時
+				object result = table.Compute("SUM(內部工時)", "產線 = '" + line + "' AND 工時類型=" + (int)HourType.異常生產工時);
+				if (result != null && result != DBNull.Value)
+					unusual = (decimal)result;
+				
+				// 取得包裝工時
+				result = table.Compute("SUM(內部工時)", "產線 = '" + line + "' AND 工時類型=" + (int)HourType.包裝);
+				if (result != null && result != DBNull.Value)
+					package = (decimal)result;
+
+				DataRow tmpRow = table.NewRow();
+				tmpRow["單位"] = null;
+				tmpRow[0] = "異常生產工時";
+				tmpRow["實際總工時"] = unusual;
+				writeRow = ((WorksheetAdapter)sender).PasteDataRow(tmpRow, writeRow, col);
+
+				tmpRow[0] = "包裝";
+				tmpRow["實際總工時"] = package;
+				writeRow = ((WorksheetAdapter)sender).PasteDataRow(tmpRow, writeRow, col);
+			}
+		}
 
         #region IFormSettable 成員
 

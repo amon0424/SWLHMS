@@ -410,7 +410,7 @@ namespace Mong {
             this.FinishedWorksheetReportSource.實際總工資Column.Expression = "內部工資+外包工資";
             this.FinishedWorksheetReportSource.標準總工時Column.Expression = "標準工時 * 數量";
             this.FinishedWorksheetReportSource.標準總工資Column.Expression = "標準總工時 * 單位人工成本";
-            this.FinishedWorksheetReportSource.生產效率Column.Expression = "IIF(內部工時 IS NULL OR (內部工時+外包工時) = 0,0,標準總工時/(內部工時+外包工時))";
+            this.FinishedWorksheetReportSource.生產效率Column.Expression = "IIF(實際總工時 IS NULL OR (實際總工時) = 0,0,標準總工時/(實際總工時))";
             this.FinishedWorksheetReportSource.實際工時Column.Expression = "IIF(數量 is NULL or 數量 = 0,0,(內部工時 + 外包工時) / 數量)";
             this.FinishedWorksheetReportSource.實際工資Column.Expression = "IIF(數量 is NULL or 數量 = 0,0,(內部工資 + 外包工資) / 數量)";
             this.FinishedWorksheetReportSource.單位標準工資Column.Expression = "標準工時 * 單位人工成本";
@@ -490,6 +490,8 @@ namespace Mong {
             private global::System.Data.DataColumn column日期;
             
             private global::System.Data.DataColumn column單位標準工資;
+            
+            private global::System.Data.DataColumn column工時類型;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -735,6 +737,14 @@ namespace Mong {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn 工時類型Column {
+                get {
+                    return this.column工時類型;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -795,7 +805,8 @@ namespace Mong {
                         short 年份, 
                         short 月份, 
                         System.DateTime 日期, 
-                        decimal 單位標準工資) {
+                        decimal 單位標準工資, 
+                        int 工時類型) {
                 FinishedWorksheetReportSourceRow rowFinishedWorksheetReportSourceRow = ((FinishedWorksheetReportSourceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         產線,
@@ -822,7 +833,8 @@ namespace Mong {
                         年份,
                         月份,
                         日期,
-                        單位標準工資};
+                        單位標準工資,
+                        工時類型};
                 rowFinishedWorksheetReportSourceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowFinishedWorksheetReportSourceRow);
                 return rowFinishedWorksheetReportSourceRow;
@@ -847,7 +859,8 @@ namespace Mong {
                         decimal 單位人工成本, 
                         short 年份, 
                         short 月份, 
-                        System.DateTime 日期) {
+                        System.DateTime 日期, 
+                        int 工時類型) {
                 FinishedWorksheetReportSourceRow rowFinishedWorksheetReportSourceRow = ((FinishedWorksheetReportSourceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         產線,
@@ -874,7 +887,8 @@ namespace Mong {
                         年份,
                         月份,
                         日期,
-                        null};
+                        null,
+                        工時類型};
                 rowFinishedWorksheetReportSourceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowFinishedWorksheetReportSourceRow);
                 return rowFinishedWorksheetReportSourceRow;
@@ -928,6 +942,7 @@ namespace Mong {
                 this.column月份 = base.Columns["月份"];
                 this.column日期 = base.Columns["日期"];
                 this.column單位標準工資 = base.Columns["單位標準工資"];
+                this.column工時類型 = base.Columns["工時類型"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -983,6 +998,8 @@ namespace Mong {
                 base.Columns.Add(this.column日期);
                 this.column單位標準工資 = new global::System.Data.DataColumn("單位標準工資", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column單位標準工資);
+                this.column工時類型 = new global::System.Data.DataColumn("工時類型", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.column工時類型);
                 this.column產線.MaxLength = 255;
                 this.column工作單號.MaxLength = 255;
                 this.column品號.MaxLength = 255;
@@ -1027,7 +1044,7 @@ namespace Mong {
                 this.實際總工資Column.Expression = "內部工資+外包工資";
                 this.標準總工時Column.Expression = "標準工時 * 數量";
                 this.標準總工資Column.Expression = "標準總工時 * 單位人工成本";
-                this.生產效率Column.Expression = "IIF(內部工時 IS NULL OR (內部工時+外包工時) = 0,0,標準總工時/(內部工時+外包工時))";
+                this.生產效率Column.Expression = "IIF(實際總工時 IS NULL OR (實際總工時) = 0,0,標準總工時/(實際總工時))";
                 this.實際工時Column.Expression = "IIF(數量 is NULL or 數量 = 0,0,(內部工時 + 外包工時) / 數量)";
                 this.實際工資Column.Expression = "IIF(數量 is NULL or 數量 = 0,0,(內部工資 + 外包工資) / 數量)";
                 this.單位標準工資Column.Expression = "標準工時 * 單位人工成本";
@@ -3468,6 +3485,22 @@ namespace Mong {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int 工時類型 {
+                get {
+                    try {
+                        return ((int)(this[this.tableFinishedWorksheetReportSource.工時類型Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("資料表 \'FinishedWorksheetReportSource\' 中資料行 \'工時類型\' 的值是 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableFinishedWorksheetReportSource.工時類型Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Is產線Null() {
                 return this.IsNull(this.tableFinishedWorksheetReportSource.產線Column);
             }
@@ -3764,6 +3797,18 @@ namespace Mong {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Set單位標準工資Null() {
                 this[this.tableFinishedWorksheetReportSource.單位標準工資Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Is工時類型Null() {
+                return this.IsNull(this.tableFinishedWorksheetReportSource.工時類型Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Set工時類型Null() {
+                this[this.tableFinishedWorksheetReportSource.工時類型Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -5660,6 +5705,7 @@ namespace Mong.ReportDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("日期", "日期");
             tableMapping.ColumnMappings.Add("內部工時", "內部工時");
             tableMapping.ColumnMappings.Add("內部工資", "內部工資");
+            tableMapping.ColumnMappings.Add("工時類型", "工時類型");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -5680,7 +5726,7 @@ namespace Mong.ReportDataSetTableAdapters {
                           Month(D.日期) AS 月份, D.日期, C.品名, B.數量 / 1000 AS 數量, 
                           C.工時 AS 標準工時, C.單位標準工資, IIF(SUM(D.工時) IS NULL, 0, 
                           SUM(D.工時)) AS 內部工時, IIF(內部工時 = 0, 0, SUM(E.薪水 * D.工時)) 
-                          AS 內部工資,B.編號 as 工品編號
+                          AS 內部工資,B.編號 as 工品編號, D.工時類型
 FROM             ((((工作單 AS A INNER JOIN
                           工作單品號 AS B ON A.單號 = B.單號) INNER JOIN
                           產品品號 AS C ON C.品號 = B.品號) LEFT JOIN
@@ -5688,7 +5734,7 @@ FROM             ((((工作單 AS A INNER JOIN
                           員工 AS E ON E.編號 = D.員工編號)
 WHERE         (B.實際完成日 >= ?) AND (B.實際完成日 <= ?)
 GROUP BY  A.單號, B.實際完成日, B.數量, C.品號, C.品名, C.工時, C.單位標準工資, C.產線, 
-                          Year(D.日期), Month(D.日期), D.日期,B.編號
+                          Year(D.日期), Month(D.日期), D.日期,B.編號, D.工時類型
 ORDER BY  C.產線, B.實際完成日, A.單號, C.品號";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("開始日期", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "實際完成日", global::System.Data.DataRowVersion.Current, false, null));

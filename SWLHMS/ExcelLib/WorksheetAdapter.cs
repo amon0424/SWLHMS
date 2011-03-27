@@ -13,6 +13,8 @@ using DataTable = System.Data.DataTable;
 
 namespace Mong
 {
+	public delegate void PasteDataRowEventHandler(object sender, DataRow[] rows, PasteDataRowsOptions options, ref int writeRow, int col, object args);
+
     class WorksheetAdapter
     {
         object Missing = System.Reflection.Missing.Value;
@@ -83,6 +85,9 @@ namespace Mong
                 return _sheet.UsedRange.Columns.Count;
             }
         }
+
+		// Event
+		public PasteDataRowEventHandler BeforePasteDataRowSummary;
 
         public WorksheetAdapter()
         {
@@ -289,6 +294,9 @@ namespace Mong
                 //writeRow++;
             }
 
+			if (BeforePasteDataRowSummary != null)
+				BeforePasteDataRowSummary(this, rows, options, ref writeRow, col, options.PasteDataRowEventArgs);
+
             //產生總和列
             if (options.IncludeSummary && rows.Length > 0)
             {
@@ -319,6 +327,54 @@ namespace Mong
 
             return writeRow;
         }
+
+		public int PasteSummaryRow(DataRow[] rows, PasteDataRowsOptions options)
+		{
+			int writeRow = options.Row;
+			int col = options.Column;
+
+			//建立總和查詢Dictionary
+			Dictionary<string, decimal> sumDic = null;
+
+			sumDic = new Dictionary<string, decimal>();
+			foreach (string sumCol in options.SummaryColumns)
+				sumDic.Add(sumCol, 0);
+
+			//逐一將資料列貼上
+			foreach (DataRow dr in rows)
+			{
+				foreach (string sumCol in options.SummaryColumns)
+					sumDic[sumCol] += (Convert.IsDBNull(dr[sumCol]) ? 0 : Convert.ToDecimal(dr[sumCol]));
+			}
+
+			//產生總和列
+            if (rows.Length > 0)
+            {
+                DataTable table = rows[0].Table.Clone();
+                DataRow sumRow = table.NewRow();
+                sumRow[0] = options.SummaryPrefix;
+
+				foreach (string sumCol in options.SummaryColumns)
+				{
+					if (!string.IsNullOrEmpty(table.Columns[sumCol].Expression))
+						table.Columns[sumCol].Expression = string.Empty;
+					sumRow[sumCol] = sumDic[sumCol];
+				}
+
+				foreach (string noSumCol in options.NoSummaryColumns)
+				{
+					table.Columns[noSumCol].Expression = string.Empty;
+					sumRow[noSumCol] = DBNull.Value;
+				}
+
+                table.Rows.Add(sumRow);
+                writeRow = PasteDataRow(sumRow, writeRow, col);
+                writeRow++;
+                sumRow.Delete();
+            }
+
+            return writeRow;
+		}
 
         /// <summary>
         /// 將資料列貼到指定的Worksheet
@@ -371,6 +427,8 @@ namespace Mong
 
             return row + 1;
         }
+
+		
 
         /// <summary>
         /// 將DataTable中的欄位名稱貼到Worksheet
@@ -540,6 +598,8 @@ namespace Mong
 
     }
 
+	
+
     public class PasteDataTableOptions
     {
         int _row;
@@ -590,6 +650,7 @@ namespace Mong
         List<string> _summaryColumns;
 		List<string> _noSummaryColumns;
         List<string> _excludeColumns;
+		object _pasteDataRowEventArgs;
 
         public int Row
         {
@@ -654,5 +715,10 @@ namespace Mong
             get { return _includeSummary; }
             set { _includeSummary = value; }
         }
+		public object PasteDataRowEventArgs
+		{
+			get { return _pasteDataRowEventArgs; }
+			set { _pasteDataRowEventArgs = value; }
+		}
     }
 }
