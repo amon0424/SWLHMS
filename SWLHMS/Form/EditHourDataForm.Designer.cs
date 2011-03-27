@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.label1 = new System.Windows.Forms.Label();
 			this.cbxLaborNumber = new System.Windows.Forms.ComboBox();
 			this.bsLabor = new System.Windows.Forms.BindingSource(this.components);
@@ -52,12 +52,9 @@
 			this.bsPart = new System.Windows.Forms.BindingSource(this.components);
 			this.btnSearchWorksheet = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.label14 = new System.Windows.Forms.Label();
 			this.llbNGTip = new System.Windows.Forms.LinkLabel();
 			this.label16 = new System.Windows.Forms.Label();
 			this.txtQCN = new System.Windows.Forms.TextBox();
-			this.ckbBorrowLine = new System.Windows.Forms.CheckBox();
-			this.cbbBorrowLine = new System.Windows.Forms.ComboBox();
 			this.label17 = new System.Windows.Forms.Label();
 			this.lbRemainCount = new System.Windows.Forms.Label();
 			this.lbPartCount = new System.Windows.Forms.Label();
@@ -71,16 +68,33 @@
 			this.btnSrchWorksheet = new System.Windows.Forms.Button();
 			this.label5 = new System.Windows.Forms.Label();
 			this.txtNum = new System.Windows.Forms.TextBox();
+			this.label14 = new System.Windows.Forms.Label();
+			this.ckbBorrowLine = new System.Windows.Forms.CheckBox();
+			this.cbbBorrowLine = new System.Windows.Forms.ComboBox();
 			this.rbProduce = new System.Windows.Forms.RadioButton();
 			this.rbNonProduce = new System.Windows.Forms.RadioButton();
 			this.cbbNonProduce = new System.Windows.Forms.ComboBox();
 			this.bsNonProduce = new System.Windows.Forms.BindingSource(this.components);
 			this.label6 = new System.Windows.Forms.Label();
 			this.tbxRemark = new System.Windows.Forms.TextBox();
-			this.label9 = new System.Windows.Forms.Label();
 			this.tbxHour = new System.Windows.Forms.TextBox();
 			this.lbRemain = new System.Windows.Forms.Label();
 			this.dgvHoursData = new System.Windows.Forms.DataGridView();
+			this.col新舊 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col員工編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col工作單號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colWpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col品號2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col非生產名稱 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col工時 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colHourType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col完成數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.待驗數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col借入產線 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.QCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col非生產編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.col備註 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.bsHourData = new System.Windows.Forms.BindingSource(this.components);
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.cbxHourType = new System.Windows.Forms.ComboBox();
@@ -101,21 +115,6 @@
 			this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
 			this.llbUnfilledTip = new System.Windows.Forms.LinkLabel();
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
-			this.col新舊 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col員工編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col工作單號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colWpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col品號2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col非生產名稱 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col工時 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colHourType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col完成數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.待驗數量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col借入產線 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.QCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col非生產編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.col備註 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.bsLabor)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgvPart)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsPart)).BeginInit();
@@ -150,7 +149,6 @@
 			this.cbxLaborNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cbxLaborNumber.DataSource = this.bsLabor;
 			this.cbxLaborNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.pnlData.SetFlowBreak(this.cbxLaborNumber, true);
 			this.cbxLaborNumber.FormattingEnabled = true;
 			this.cbxLaborNumber.Location = new System.Drawing.Point(369, 27);
 			this.cbxLaborNumber.Name = "cbxLaborNumber";
@@ -218,14 +216,14 @@
 			this.dgvPart.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dgvPart.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
 			this.dgvPart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle9.BackColor = System.Drawing.Color.CadetBlue;
-			dataGridViewCellStyle9.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-			dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvPart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.CadetBlue;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvPart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgvPart.ColumnHeadersHeight = 20;
 			this.dgvPart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 			this.dgvPart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -233,28 +231,28 @@
             this.col品號,
             this.col數量});
 			this.dgvPart.DataSource = this.bsPart;
-			dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-			dataGridViewCellStyle11.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgvPart.DefaultCellStyle = dataGridViewCellStyle11;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgvPart.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dgvPart.EnableHeadersVisualStyles = false;
 			this.dgvPart.GridColor = System.Drawing.Color.LightGray;
-			this.dgvPart.Location = new System.Drawing.Point(415, 118);
+			this.dgvPart.Location = new System.Drawing.Point(415, 97);
 			this.dgvPart.Name = "dgvPart";
 			this.dgvPart.ReadOnly = true;
 			this.dgvPart.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle12.BackColor = System.Drawing.Color.CornflowerBlue;
-			dataGridViewCellStyle12.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-			dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvPart.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.BackColor = System.Drawing.Color.CornflowerBlue;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvPart.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this.dgvPart.RowHeadersVisible = false;
 			this.dgvPart.RowHeadersWidth = 20;
 			this.dgvPart.RowTemplate.Height = 20;
@@ -283,8 +281,8 @@
 			// 
 			this.col數量.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
 			this.col數量.DataPropertyName = "數量";
-			dataGridViewCellStyle10.Format = "0.#";
-			this.col數量.DefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle2.Format = "0.#";
+			this.col數量.DefaultCellStyle = dataGridViewCellStyle2;
 			this.col數量.HeaderText = "數量";
 			this.col數量.Name = "col數量";
 			this.col數量.ReadOnly = true;
@@ -293,7 +291,7 @@
 			// 
 			// btnSearchWorksheet
 			// 
-			this.btnSearchWorksheet.Location = new System.Drawing.Point(384, 116);
+			this.btnSearchWorksheet.Location = new System.Drawing.Point(384, 95);
 			this.btnSearchWorksheet.Name = "btnSearchWorksheet";
 			this.btnSearchWorksheet.Size = new System.Drawing.Size(25, 23);
 			this.btnSearchWorksheet.TabIndex = 18;
@@ -304,12 +302,9 @@
 			// 
 			// panel1
 			// 
-			this.panel1.Controls.Add(this.label14);
 			this.panel1.Controls.Add(this.llbNGTip);
 			this.panel1.Controls.Add(this.label16);
 			this.panel1.Controls.Add(this.txtQCN);
-			this.panel1.Controls.Add(this.ckbBorrowLine);
-			this.panel1.Controls.Add(this.cbbBorrowLine);
 			this.panel1.Controls.Add(this.label17);
 			this.panel1.Controls.Add(this.lbRemainCount);
 			this.panel1.Controls.Add(this.lbPartCount);
@@ -330,15 +325,6 @@
 			this.panel1.Size = new System.Drawing.Size(438, 172);
 			this.panel1.TabIndex = 0;
 			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(162, 28);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(29, 12);
-			this.label14.TabIndex = 47;
-			this.label14.Text = "借入";
-			// 
 			// llbNGTip
 			// 
 			this.llbNGTip.AutoSize = true;
@@ -358,7 +344,7 @@
 			this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 						| System.Windows.Forms.AnchorStyles.Left)));
 			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(40, 146);
+			this.label16.Location = new System.Drawing.Point(40, 125);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(27, 12);
 			this.label16.TabIndex = 45;
@@ -368,15 +354,159 @@
 			// 
 			this.txtQCN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 						| System.Windows.Forms.AnchorStyles.Left)));
-			this.txtQCN.Location = new System.Drawing.Point(73, 141);
+			this.txtQCN.Location = new System.Drawing.Point(73, 120);
 			this.txtQCN.Name = "txtQCN";
 			this.txtQCN.Size = new System.Drawing.Size(205, 22);
 			this.txtQCN.TabIndex = 44;
 			// 
+			// label17
+			// 
+			this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)));
+			this.label17.AutoSize = true;
+			this.label17.Location = new System.Drawing.Point(134, 97);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(25, 12);
+			this.label17.TabIndex = 43;
+			this.label17.Text = "PCS";
+			// 
+			// lbRemainCount
+			// 
+			this.lbRemainCount.AutoSize = true;
+			this.lbRemainCount.Location = new System.Drawing.Point(173, 97);
+			this.lbRemainCount.Name = "lbRemainCount";
+			this.lbRemainCount.Size = new System.Drawing.Size(83, 12);
+			this.lbRemainCount.TabIndex = 42;
+			this.lbRemainCount.Text = "剩餘 1000/1000";
+			// 
+			// lbPartCount
+			// 
+			this.lbPartCount.AutoSize = true;
+			this.lbPartCount.Location = new System.Drawing.Point(71, 52);
+			this.lbPartCount.Name = "lbPartCount";
+			this.lbPartCount.Size = new System.Drawing.Size(0, 12);
+			this.lbPartCount.TabIndex = 40;
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(15, 34);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(53, 12);
+			this.label13.TabIndex = 39;
+			this.label13.Text = "工作單號";
+			// 
+			// dateFinishDate
+			// 
+			this.dateFinishDate.Enabled = false;
+			this.dateFinishDate.Location = new System.Drawing.Point(395, 64);
+			this.dateFinishDate.Name = "dateFinishDate";
+			this.dateFinishDate.Size = new System.Drawing.Size(34, 22);
+			this.dateFinishDate.TabIndex = 5;
+			this.dateFinishDate.Visible = false;
+			// 
+			// ckbFinishDate
+			// 
+			this.ckbFinishDate.AutoSize = true;
+			this.ckbFinishDate.Location = new System.Drawing.Point(329, 68);
+			this.ckbFinishDate.Name = "ckbFinishDate";
+			this.ckbFinishDate.Size = new System.Drawing.Size(60, 16);
+			this.ckbFinishDate.TabIndex = 4;
+			this.ckbFinishDate.Text = "完成日";
+			this.ckbFinishDate.UseVisualStyleBackColor = true;
+			this.ckbFinishDate.Visible = false;
+			this.ckbFinishDate.CheckedChanged += new System.EventHandler(this.ckbFinishDate_CheckedChanged);
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(38, 71);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(29, 12);
+			this.label12.TabIndex = 34;
+			this.label12.Text = "品號";
+			// 
+			// cbbPart
+			// 
+			this.cbbPart.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.cbbPart.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.cbbPart.DataSource = this.bsPart;
+			this.cbbPart.FormattingEnabled = true;
+			this.cbbPart.Location = new System.Drawing.Point(73, 67);
+			this.cbbPart.Name = "cbbPart";
+			this.cbbPart.Size = new System.Drawing.Size(205, 20);
+			this.cbbPart.TabIndex = 2;
+			this.cbbPart.SelectedValueChanged += new System.EventHandler(this.cbbPart_SelectedValueChanged);
+			// 
+			// txtDate
+			// 
+			this.txtDate.Cursor = System.Windows.Forms.Cursors.IBeam;
+			this.txtDate.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
+			this.txtDate.Location = new System.Drawing.Point(231, 28);
+			this.txtDate.Mask = "0000-00-00";
+			this.txtDate.Name = "txtDate";
+			this.txtDate.Size = new System.Drawing.Size(66, 22);
+			this.txtDate.TabIndex = 1;
+			this.txtDate.Enter += new System.EventHandler(this.txtDate_Enter);
+			this.txtDate.Leave += new System.EventHandler(this.txtDate_Leave);
+			// 
+			// cbbWorksheetNubmerS
+			// 
+			this.cbbWorksheetNubmerS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.cbbWorksheetNubmerS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.cbbWorksheetNubmerS.FormattingEnabled = true;
+			this.cbbWorksheetNubmerS.Location = new System.Drawing.Point(73, 29);
+			this.cbbWorksheetNubmerS.Name = "cbbWorksheetNubmerS";
+			this.cbbWorksheetNubmerS.Size = new System.Drawing.Size(152, 20);
+			this.cbbWorksheetNubmerS.TabIndex = 0;
+			this.cbbWorksheetNubmerS.SelectedValueChanged += new System.EventHandler(this.cbbWorksheetNubmerS_SelectedValueChanged);
+			// 
+			// btnSrchWorksheet
+			// 
+			this.btnSrchWorksheet.Location = new System.Drawing.Point(302, 28);
+			this.btnSrchWorksheet.Name = "btnSrchWorksheet";
+			this.btnSrchWorksheet.Size = new System.Drawing.Size(127, 23);
+			this.btnSrchWorksheet.TabIndex = 26;
+			this.btnSrchWorksheet.Text = "使用日期查詢";
+			this.btnSrchWorksheet.UseVisualStyleBackColor = true;
+			this.btnSrchWorksheet.Click += new System.EventHandler(this.btnSrchWorksheet_Click);
+			// 
+			// label5
+			// 
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)));
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(15, 97);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(53, 12);
+			this.label5.TabIndex = 30;
+			this.label5.Text = "待驗數量";
+			// 
+			// txtNum
+			// 
+			this.txtNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)));
+			this.txtNum.Location = new System.Drawing.Point(73, 92);
+			this.txtNum.Name = "txtNum";
+			this.txtNum.Size = new System.Drawing.Size(55, 22);
+			this.txtNum.TabIndex = 3;
+			this.txtNum.Text = "0";
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.pnlData.SetFlowBreak(this.label14, true);
+			this.label14.Location = new System.Drawing.Point(651, 31);
+			this.label14.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(29, 12);
+			this.label14.TabIndex = 47;
+			this.label14.Text = "借入";
+			// 
 			// ckbBorrowLine
 			// 
 			this.ckbBorrowLine.AutoSize = true;
-			this.ckbBorrowLine.Location = new System.Drawing.Point(11, 27);
+			this.ckbBorrowLine.Location = new System.Drawing.Point(496, 30);
 			this.ckbBorrowLine.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.ckbBorrowLine.Name = "ckbBorrowLine";
 			this.ckbBorrowLine.Size = new System.Drawing.Size(60, 16);
@@ -392,143 +522,10 @@
 			this.cbbBorrowLine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbbBorrowLine.Enabled = false;
 			this.cbbBorrowLine.FormattingEnabled = true;
-			this.cbbBorrowLine.Location = new System.Drawing.Point(73, 24);
+			this.cbbBorrowLine.Location = new System.Drawing.Point(562, 27);
 			this.cbbBorrowLine.Name = "cbbBorrowLine";
 			this.cbbBorrowLine.Size = new System.Drawing.Size(83, 20);
 			this.cbbBorrowLine.TabIndex = 2;
-			// 
-			// label17
-			// 
-			this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)));
-			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(134, 118);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(25, 12);
-			this.label17.TabIndex = 43;
-			this.label17.Text = "PCS";
-			// 
-			// lbRemainCount
-			// 
-			this.lbRemainCount.AutoSize = true;
-			this.lbRemainCount.Location = new System.Drawing.Point(173, 118);
-			this.lbRemainCount.Name = "lbRemainCount";
-			this.lbRemainCount.Size = new System.Drawing.Size(83, 12);
-			this.lbRemainCount.TabIndex = 42;
-			this.lbRemainCount.Text = "剩餘 1000/1000";
-			// 
-			// lbPartCount
-			// 
-			this.lbPartCount.AutoSize = true;
-			this.lbPartCount.Location = new System.Drawing.Point(71, 73);
-			this.lbPartCount.Name = "lbPartCount";
-			this.lbPartCount.Size = new System.Drawing.Size(0, 12);
-			this.lbPartCount.TabIndex = 40;
-			// 
-			// label13
-			// 
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(15, 55);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(53, 12);
-			this.label13.TabIndex = 39;
-			this.label13.Text = "工作單號";
-			// 
-			// dateFinishDate
-			// 
-			this.dateFinishDate.Enabled = false;
-			this.dateFinishDate.Location = new System.Drawing.Point(395, 85);
-			this.dateFinishDate.Name = "dateFinishDate";
-			this.dateFinishDate.Size = new System.Drawing.Size(34, 22);
-			this.dateFinishDate.TabIndex = 5;
-			this.dateFinishDate.Visible = false;
-			// 
-			// ckbFinishDate
-			// 
-			this.ckbFinishDate.AutoSize = true;
-			this.ckbFinishDate.Location = new System.Drawing.Point(329, 89);
-			this.ckbFinishDate.Name = "ckbFinishDate";
-			this.ckbFinishDate.Size = new System.Drawing.Size(60, 16);
-			this.ckbFinishDate.TabIndex = 4;
-			this.ckbFinishDate.Text = "完成日";
-			this.ckbFinishDate.UseVisualStyleBackColor = true;
-			this.ckbFinishDate.Visible = false;
-			this.ckbFinishDate.CheckedChanged += new System.EventHandler(this.ckbFinishDate_CheckedChanged);
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(38, 92);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(29, 12);
-			this.label12.TabIndex = 34;
-			this.label12.Text = "品號";
-			// 
-			// cbbPart
-			// 
-			this.cbbPart.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.cbbPart.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.cbbPart.DataSource = this.bsPart;
-			this.cbbPart.FormattingEnabled = true;
-			this.cbbPart.Location = new System.Drawing.Point(73, 88);
-			this.cbbPart.Name = "cbbPart";
-			this.cbbPart.Size = new System.Drawing.Size(205, 20);
-			this.cbbPart.TabIndex = 2;
-			this.cbbPart.SelectedValueChanged += new System.EventHandler(this.cbbPart_SelectedValueChanged);
-			// 
-			// txtDate
-			// 
-			this.txtDate.Cursor = System.Windows.Forms.Cursors.IBeam;
-			this.txtDate.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-			this.txtDate.Location = new System.Drawing.Point(231, 49);
-			this.txtDate.Mask = "0000-00-00";
-			this.txtDate.Name = "txtDate";
-			this.txtDate.Size = new System.Drawing.Size(66, 22);
-			this.txtDate.TabIndex = 1;
-			this.txtDate.Enter += new System.EventHandler(this.txtDate_Enter);
-			this.txtDate.Leave += new System.EventHandler(this.txtDate_Leave);
-			// 
-			// cbbWorksheetNubmerS
-			// 
-			this.cbbWorksheetNubmerS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.cbbWorksheetNubmerS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.cbbWorksheetNubmerS.FormattingEnabled = true;
-			this.cbbWorksheetNubmerS.Location = new System.Drawing.Point(73, 50);
-			this.cbbWorksheetNubmerS.Name = "cbbWorksheetNubmerS";
-			this.cbbWorksheetNubmerS.Size = new System.Drawing.Size(152, 20);
-			this.cbbWorksheetNubmerS.TabIndex = 0;
-			this.cbbWorksheetNubmerS.SelectedValueChanged += new System.EventHandler(this.cbbWorksheetNubmerS_SelectedValueChanged);
-			// 
-			// btnSrchWorksheet
-			// 
-			this.btnSrchWorksheet.Location = new System.Drawing.Point(302, 49);
-			this.btnSrchWorksheet.Name = "btnSrchWorksheet";
-			this.btnSrchWorksheet.Size = new System.Drawing.Size(127, 23);
-			this.btnSrchWorksheet.TabIndex = 26;
-			this.btnSrchWorksheet.Text = "使用日期查詢";
-			this.btnSrchWorksheet.UseVisualStyleBackColor = true;
-			this.btnSrchWorksheet.Click += new System.EventHandler(this.btnSrchWorksheet_Click);
-			// 
-			// label5
-			// 
-			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)));
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(15, 118);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(53, 12);
-			this.label5.TabIndex = 30;
-			this.label5.Text = "待驗數量";
-			// 
-			// txtNum
-			// 
-			this.txtNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)));
-			this.txtNum.Location = new System.Drawing.Point(73, 113);
-			this.txtNum.Name = "txtNum";
-			this.txtNum.Size = new System.Drawing.Size(55, 22);
-			this.txtNum.TabIndex = 3;
-			this.txtNum.Text = "0";
 			// 
 			// rbProduce
 			// 
@@ -580,19 +577,9 @@
 			this.tbxRemark.Multiline = true;
 			this.tbxRemark.Name = "tbxRemark";
 			this.tbxRemark.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.tbxRemark.Size = new System.Drawing.Size(158, 134);
+			this.tbxRemark.Size = new System.Drawing.Size(262, 134);
 			this.tbxRemark.TabIndex = 1;
 			this.tbxRemark.Validated += new System.EventHandler(this.tbxRemark_Validated);
-			// 
-			// label9
-			// 
-			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(149, 258);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(53, 12);
-			this.label9.TabIndex = 29;
-			this.label9.Text = "工作時數";
 			// 
 			// tbxHour
 			// 
@@ -625,14 +612,14 @@
 			this.dgvHoursData.AutoGenerateColumns = false;
 			this.dgvHoursData.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.dgvHoursData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle13.BackColor = System.Drawing.Color.SteelBlue;
-			dataGridViewCellStyle13.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
-			dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvHoursData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle5.BackColor = System.Drawing.Color.SteelBlue;
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvHoursData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
 			this.dgvHoursData.ColumnHeadersHeight = 20;
 			this.dgvHoursData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 			this.dgvHoursData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -652,37 +639,155 @@
             this.col非生產編號,
             this.col備註});
 			this.dgvHoursData.DataSource = this.bsHourData;
-			dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-			dataGridViewCellStyle15.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgvHoursData.DefaultCellStyle = dataGridViewCellStyle15;
+			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+			dataGridViewCellStyle7.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgvHoursData.DefaultCellStyle = dataGridViewCellStyle7;
 			this.dgvHoursData.EnableHeadersVisualStyles = false;
 			this.dgvHoursData.GridColor = System.Drawing.Color.Gainsboro;
 			this.dgvHoursData.Location = new System.Drawing.Point(7, 55);
 			this.dgvHoursData.Name = "dgvHoursData";
 			this.dgvHoursData.ReadOnly = true;
 			this.dgvHoursData.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle16.BackColor = System.Drawing.Color.CornflowerBlue;
-			dataGridViewCellStyle16.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-			dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
-			dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvHoursData.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle8.BackColor = System.Drawing.Color.CornflowerBlue;
+			dataGridViewCellStyle8.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+			dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+			dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvHoursData.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
 			this.dgvHoursData.RowHeadersVisible = false;
 			this.dgvHoursData.RowHeadersWidth = 20;
 			this.dgvHoursData.RowTemplate.Height = 20;
 			this.dgvHoursData.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			this.dgvHoursData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvHoursData.Size = new System.Drawing.Size(677, 189);
+			this.dgvHoursData.Size = new System.Drawing.Size(781, 189);
 			this.dgvHoursData.TabIndex = 32;
 			this.dgvHoursData.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvHoursData_UserDeletedRow);
 			this.dgvHoursData.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvHoursData_UserDeletingRow);
+			// 
+			// col新舊
+			// 
+			this.col新舊.DataPropertyName = "新舊";
+			this.col新舊.HeaderText = "";
+			this.col新舊.Name = "col新舊";
+			this.col新舊.ReadOnly = true;
+			this.col新舊.Width = 20;
+			// 
+			// col員工編號
+			// 
+			this.col員工編號.DataPropertyName = "員工編號";
+			this.col員工編號.HeaderText = "員工編號";
+			this.col員工編號.Name = "col員工編號";
+			this.col員工編號.ReadOnly = true;
+			this.col員工編號.Visible = false;
+			// 
+			// col日期
+			// 
+			this.col日期.DataPropertyName = "日期";
+			this.col日期.HeaderText = "日期";
+			this.col日期.Name = "col日期";
+			this.col日期.ReadOnly = true;
+			this.col日期.Visible = false;
+			// 
+			// col工作單號
+			// 
+			this.col工作單號.DataPropertyName = "工作單號";
+			this.col工作單號.HeaderText = "工作單號";
+			this.col工作單號.Name = "col工作單號";
+			this.col工作單號.ReadOnly = true;
+			// 
+			// colWpId
+			// 
+			this.colWpId.DataPropertyName = "工品編號";
+			this.colWpId.HeaderText = "序號";
+			this.colWpId.Name = "colWpId";
+			this.colWpId.ReadOnly = true;
+			this.colWpId.Width = 50;
+			// 
+			// col品號2
+			// 
+			this.col品號2.DataPropertyName = "品號";
+			this.col品號2.HeaderText = "生產品號";
+			this.col品號2.Name = "col品號2";
+			this.col品號2.ReadOnly = true;
+			// 
+			// col非生產名稱
+			// 
+			this.col非生產名稱.DataPropertyName = "非生產名稱";
+			this.col非生產名稱.HeaderText = "非生產";
+			this.col非生產名稱.Name = "col非生產名稱";
+			this.col非生產名稱.ReadOnly = true;
+			this.col非生產名稱.Width = 99;
+			// 
+			// col工時
+			// 
+			this.col工時.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.col工時.DataPropertyName = "工時";
+			dataGridViewCellStyle6.Format = "0.##";
+			this.col工時.DefaultCellStyle = dataGridViewCellStyle6;
+			this.col工時.HeaderText = "工時";
+			this.col工時.Name = "col工時";
+			this.col工時.ReadOnly = true;
+			this.col工時.Width = 65;
+			// 
+			// colHourType
+			// 
+			this.colHourType.DataPropertyName = "工時類型名稱";
+			this.colHourType.HeaderText = "工時類型";
+			this.colHourType.Name = "colHourType";
+			this.colHourType.ReadOnly = true;
+			// 
+			// col完成數量
+			// 
+			this.col完成數量.DataPropertyName = "數量";
+			this.col完成數量.HeaderText = "完成數量";
+			this.col完成數量.Name = "col完成數量";
+			this.col完成數量.ReadOnly = true;
+			this.col完成數量.Width = 65;
+			// 
+			// 待驗數量
+			// 
+			this.待驗數量.DataPropertyName = "待驗數量";
+			this.待驗數量.HeaderText = "待驗數量";
+			this.待驗數量.Name = "待驗數量";
+			this.待驗數量.ReadOnly = true;
+			this.待驗數量.Width = 65;
+			// 
+			// col借入產線
+			// 
+			this.col借入產線.DataPropertyName = "借入產線";
+			this.col借入產線.HeaderText = "借入產線";
+			this.col借入產線.Name = "col借入產線";
+			this.col借入產線.ReadOnly = true;
+			this.col借入產線.Width = 65;
+			// 
+			// QCN
+			// 
+			this.QCN.DataPropertyName = "QCN";
+			this.QCN.HeaderText = "QC#";
+			this.QCN.Name = "QCN";
+			this.QCN.ReadOnly = true;
+			// 
+			// col非生產編號
+			// 
+			this.col非生產編號.DataPropertyName = "非生產編號";
+			this.col非生產編號.HeaderText = "非生產編號";
+			this.col非生產編號.Name = "col非生產編號";
+			this.col非生產編號.ReadOnly = true;
+			this.col非生產編號.Visible = false;
+			// 
+			// col備註
+			// 
+			this.col備註.DataPropertyName = "備註";
+			this.col備註.HeaderText = "備註";
+			this.col備註.Name = "col備註";
+			this.col備註.ReadOnly = true;
 			// 
 			// bsHourData
 			// 
@@ -705,7 +810,7 @@
 			this.groupBox1.Controls.Add(this.panel1);
 			this.groupBox1.Location = new System.Drawing.Point(5, 5);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(680, 216);
+			this.groupBox1.Size = new System.Drawing.Size(784, 216);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "生產資料";
@@ -726,7 +831,7 @@
 			this.label15.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.label15.Location = new System.Drawing.Point(5, 180);
 			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(669, 2);
+			this.label15.Size = new System.Drawing.Size(773, 2);
 			this.label15.TabIndex = 41;
 			// 
 			// ckbOvertime
@@ -747,7 +852,7 @@
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.btnAddList.Location = new System.Drawing.Point(299, 187);
 			this.btnAddList.Name = "btnAddList";
-			this.btnAddList.Size = new System.Drawing.Size(373, 23);
+			this.btnAddList.Size = new System.Drawing.Size(477, 23);
 			this.btnAddList.TabIndex = 2;
 			this.btnAddList.Text = "新增至清單";
 			this.btnAddList.UseVisualStyleBackColor = true;
@@ -763,7 +868,7 @@
 			this.panel2.Controls.Add(this.label6);
 			this.panel2.Location = new System.Drawing.Point(473, 11);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(200, 170);
+			this.panel2.Size = new System.Drawing.Size(304, 170);
 			this.panel2.TabIndex = 19;
 			// 
 			// cbbLine
@@ -813,7 +918,7 @@
 			this.flowLayoutPanel1.Controls.Add(this.btnStore);
 			this.flowLayoutPanel1.Controls.Add(this.btnSend);
 			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(450, 250);
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(554, 250);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(238, 29);
 			this.flowLayoutPanel1.TabIndex = 36;
@@ -849,6 +954,9 @@
 			this.pnlData.Controls.Add(this.cbxLaborName);
 			this.pnlData.Controls.Add(this.label2);
 			this.pnlData.Controls.Add(this.cbxLaborNumber);
+			this.pnlData.Controls.Add(this.ckbBorrowLine);
+			this.pnlData.Controls.Add(this.cbbBorrowLine);
+			this.pnlData.Controls.Add(this.label14);
 			this.pnlData.Controls.Add(this.label4);
 			this.pnlData.Controls.Add(this.dtpDate);
 			this.pnlData.Controls.Add(this.flowLayoutPanel2);
@@ -856,7 +964,7 @@
 			this.pnlData.Location = new System.Drawing.Point(0, 0);
 			this.pnlData.Name = "pnlData";
 			this.pnlData.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-			this.pnlData.Size = new System.Drawing.Size(692, 87);
+			this.pnlData.Size = new System.Drawing.Size(796, 87);
 			this.pnlData.TabIndex = 41;
 			this.pnlData.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlData_Paint);
 			// 
@@ -918,137 +1026,18 @@
 			this.mainContainer.Panel2.Controls.Add(this.label7);
 			this.mainContainer.Panel2.Controls.Add(this.dgvHoursData);
 			this.mainContainer.Panel2.Controls.Add(this.label8);
-			this.mainContainer.Panel2.Controls.Add(this.label9);
 			this.mainContainer.Panel2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
-			this.mainContainer.Size = new System.Drawing.Size(692, 506);
+			this.mainContainer.Size = new System.Drawing.Size(796, 506);
 			this.mainContainer.SplitterDistance = 221;
 			this.mainContainer.SplitterWidth = 3;
 			this.mainContainer.TabIndex = 33;
-			// 
-			// col新舊
-			// 
-			this.col新舊.DataPropertyName = "新舊";
-			this.col新舊.HeaderText = "";
-			this.col新舊.Name = "col新舊";
-			this.col新舊.ReadOnly = true;
-			this.col新舊.Width = 20;
-			// 
-			// col員工編號
-			// 
-			this.col員工編號.DataPropertyName = "員工編號";
-			this.col員工編號.HeaderText = "員工編號";
-			this.col員工編號.Name = "col員工編號";
-			this.col員工編號.ReadOnly = true;
-			this.col員工編號.Visible = false;
-			// 
-			// col日期
-			// 
-			this.col日期.DataPropertyName = "日期";
-			this.col日期.HeaderText = "日期";
-			this.col日期.Name = "col日期";
-			this.col日期.ReadOnly = true;
-			this.col日期.Visible = false;
-			// 
-			// col工作單號
-			// 
-			this.col工作單號.DataPropertyName = "工作單號";
-			this.col工作單號.HeaderText = "工作單號";
-			this.col工作單號.Name = "col工作單號";
-			this.col工作單號.ReadOnly = true;
-			// 
-			// colWpId
-			// 
-			this.colWpId.DataPropertyName = "工品編號";
-			this.colWpId.HeaderText = "序號";
-			this.colWpId.Name = "colWpId";
-			this.colWpId.ReadOnly = true;
-			this.colWpId.Width = 50;
-			// 
-			// col品號2
-			// 
-			this.col品號2.DataPropertyName = "品號";
-			this.col品號2.HeaderText = "生產品號";
-			this.col品號2.Name = "col品號2";
-			this.col品號2.ReadOnly = true;
-			// 
-			// col非生產名稱
-			// 
-			this.col非生產名稱.DataPropertyName = "非生產名稱";
-			this.col非生產名稱.HeaderText = "非生產";
-			this.col非生產名稱.Name = "col非生產名稱";
-			this.col非生產名稱.ReadOnly = true;
-			this.col非生產名稱.Width = 99;
-			// 
-			// col工時
-			// 
-			this.col工時.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.col工時.DataPropertyName = "工時";
-			dataGridViewCellStyle14.Format = "0.##";
-			this.col工時.DefaultCellStyle = dataGridViewCellStyle14;
-			this.col工時.HeaderText = "工時";
-			this.col工時.Name = "col工時";
-			this.col工時.ReadOnly = true;
-			this.col工時.Width = 65;
-			// 
-			// colHourType
-			// 
-			this.colHourType.DataPropertyName = "工時類型名稱";
-			this.colHourType.HeaderText = "工時類型";
-			this.colHourType.Name = "colHourType";
-			this.colHourType.ReadOnly = true;
-			// 
-			// col完成數量
-			// 
-			this.col完成數量.DataPropertyName = "數量";
-			this.col完成數量.HeaderText = "完成數量";
-			this.col完成數量.Name = "col完成數量";
-			this.col完成數量.ReadOnly = true;
-			this.col完成數量.Width = 65;
-			// 
-			// 待驗數量
-			// 
-			this.待驗數量.DataPropertyName = "待驗數量";
-			this.待驗數量.HeaderText = "待驗數量";
-			this.待驗數量.Name = "待驗數量";
-			this.待驗數量.ReadOnly = true;
-			this.待驗數量.Width = 65;
-			// 
-			// col借入產線
-			// 
-			this.col借入產線.DataPropertyName = "借入產線";
-			this.col借入產線.HeaderText = "借入產線";
-			this.col借入產線.Name = "col借入產線";
-			this.col借入產線.ReadOnly = true;
-			this.col借入產線.Width = 65;
-			// 
-			// QCN
-			// 
-			this.QCN.DataPropertyName = "QCN";
-			this.QCN.HeaderText = "QC#";
-			this.QCN.Name = "QCN";
-			this.QCN.ReadOnly = true;
-			// 
-			// col非生產編號
-			// 
-			this.col非生產編號.DataPropertyName = "非生產編號";
-			this.col非生產編號.HeaderText = "非生產編號";
-			this.col非生產編號.Name = "col非生產編號";
-			this.col非生產編號.ReadOnly = true;
-			this.col非生產編號.Visible = false;
-			// 
-			// col備註
-			// 
-			this.col備註.DataPropertyName = "備註";
-			this.col備註.HeaderText = "備註";
-			this.col備註.Name = "col備註";
-			this.col備註.ReadOnly = true;
 			// 
 			// EditHourDataForm
 			// 
 			this.AcceptButton = this.btnAddList;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(692, 585);
+			this.ClientSize = new System.Drawing.Size(796, 585);
 			this.Controls.Add(this.mainContainer);
 			this.Controls.Add(this.pnlData);
 			this.MinimumSize = new System.Drawing.Size(700, 600);
@@ -1101,8 +1090,7 @@
         private System.Windows.Forms.TextBox tbxRemark;
         private System.Windows.Forms.DataGridViewTextBoxColumn col單號;
         private System.Windows.Forms.DataGridViewTextBoxColumn col品號;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col數量;
-        private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.DataGridViewTextBoxColumn col數量;
         private System.Windows.Forms.TextBox tbxHour;
         private System.Windows.Forms.Label lbRemain;
         private System.Windows.Forms.DataGridView dgvHoursData;

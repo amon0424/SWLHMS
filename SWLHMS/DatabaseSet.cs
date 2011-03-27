@@ -365,7 +365,7 @@ namespace Mong
                 this["備註"] = DBNull.Value;
             }
 
-            public void FillRow(string 員工編號, DateTime 日期, decimal 工時, int 非生產編號,string 非生產名稱, string 備註)
+            public void FillRow(string 員工編號, DateTime 日期, decimal 工時, int 非生產編號,string 非生產名稱, string 備註, string 借入產線)
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
@@ -388,6 +388,7 @@ namespace Mong
                 this.非生產名稱 = 非生產名稱;
 				this.工時類型 = (int)HourType.一般工時;
                 this.備註 = 備註;
+				this.借入產線 = 借入產線;
             }
         }
 

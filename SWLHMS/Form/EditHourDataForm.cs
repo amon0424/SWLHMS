@@ -277,7 +277,17 @@ namespace Mong
                             if(cbbNonProduce.Text == "其他" && tbxRemark.Text == string.Empty)
 								throw new SWLHMSException("非生產項目為 其他 時，備註欄不得為空");
 
-                            newRow.FillRow(cbxLaborNumber.SelectedValue.ToString(), dtpDate.Value, hour, (int)cbbNonProduce.SelectedValue, cbbNonProduce.Text, tbxRemark.Text);
+							string borrower = null;
+							// Check the borrow line
+							if (ckbBorrowLine.Checked)
+							{
+								if (cbbBorrowLine.SelectedIndex == -1)
+									throw new SWLHMSException("請選擇借入產線");
+
+								borrower = (string)this.cbbBorrowLine.SelectedItem;
+							}
+
+                            newRow.FillRow(cbxLaborNumber.SelectedValue.ToString(), dtpDate.Value, hour, (int)cbbNonProduce.SelectedValue, cbbNonProduce.Text, tbxRemark.Text, borrower);
                             newRow.新舊 = "*";
 							newRow["工時類型名稱"] = HourType.一般工時.ToString();
                             _dataTable.Rows.Add(newRow);
