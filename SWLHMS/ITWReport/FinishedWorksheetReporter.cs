@@ -260,34 +260,9 @@ namespace Mong.Report
             }
 			//this.SheetAdapter.BeforePasteDataRowSummary -= beforeSummary;
 
-			//寫入異常,包裝總計
-			decimal ttlUnusual = 0;
-			decimal ttlPackage = 0;
-
-			// 取得異常生產工時
-			object tmpResult = nonNormalHourTable.Compute("SUM(內部工時)", "工時類型=" + (int)HourType.異常生產工時);
-			if (tmpResult != null && tmpResult != DBNull.Value)
-				ttlUnusual = (decimal)tmpResult;
-
-			// 取得包裝工時
-			tmpResult = nonNormalHourTable.Compute("SUM(內部工時)", "工時類型=" + (int)HourType.包裝);
-			if (tmpResult != null && tmpResult != DBNull.Value)
-				ttlPackage = (decimal)tmpResult;
-
-			DataRow abnormalTotalRow = _table.NewRow();
-			abnormalTotalRow["單位"] = null;
-			abnormalTotalRow[0] = "異常生產工時";
-			abnormalTotalRow["實際總工時"] = ttlUnusual;
-			writeRow = this.SheetAdapter.PasteDataRow(abnormalTotalRow, writeRow, options.Column);
-
-			abnormalTotalRow[0] = "包裝";
-			abnormalTotalRow["實際總工時"] = ttlPackage;
-			writeRow = this.SheetAdapter.PasteDataRow(abnormalTotalRow, writeRow, options.Column);
-
             //寫入總計
 			DataTable tmpTable = _table.Clone();
 			DataRow totalRow = tmpTable.NewRow();
-			totalRow[0] = "總計";
 
 			foreach (string sumCol in options.SummaryColumns)
 			{
@@ -304,9 +279,63 @@ namespace Mong.Report
 				totalRow[noSumCol] = DBNull.Value;
 			}
 
+			totalRow[0] = "總計";
+			totalRow["單位"] = null;
+			//totalRow["實際總工時"] = "SUM(實際總工時)", "工時類型=" + (int)HourType.一般工時);
 			tmpTable.Rows.Add(totalRow);
 
             writeRow = this.SheetAdapter.PasteDataRow(totalRow, writeRow, 1);
+
+			//寫入異常,包裝總計
+			decimal ttlUnusual = 0;
+			decimal ttlPackage = 0;
+
+			// 取得異常生產工時
+			object tmpResult = nonNormalHourTable.Compute("SUM(內部工時)", "工時類型=" + (int)HourType.異常生產工時);
+			if (tmpResult != null && tmpResult != DBNull.Value)
+				ttlUnusual = (decimal)tmpResult;
+
+			// 取得包裝工時
+			tmpResult = nonNormalHourTable.Compute("SUM(內部工時)", "工時類型=" + (int)HourType.包裝);
+			if (tmpResult != null && tmpResult != DBNull.Value)
+				ttlPackage = (decimal)tmpResult;
+
+			tmpTable.Columns[tmpTable.Columns["外包工資"].Ordinal].DataType = typeof(object);
+
+			DataRow abnormalTotalRow = tmpTable.NewRow();
+			abnormalTotalRow["單位"] = null;
+			abnormalTotalRow[tmpTable.Columns["外包工資"].Ordinal] = "異常生產工時";
+			abnormalTotalRow["實際總工時"] = ttlUnusual;
+			writeRow = this.SheetAdapter.PasteDataRow(abnormalTotalRow, writeRow, options.Column);
+
+			abnormalTotalRow[tmpTable.Columns["外包工資"].Ordinal] = "包裝";
+			abnormalTotalRow["實際總工時"] = ttlPackage;
+			writeRow = this.SheetAdapter.PasteDataRow(abnormalTotalRow, writeRow, options.Column);
+
+			//寫入總計(+異常,包裝)
+			options.SummaryColumns.AddRange(new string[] { "實際總工時", "標準總工時" });
+			options.NoSummaryColumns.AddRange(new string[] { "數量", "內部工時", "內部工資", "外包工資", "外包工時", "標準工時", "單位人工成本", "單位標準工資", "實際工時", "實際工資", "標準總工資" });
+
+			foreach (string sumCol in options.SummaryColumns)
+			{
+				if (!string.IsNullOrEmpty(tmpTable.Columns[sumCol].Expression))
+					tmpTable.Columns[sumCol].Expression = string.Empty;
+
+				object o;
+				o = _table.Compute("SUM(" + sumCol + ")", string.Empty);
+				totalRow[sumCol] = Convert.IsDBNull(o) ? 0 : (decimal)o;
+			}
+			foreach (string noSumCol in options.NoSummaryColumns)
+			{
+				tmpTable.Columns[noSumCol].Expression = string.Empty;
+				totalRow[noSumCol] = DBNull.Value;
+			}
+
+			totalRow[tmpTable.Columns["外包工資"].Ordinal] = "Total";
+			totalRow["單位"] = null;
+			tmpTable.Rows.Add(totalRow);
+
+			writeRow = this.SheetAdapter.PasteDataRow(totalRow, writeRow, 1);
 
             base.WriteContent();
         }
