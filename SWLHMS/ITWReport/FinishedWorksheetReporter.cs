@@ -260,8 +260,23 @@ namespace Mong.Report
             }
 			//this.SheetAdapter.BeforePasteDataRowSummary -= beforeSummary;
 
-            //寫入總計
+			decimal ttlUnusual = 0;
+			decimal ttlPackage = 0;
+
+			// 取得異常生產工時
+			object tmpResult = nonNormalHourTable.Compute("SUM(內部工時)", "工時類型=" + (int)HourType.異常生產工時);
+			if (tmpResult != null && tmpResult != DBNull.Value)
+				ttlUnusual = (decimal)tmpResult;
+
+			// 取得包裝工時
+			tmpResult = nonNormalHourTable.Compute("SUM(內部工時)", "工時類型=" + (int)HourType.包裝);
+			if (tmpResult != null && tmpResult != DBNull.Value)
+				ttlPackage = (decimal)tmpResult;
+
+			//寫入總計(不包括異常,包裝)
 			DataTable tmpTable = _table.Clone();
+			tmpTable.Columns["實際總工時"].Expression = string.Empty;	//實際總工時自己計算
+
 			DataRow totalRow = tmpTable.NewRow();
 
 			foreach (string sumCol in options.SummaryColumns)
@@ -279,27 +294,17 @@ namespace Mong.Report
 				totalRow[noSumCol] = DBNull.Value;
 			}
 
-			totalRow[0] = "總計";
-			totalRow["單位"] = null;
-			//totalRow["實際總工時"] = "SUM(實際總工時)", "工時類型=" + (int)HourType.一般工時);
-			tmpTable.Rows.Add(totalRow);
+			//實際總工時 - (異常生產工時+包裝)
+			object ttlHourObj = _table.Compute("SUM(實際總工時)", string.Empty);
+			decimal ttlHour = Convert.IsDBNull(ttlHourObj) ? 0 : (decimal)ttlHourObj;
+			totalRow["實際總工時"] = ttlHour - (ttlUnusual + ttlPackage);
 
+			totalRow[0] = "總計";
+			tmpTable.Rows.Add(totalRow);
             writeRow = this.SheetAdapter.PasteDataRow(totalRow, writeRow, 1);
 
+			tmpTable = _table.Clone();
 			//寫入異常,包裝總計
-			decimal ttlUnusual = 0;
-			decimal ttlPackage = 0;
-
-			// 取得異常生產工時
-			object tmpResult = nonNormalHourTable.Compute("SUM(內部工時)", "工時類型=" + (int)HourType.異常生產工時);
-			if (tmpResult != null && tmpResult != DBNull.Value)
-				ttlUnusual = (decimal)tmpResult;
-
-			// 取得包裝工時
-			tmpResult = nonNormalHourTable.Compute("SUM(內部工時)", "工時類型=" + (int)HourType.包裝);
-			if (tmpResult != null && tmpResult != DBNull.Value)
-				ttlPackage = (decimal)tmpResult;
-
 			tmpTable.Columns[tmpTable.Columns["外包工資"].Ordinal].DataType = typeof(object);
 
 			DataRow abnormalTotalRow = tmpTable.NewRow();
@@ -313,8 +318,9 @@ namespace Mong.Report
 			writeRow = this.SheetAdapter.PasteDataRow(abnormalTotalRow, writeRow, options.Column);
 
 			//寫入總計(+異常,包裝)
-			options.SummaryColumns.AddRange(new string[] { "實際總工時", "標準總工時" });
-			options.NoSummaryColumns.AddRange(new string[] { "數量", "內部工時", "內部工資", "外包工資", "外包工時", "標準工時", "單位人工成本", "單位標準工資", "實際工時", "實際工資", "標準總工資" });
+			totalRow = tmpTable.NewRow();
+			options.SummaryColumns = new List<string>(new string[] { "實際總工時", "標準總工時" });
+			options.NoSummaryColumns = new List<string>(new string[] { "數量", "內部工時", "內部工資", "外包工資", "外包工時", "標準工時", "單位人工成本", "單位標準工資", "實際工時", "實際工資", "標準總工資" });
 
 			foreach (string sumCol in options.SummaryColumns)
 			{
