@@ -406,7 +406,6 @@ namespace Mong {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitExpressions() {
-            this.FinishedWorksheetReportSource.實際總工時Column.Expression = "內部工時+外包工時";
             this.FinishedWorksheetReportSource.實際總工資Column.Expression = "內部工資+外包工資";
             this.FinishedWorksheetReportSource.標準總工時Column.Expression = "標準工時 * 數量";
             this.FinishedWorksheetReportSource.標準總工資Column.Expression = "標準總工時 * 單位人工成本";
@@ -855,6 +854,7 @@ namespace Mong {
                         decimal 內部工資, 
                         decimal 外包工資, 
                         decimal 外包工時, 
+                        decimal 實際總工時, 
                         decimal 標準工時, 
                         decimal 單位人工成本, 
                         short 年份, 
@@ -875,7 +875,7 @@ namespace Mong {
                         內部工資,
                         外包工資,
                         外包工時,
-                        null,
+                        實際總工時,
                         null,
                         null,
                         null,
@@ -1009,7 +1009,6 @@ namespace Mong {
                 this.column單位.MaxLength = 255;
                 this.column外包工資.DefaultValue = ((decimal)(0m));
                 this.column外包工時.DefaultValue = ((decimal)(0m));
-                this.column實際總工時.ReadOnly = true;
                 this.column實際總工資.ReadOnly = true;
                 this.column標準總工時.ReadOnly = true;
                 this.column標準總工資.ReadOnly = true;
@@ -1040,7 +1039,6 @@ namespace Mong {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitExpressions() {
-                this.實際總工時Column.Expression = "內部工時+外包工時";
                 this.實際總工資Column.Expression = "內部工資+外包工資";
                 this.標準總工時Column.Expression = "標準工時 * 數量";
                 this.標準總工資Column.Expression = "標準總工時 * 單位人工成本";

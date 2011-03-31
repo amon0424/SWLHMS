@@ -17,6 +17,8 @@ namespace Mong.Report
 		DateLineForm _form;
         DateTime _startDate = DateTime.MinValue;
         DateTime _endDate = DateTime.MaxValue;
+        List<int> _subttlRows;
+        int _ttlRow;
 
         public DateTime StartDate
         {
@@ -37,6 +39,8 @@ namespace Mong.Report
 
         protected override void BeforeExport()
         {
+            _subttlRows = new List<int>();
+
 			string lineFilter = string.Empty;
 			if(!string.IsNullOrEmpty(_form.Line))
 				lineFilter = "產線 = '" + _form.Line + "'";
@@ -45,6 +49,7 @@ namespace Mong.Report
 
             //取得基本報表資料
             _srcTable = adapter.GetData(_startDate, _endDate);
+            _srcTable.Columns.Add("實際總工時auto", typeof(decimal), "(內部工時 + 外包工時)");
 			//_srcTable.Columns.Add("退驗數量", typeof(decimal));
 
             //取得每月工作時數
@@ -87,7 +92,7 @@ namespace Mong.Report
             DataTableHelper dtHelper = new DataTableHelper();
             _table = dtHelper.SelectGroupByInto("ReportTable", _srcTable,
 				"產線,實際完成日,工作單號,序號,品號,品名,數量,單位," +
-				"Sum(內部工時) 內部工時, Sum(內部工資) 內部工資,外包工時,外包工資,標準工時,單位人工成本,實際總工時,實際總工資," +
+                "Sum(內部工時) 內部工時, Sum(內部工資) 內部工資,外包工時,外包工資,標準工時,單位人工成本,實際總工時,實際總工時auto,實際總工資," +
 				"標準總工時,標準總工資,生產效率,單位標準工資,實際工時,實際工資,工品編號",
 				lineFilter, "產線,實際完成日,工作單號,品號,品名,數量,標準工時,單位人工成本,單位標準工資,工品編號");
 
@@ -106,6 +111,8 @@ namespace Mong.Report
                 string wsNumber = row["工作單號"].ToString();
 				string pn = row["品號"].ToString();
 				int wpid = (int)row["工品編號"];
+
+                
 
                 if (curWorksheetNumber != wsNumber)
                 {
@@ -132,6 +139,7 @@ namespace Mong.Report
 
                 //row["序號"] = seriesNumber++;
 				row["序號"] = wpid;
+                row["實際總工時"] = row["實際總工時auto"];
             }
 
             base.BeforeExport();
@@ -206,7 +214,7 @@ namespace Mong.Report
             int writeRow = 4;
             PasteDataRowsOptions options = new PasteDataRowsOptions();
             options.IncludeSummary = false;	//手動控制Summary Row
-			options.SummaryColumns.AddRange(new string[] { /*"退驗數量", */"數量"/*, "標準工時", "單位人工成本"*/, "內部工時", "內部工資", "外包工資", "外包工時", "標準總工資", "標準總工時", /*"單位標準工資", "實際工時", "實際工資"*/ });
+			options.SummaryColumns.AddRange(new string[] { /*"退驗數量", */"數量"/*, "標準工時", "單位人工成本"*/, "內部工時", "內部工資", "外包工資", "外包工時", "標準總工資", "標準總工時", "實際總工時" /*"單位標準工資", "實際工時", "實際工資"*/ });
 			options.NoSummaryColumns.AddRange(new string[] { "標準工時", "單位人工成本", "單位標準工資", "實際工時", "實際工資" });
 
 			PasteDataRowEventHandler beforeSummary = new PasteDataRowEventHandler(BeforePasteDataRowSummary);
@@ -223,6 +231,15 @@ namespace Mong.Report
 				//NOTICE: 當Select條件修改時也必須修改BeforePasteDataRowSummary內容
                 DataRow[] rows = _table.Select("產線 = '" + lineRow["產線"] + "'", "工作單號,序號");
 
+                foreach (DataRow row in rows)
+                {
+                    string worksheet = (string)row["工作單號"];
+                    int serialNumber = (int)row["序號"];
+                    //減去異常+包裝
+                    object abnormalResult = _srcTable.Compute("SUM(內部工時)", "工作單號='" + worksheet + "' AND 工品編號 = " + serialNumber + " AND 產線 = '" + lineRow["產線"] + "' AND (工時類型=" + (int)HourType.異常生產工時 + " OR 工時類型=" + (int)HourType.包裝 + ")");
+                    if (abnormalResult != DBNull.Value)
+                        row["實際總工時"] = (decimal)row["實際總工時"] - (decimal)abnormalResult;
+                }
                 //寫入內容
 				options.IncludeSummary = false;
                 options.Row = writeRow;
@@ -255,8 +272,8 @@ namespace Mong.Report
 
 				//寫入小計
 				options.Row = writeRow;
+                _subttlRows.Add(writeRow);
 				writeRow = this.SheetAdapter.PasteSummaryRow(rows, options);
-
             }
 			//this.SheetAdapter.BeforePasteDataRowSummary -= beforeSummary;
 
@@ -294,54 +311,58 @@ namespace Mong.Report
 				totalRow[noSumCol] = DBNull.Value;
 			}
 
-			//實際總工時 - (異常生產工時+包裝)
-			object ttlHourObj = _table.Compute("SUM(實際總工時)", string.Empty);
-			decimal ttlHour = Convert.IsDBNull(ttlHourObj) ? 0 : (decimal)ttlHourObj;
-			totalRow["實際總工時"] = ttlHour - (ttlUnusual + ttlPackage);
+            ////實際總工時 - (異常生產工時+包裝) 前面減過了
+            //object ttlHourObj = _table.Compute("SUM(實際總工時)", string.Empty);
+            //decimal ttlHour = Convert.IsDBNull(ttlHourObj) ? 0 : (decimal)ttlHourObj;
+            ////totalRow["實際總工時"] = ttlHour - (ttlUnusual + ttlPackage);
 
-			totalRow[0] = "總計";
-			tmpTable.Rows.Add(totalRow);
+            totalRow[0] = "總計";
+            _ttlRow = writeRow;
+            tmpTable.Rows.Add(totalRow);
             writeRow = this.SheetAdapter.PasteDataRow(totalRow, writeRow, 1);
 
-			tmpTable = _table.Clone();
-			//寫入異常,包裝總計
-			tmpTable.Columns[tmpTable.Columns["外包工資"].Ordinal].DataType = typeof(object);
+            
 
-			DataRow abnormalTotalRow = tmpTable.NewRow();
-			abnormalTotalRow["單位"] = null;
-			abnormalTotalRow[tmpTable.Columns["外包工資"].Ordinal] = "異常生產工時";
-			abnormalTotalRow["實際總工時"] = ttlUnusual;
-			writeRow = this.SheetAdapter.PasteDataRow(abnormalTotalRow, writeRow, options.Column);
+            //tmpTable = _table.Clone();
+            ////寫入異常,包裝總計
+            //tmpTable.Columns[tmpTable.Columns["外包工資"].Ordinal].DataType = typeof(object);
 
-			abnormalTotalRow[tmpTable.Columns["外包工資"].Ordinal] = "包裝";
-			abnormalTotalRow["實際總工時"] = ttlPackage;
-			writeRow = this.SheetAdapter.PasteDataRow(abnormalTotalRow, writeRow, options.Column);
+            //DataRow abnormalTotalRow = tmpTable.NewRow();
+            //abnormalTotalRow["單位"] = null;
+            //abnormalTotalRow[tmpTable.Columns["外包工資"].Ordinal] = "異常生產工時";
+            //abnormalTotalRow["實際總工時"] = ttlUnusual;
+            //writeRow = this.SheetAdapter.PasteDataRow(abnormalTotalRow, writeRow, options.Column);
 
-			//寫入總計(+異常,包裝)
-			totalRow = tmpTable.NewRow();
-			options.SummaryColumns = new List<string>(new string[] { "實際總工時", "標準總工時" });
-			options.NoSummaryColumns = new List<string>(new string[] { "數量", "內部工時", "內部工資", "外包工資", "外包工時", "標準工時", "單位人工成本", "單位標準工資", "實際工時", "實際工資", "標準總工資" });
+            //abnormalTotalRow[tmpTable.Columns["外包工資"].Ordinal] = "包裝";
+            //abnormalTotalRow["實際總工時"] = ttlPackage;
+            //writeRow = this.SheetAdapter.PasteDataRow(abnormalTotalRow, writeRow, options.Column);
 
-			foreach (string sumCol in options.SummaryColumns)
-			{
-				if (!string.IsNullOrEmpty(tmpTable.Columns[sumCol].Expression))
-					tmpTable.Columns[sumCol].Expression = string.Empty;
+            ////寫入總計(+異常,包裝)
+            //totalRow = tmpTable.NewRow();
+            //options.SummaryColumns = new List<string>(new string[] { "實際總工時", "標準總工時" });
+            //options.NoSummaryColumns = new List<string>(new string[] { "數量", "內部工時", "內部工資", "外包工資", "外包工時", "標準工時", "單位人工成本", "單位標準工資", "實際工時", "實際工資", "標準總工資" });
 
-				object o;
-				o = _table.Compute("SUM(" + sumCol + ")", string.Empty);
-				totalRow[sumCol] = Convert.IsDBNull(o) ? 0 : (decimal)o;
-			}
-			foreach (string noSumCol in options.NoSummaryColumns)
-			{
-				tmpTable.Columns[noSumCol].Expression = string.Empty;
-				totalRow[noSumCol] = DBNull.Value;
-			}
+            //foreach (string sumCol in options.SummaryColumns)
+            //{
+            //    if (!string.IsNullOrEmpty(tmpTable.Columns[sumCol].Expression))
+            //        tmpTable.Columns[sumCol].Expression = string.Empty;
 
-			totalRow[tmpTable.Columns["外包工資"].Ordinal] = "Total";
-			totalRow["單位"] = null;
-			tmpTable.Rows.Add(totalRow);
+            //    object o;
+            //    o = _table.Compute("SUM(" + sumCol + ")", string.Empty);
+            //    totalRow[sumCol] = Convert.IsDBNull(o) ? 0 : (decimal)o;
+            //}
+            //foreach (string noSumCol in options.NoSummaryColumns)
+            //{
+            //    tmpTable.Columns[noSumCol].Expression = string.Empty;
+            //    totalRow[noSumCol] = DBNull.Value;
+            //}
 
-			writeRow = this.SheetAdapter.PasteDataRow(totalRow, writeRow, 1);
+            //totalRow[tmpTable.Columns["外包工資"].Ordinal] = "Total";
+            //totalRow["單位"] = null;
+            //tmpTable.Rows.Add(totalRow);
+
+            //_ttlRow = writeRow;
+            //writeRow = this.SheetAdapter.PasteDataRow(totalRow, writeRow, 1);
 
             base.WriteContent();
         }
@@ -378,6 +399,21 @@ namespace Mong.Report
 			foreach (int col in formatCols)
 				this.SheetAdapter.SetFormat(4, col, "[=0]* \"-\"_-;G/通用格式");
 
+            formatCols = new int[]
+			{
+				profile.IndexOf("標準工時") + 1,
+				profile.IndexOf("單位人工成本") + 1,
+				profile.IndexOf("標準總工時") + 1,
+				profile.IndexOf("標準總工資") + 1,
+				profile.IndexOf("單位標準工資") + 1,
+				profile.IndexOf("內部工時") + 1,
+				profile.IndexOf("內部工資") + 1,
+				profile.IndexOf("外包工資") + 1,
+				profile.IndexOf("外包工時") + 1,
+				profile.IndexOf("實際工時") + 1,
+				profile.IndexOf("實際工資") + 1,
+				profile.IndexOf("實際總工資") + 1
+			};
 			this.SheetAdapter.RoundValues(formatCols, 4, 2);
 
             //移動欄位
@@ -397,6 +433,28 @@ namespace Mong.Report
 
             range = this.SheetAdapter.GetUsedRange(3);
             this.SheetAdapter.SetBorder(range, true, true, true, true);
+
+            //設定小計總計列公式
+            int subttlCol = this.SheetAdapter.ReportProfile.IndexOf("實際總工時") + 1;
+            string subttlColLetter = BookLib.GetColumnLetter(subttlCol);
+            string ttlFormula = "=";
+            foreach (int subttlRow in _subttlRows)
+            {
+                Range subttlCell = this.SheetAdapter.GetRange(subttlRow, subttlCol);
+                subttlCell.Formula = "= " + subttlCell.Value + " + " + subttlColLetter + (subttlRow - 1) + " + " + subttlColLetter + (subttlRow - 2);
+                subttlCell.Interior.Color = 65535;
+                ttlFormula += subttlColLetter + (subttlRow) + "+";
+            }
+            ttlFormula = ttlFormula.Substring(0, ttlFormula.Length - 1);
+
+            //總計列公式
+            Range ttlCell = this.SheetAdapter.GetRange(_ttlRow, subttlCol);
+            ttlCell.Formula = ttlFormula;
+            ttlCell.Interior.Color = 65535;
+
+            range = this.SheetAdapter.GetRange(4, 1);
+            range.Select();
+            this.Application.ActiveWindow.FreezePanes = true;
 
             base.AfterContentWritten();
         }
