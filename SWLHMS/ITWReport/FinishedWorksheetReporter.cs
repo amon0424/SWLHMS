@@ -437,12 +437,19 @@ namespace Mong.Report
             //設定小計總計列公式
             int subttlCol = this.SheetAdapter.ReportProfile.IndexOf("實際總工時") + 1;
             string subttlColLetter = BookLib.GetColumnLetter(subttlCol);
+            int subttlEffectCol = this.SheetAdapter.ReportProfile.IndexOf("生產效率") + 1;
+            string subttlEffectColLetter = BookLib.GetColumnLetter(subttlEffectCol);
             string ttlFormula = "=";
             foreach (int subttlRow in _subttlRows)
             {
                 Range subttlCell = this.SheetAdapter.GetRange(subttlRow, subttlCol);
                 subttlCell.Formula = "= " + subttlCell.Value + " + " + subttlColLetter + (subttlRow - 1) + " + " + subttlColLetter + (subttlRow - 2);
                 subttlCell.Interior.Color = 65535;
+                //更改 標準總工時/實際總工時
+                Range subttlEffectCell = this.SheetAdapter.GetRange(subttlRow, subttlEffectCol);
+                subttlEffectCell.Formula = "=" + BookLib.GetColumnLetter(this.SheetAdapter.ReportProfile.IndexOf("標準總工時") + 1) + subttlRow + "/"
+                                            + subttlColLetter + subttlRow;
+
                 ttlFormula += subttlColLetter + (subttlRow) + "+";
             }
             ttlFormula = ttlFormula.Substring(0, ttlFormula.Length - 1);
@@ -451,6 +458,11 @@ namespace Mong.Report
             Range ttlCell = this.SheetAdapter.GetRange(_ttlRow, subttlCol);
             ttlCell.Formula = ttlFormula;
             ttlCell.Interior.Color = 65535;
+
+            //更改 標準總工時/實際總工時
+            Range ttlEffectCell = this.SheetAdapter.GetRange(_ttlRow, subttlEffectCol);
+            ttlEffectCell.Formula = "=" + BookLib.GetColumnLetter(this.SheetAdapter.ReportProfile.IndexOf("標準總工時") + 1) + _ttlRow + "/"
+                                        + subttlColLetter + _ttlRow;
 
             range = this.SheetAdapter.GetRange(4, 1);
             range.Select();
