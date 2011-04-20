@@ -50,6 +50,10 @@ namespace Mong.Report
 			srcTable.Columns.Add("退驗數量", typeof(decimal));
 			srcTable.Columns.Add("待驗數量", typeof(decimal));
 
+			//變更公式計算
+			srcTable.Columns["完成%"].Expression = "IIF(數量 = 0,0,(已生產數量+待驗數量)/數量)";
+			srcTable.Columns["生產效率"].Expression = "IIF((內部工時+外包工時) = 0,0,(已生產數量+待驗數量)*標準工時/(內部工時+外包工時))";
+
             //取得日期範圍
             int minYear, minMonth, maxYear, maxMonth;
             DateTime from, to;
@@ -100,7 +104,7 @@ namespace Mong.Report
 
             //設定欄位
             _table.Columns["單位"].DefaultValue = "KPCS";
-			_table.Columns.Add("未完成數量", typeof(decimal), "數量-已生產數量").SetOrdinal(9);
+			_table.Columns.Add("未完成數量", typeof(decimal), "數量-已生產數量-待驗數量").SetOrdinal(9);
 
             //取得LaborWage資料庫
             LaborWageHelper lwHelper = new LaborWageHelper();
@@ -194,7 +198,7 @@ namespace Mong.Report
 			profile.AddExportColumn("外包工資");
 			
 			profile.AddExportColumn("完成%");
-			profile.AddExportColumn("生產效率").Name = "標準總工時/\n實際總工時";
+			profile.AddExportColumn("生產效率").Name = "已發生標準總工時/\n已發生實際總工時";
 			profile.AddExportColumn("尚需工時").Name = "尚需標準工時";
 
 			//profile.ColumnMap[_table.Columns["數量"]].Name = "數量";
@@ -301,10 +305,14 @@ namespace Mong.Report
 
 			this.SheetAdapter.GetRange(1, profile.IndexOf("單位人工成本") + 1).EntireColumn.ColumnWidth = 15;
 			this.SheetAdapter.GetRange(1, profile.IndexOf("標準工時") + 1).EntireColumn.ColumnWidth = 12;
-			this.SheetAdapter.GetRange(1, profile.IndexOf("生產效率") + 1).EntireColumn.ColumnWidth = 12;
+			this.SheetAdapter.GetRange(1, profile.IndexOf("生產效率") + 1).EntireColumn.ColumnWidth = 18.25;
 
             range = this.SheetAdapter.GetUsedRange(3);
             this.SheetAdapter.SetBorder(range, true, true, true, true);
+
+			range = this.SheetAdapter.GetRange(4, 1);
+			range.Select();
+			this.Application.ActiveWindow.FreezePanes = true;
 
             base.AfterContentWritten();
         }
