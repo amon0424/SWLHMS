@@ -301,6 +301,20 @@ namespace Mong.Report
             reportBodyRange.Columns.AutoFit();
             this.SheetAdapter.SetBorder(reportBodyRange, XlLineStyle.xlContinuous, XlBorderWeight.xlThin, true, true, true, true);
 
+			if (_table.Columns.Contains("np文書處理"))
+			{
+				Range tmpr = this.SheetAdapter.GetRange(1, _table.Columns.IndexOf("np文書處理") + 2).EntireColumn;
+				tmpr.Insert();
+
+				tmpr = this.SheetAdapter.GetRange(1, _table.Columns.IndexOf("np文書處理") + 2).EntireColumn;
+				tmpr.ColumnWidth = 2.4;
+				//_table.Columns["np文書處理"].SetOrdinal(_table.Columns.Count - 1);
+			}
+
+			Range range = this.SheetAdapter.GetRange(4, 1);
+			range.Select();
+			this.Application.ActiveWindow.FreezePanes = true;
+
             base.AfterContentWritten();
         }
 	
@@ -366,6 +380,9 @@ namespace Mong.Report
 			if (_table.Columns.Contains("np請假"))
 				_table.Columns["np請假"].SetOrdinal(_table.Columns.Count - 1);
 
+
+			
+
 			/* 1.08.4
             DataColumn col外包工時 = new DataColumn("外包工時", typeof(decimal));
             col外包工時.DefaultValue = 0;
@@ -373,6 +390,7 @@ namespace Mong.Report
 			*/
 
             _table.Columns.Add(new DataColumn("借入", typeof(string)));
+
         }
 
         #region IFormSettable 成員

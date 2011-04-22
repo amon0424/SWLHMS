@@ -109,6 +109,8 @@ namespace Mong
         //    }
         //}
 
+		public static int NonProduct_Other = 100;
+
         static Global()
         {
             

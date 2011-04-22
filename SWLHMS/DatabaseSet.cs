@@ -246,8 +246,9 @@ namespace Mong
                 if (名稱 == string.Empty)
                     sb.AppendLine("名稱不得為空值");
 
-                if (名稱 == "其他")
-                    sb.AppendLine("名稱不得為 其他");
+				string otherName = 非生產TableAdapter.GetOtherName();
+				if (名稱 == otherName)
+					sb.AppendLine("名稱不得為 " + otherName);
 
 				if (System.Text.RegularExpressions.Regex.IsMatch(名稱, @"[\[\]]+"))
 					sb.AppendLine("名稱不得含有特殊字元 [ ]");
@@ -1853,6 +1854,7 @@ namespace Mong.DatabaseSetTableAdapters
     public partial class 非生產TableAdapter
     {
         static 非生產TableAdapter _instance;
+
         public static 非生產TableAdapter Instance
         {
             get
@@ -1863,11 +1865,25 @@ namespace Mong.DatabaseSetTableAdapters
                 return _instance;
             }
         }
+
+		public static string GetOtherName()
+		{
+			string sql = "SELECT * FROM  非生產 WHERE 編號 = " + Global.NonProduct_Other;
+			OleDbCommand cmd = new OleDbCommand(sql, Instance.Connection);
+			Instance.Connection.Open();
+			OleDbDataReader dr = cmd.ExecuteReader();
+			dr.Read();
+			string name = dr["名稱"].ToString();
+			dr.Close();
+			Instance.Connection.Close();
+			return name;
+		}
     }
 
 	public partial class 品質原因TableAdapter
 	{
 		static 品質原因TableAdapter _instance;
+		
 		public static 品質原因TableAdapter Instance
 		{
 			get

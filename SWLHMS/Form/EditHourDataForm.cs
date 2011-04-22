@@ -274,7 +274,7 @@ namespace Mong
                     {
                         if (cbbNonProduce.SelectedIndex != -1)
                         {
-                            if(cbbNonProduce.Text == "其他" && tbxRemark.Text == string.Empty)
+							if ((int)cbbNonProduce.SelectedValue == Global.NonProduct_Other && tbxRemark.Text == string.Empty)
 								throw new SWLHMSException("非生產項目為 其他 時，備註欄不得為空");
 
 							string borrower = null;

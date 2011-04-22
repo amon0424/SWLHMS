@@ -60,12 +60,14 @@ namespace Mong
 						{
 							DatabaseSet.非生產Row row = (bindingSource.Current as DataRowView).Row as DatabaseSet.非生產Row;
 
-							if (row["名稱", DataRowVersion.Original].ToString() == "其他")
+							if ((int)row["編號", DataRowVersion.Original] == Global.NonProduct_Other)
 							{
-								if (newName != "其他")
-									throw new SWLHMSException("其他 項目不得更改名稱");
+								if (!newName.Contains("其他"))
+									throw new SWLHMSException("更改 其他 項目請至少包含\"其他\"兩字以進行區別");
+								row.名稱 = newName;
 
-								row.編號 = newNumber;
+								if (newNumber != 100)
+									throw new SWLHMSException("其他 項目不得更改編號");
 							}
 							else
 								row.FillRow(newNumber, newName);
@@ -121,8 +123,8 @@ namespace Mong
                     int newNumber = row.編號;
                     string newName = row.名稱;
 
-                    if (row.名稱 == "其他")
-						throw new SWLHMSException("非生產項目 其他 不能刪除");
+                    if (row.編號 == Global.NonProduct_Other)
+						throw new SWLHMSException("非生產項目 " + row.名稱 + " 不能刪除");
 
                     if (MessageBox.Show("確定刪除 " + newNumber + " (" + newName + ") 及其所有相關資料?", "刪除提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                     {
