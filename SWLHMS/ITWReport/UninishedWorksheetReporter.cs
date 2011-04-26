@@ -52,7 +52,7 @@ namespace Mong.Report
 
 			//變更公式計算
 			srcTable.Columns["完成%"].Expression = "IIF(數量 = 0,0,(已生產數量+待驗數量)/數量)";
-			srcTable.Columns["生產效率"].Expression = "IIF((內部工時+外包工時) = 0,0,(已生產數量+待驗數量)*標準工時/(內部工時+外包工時))";
+			//srcTable.Columns["生產效率"].Expression = "IIF((內部工時+外包工時) = 0,0,(已生產數量+待驗數量)*標準工時/(內部工時+外包工時))";
 
             //取得日期範圍
             int minYear, minMonth, maxYear, maxMonth;
@@ -256,7 +256,7 @@ namespace Mong.Report
 					tmpTable.Columns[sumCol].Expression = string.Empty;
 
 				object o;
-				o = _table.Compute("SUM(" + sumCol + ")", string.Empty);
+				o = _table.Compute("SUM(" + sumCol + ")", "產線<>'F'");
 				totalRow[sumCol] = Convert.IsDBNull(o) ? 0 : (decimal)o;
 			}
 
