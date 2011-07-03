@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mong")]
 [assembly: AssemblyProduct("SWLHMS")]
-[assembly: AssemblyCopyright("Copyright (C)  2008-2010")]
+[assembly: AssemblyCopyright("Copyright (C)  2008-2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,7 +29,7 @@ using System.Runtime.InteropServices;
 //      組建編號
 //      修訂編號
 //
-[assembly: AssemblyVersion("1.08.31")]
-[assembly: AssemblyFileVersion("1.08.31")]
+[assembly: AssemblyVersion("1.08.32")]
+[assembly: AssemblyFileVersion("1.08.32")]
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestProject")]
