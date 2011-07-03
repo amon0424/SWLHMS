@@ -70,6 +70,22 @@ namespace Mong
             }
         }
 
+		public static bool BypassQA
+		{
+			get
+			{
+				XmlNode node = GetNode("BypassQA", bool.FalseString);
+
+				return bool.Parse(node.InnerText);
+			}
+			set
+			{
+				XmlNode node = GetNode("BypassQA", bool.FalseString);
+				node.InnerText = value.ToString();
+				Save();
+			}
+		}
+
         static Settings()
         {
             _xmlDoc = new XmlDocument();

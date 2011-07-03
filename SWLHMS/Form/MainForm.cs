@@ -422,14 +422,18 @@ namespace Mong
 				
 
 				//for QA Only
-				tsmiInspect.Tag = tsmiInspect.Visible = _user.IsQA || managerUp;	
+				tsmiInspect.Tag = tsmiInspect.Visible = _user.IsQA || managerUp;
+				tsmiBypassQA.Tag = tsmiBypassQA.Visible = _user.IsQA;
 
 #if DEBUG
 				tsmiInspect.Tag = tsmiInspect.Visible = true;
+				tsmiBypassQA.Tag = tsmiBypassQA.Visible = true;
 #endif
 
                 UpdateReportMenu();
                 menuStrip1.Visible = true;
+
+				tsmiBypassQA.Checked = Settings.BypassQA;
 
             }
             else
@@ -496,7 +500,20 @@ namespace Mong
             //ReportForm.Show();
         }
 
-		
+		private void tsmiBypassQA_Click(object sender, EventArgs e)
+		{
+			if ((bool)tsmiBypassQA.Tag)
+			{
+				string text = Settings.BypassQA ? "確定要取消略過產品檢驗步驟?" : "確定要略過產品檢驗步驟?";
+				if (MessageBox.Show(this, text, "確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+				{
+					bool bypass = !Settings.BypassQA;
+					Settings.BypassQA = bypass;
+					tsmiBypassQA.Checked = bypass;
+					Settings.Save();
+				}
+			}
+		}
 
     }
 }

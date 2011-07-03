@@ -51,6 +51,7 @@
 			this.tsmiReport = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiLogout = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiBypassQA = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -86,7 +87,7 @@
             this.tsmiHourDataManage,
             this.tsmiUser});
 			this.tsmiManage.Name = "tsmiManage";
-			this.tsmiManage.Size = new System.Drawing.Size(41, 20);
+			this.tsmiManage.Size = new System.Drawing.Size(44, 20);
 			this.tsmiManage.Text = "管理";
 			this.tsmiManage.Visible = false;
 			// 
@@ -95,7 +96,7 @@
 			this.tsmiProductManage.BackColor = System.Drawing.SystemColors.Control;
 			this.tsmiProductManage.Name = "tsmiProductManage";
 			this.tsmiProductManage.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-			this.tsmiProductManage.Size = new System.Drawing.Size(206, 22);
+			this.tsmiProductManage.Size = new System.Drawing.Size(220, 22);
 			this.tsmiProductManage.Text = "產品管理";
 			this.tsmiProductManage.Click += new System.EventHandler(this.tsmiProductManage_Click);
 			// 
@@ -103,7 +104,7 @@
 			// 
 			this.tsmiLineMangage.Name = "tsmiLineMangage";
 			this.tsmiLineMangage.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-			this.tsmiLineMangage.Size = new System.Drawing.Size(206, 22);
+			this.tsmiLineMangage.Size = new System.Drawing.Size(220, 22);
 			this.tsmiLineMangage.Text = "產線管理";
 			this.tsmiLineMangage.Click += new System.EventHandler(this.tsmiLineMangage_Click);
 			// 
@@ -111,7 +112,7 @@
 			// 
 			this.tsmiLaborManage.Name = "tsmiLaborManage";
 			this.tsmiLaborManage.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-			this.tsmiLaborManage.Size = new System.Drawing.Size(206, 22);
+			this.tsmiLaborManage.Size = new System.Drawing.Size(220, 22);
 			this.tsmiLaborManage.Text = "員工管理";
 			this.tsmiLaborManage.Click += new System.EventHandler(this.tsmiLaborManage_Click);
 			// 
@@ -119,7 +120,7 @@
 			// 
 			this.tsmiNonProduceForm.Name = "tsmiNonProduceForm";
 			this.tsmiNonProduceForm.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-			this.tsmiNonProduceForm.Size = new System.Drawing.Size(206, 22);
+			this.tsmiNonProduceForm.Size = new System.Drawing.Size(220, 22);
 			this.tsmiNonProduceForm.Text = "非生產項目管理";
 			this.tsmiNonProduceForm.Click += new System.EventHandler(this.tsmiNonProduceForm_Click);
 			// 
@@ -127,7 +128,7 @@
 			// 
 			this.tsmiQualityItem.Name = "tsmiQualityItem";
 			this.tsmiQualityItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-			this.tsmiQualityItem.Size = new System.Drawing.Size(206, 22);
+			this.tsmiQualityItem.Size = new System.Drawing.Size(220, 22);
 			this.tsmiQualityItem.Text = "品質原因管理";
 			this.tsmiQualityItem.Visible = false;
 			this.tsmiQualityItem.Click += new System.EventHandler(this.tsmiQualityItem_Click);
@@ -136,7 +137,7 @@
 			// 
 			this.tsmiWorkingHourManage.Name = "tsmiWorkingHourManage";
 			this.tsmiWorkingHourManage.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-			this.tsmiWorkingHourManage.Size = new System.Drawing.Size(206, 22);
+			this.tsmiWorkingHourManage.Size = new System.Drawing.Size(220, 22);
 			this.tsmiWorkingHourManage.Text = "每月工作時數管理";
 			this.tsmiWorkingHourManage.Click += new System.EventHandler(this.tsmiWorkingHourManage_Click);
 			// 
@@ -144,7 +145,7 @@
 			// 
 			this.tsmiWorksheetManage.Name = "tsmiWorksheetManage";
 			this.tsmiWorksheetManage.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.tsmiWorksheetManage.Size = new System.Drawing.Size(206, 22);
+			this.tsmiWorksheetManage.Size = new System.Drawing.Size(220, 22);
 			this.tsmiWorksheetManage.Text = "工作單管理";
 			this.tsmiWorksheetManage.Click += new System.EventHandler(this.tsmiWorksheetManage_Click);
 			// 
@@ -152,7 +153,7 @@
 			// 
 			this.tsmiHourDataManage.Name = "tsmiHourDataManage";
 			this.tsmiHourDataManage.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-			this.tsmiHourDataManage.Size = new System.Drawing.Size(206, 22);
+			this.tsmiHourDataManage.Size = new System.Drawing.Size(220, 22);
 			this.tsmiHourDataManage.Text = "工時資料管理";
 			this.tsmiHourDataManage.Click += new System.EventHandler(this.tsmiHourDataManage_Click);
 			// 
@@ -160,7 +161,7 @@
 			// 
 			this.tsmiUser.Name = "tsmiUser";
 			this.tsmiUser.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-			this.tsmiUser.Size = new System.Drawing.Size(206, 22);
+			this.tsmiUser.Size = new System.Drawing.Size(220, 22);
 			this.tsmiUser.Text = "使用者管理";
 			this.tsmiUser.Click += new System.EventHandler(this.tsmiUser_Click);
 			// 
@@ -169,15 +170,16 @@
 			this.tsmiQuality.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiInspectList,
             this.tsmiInspect,
-            this.tsmiInspectDel});
+            this.tsmiInspectDel,
+            this.tsmiBypassQA});
 			this.tsmiQuality.Name = "tsmiQuality";
-			this.tsmiQuality.Size = new System.Drawing.Size(65, 20);
+			this.tsmiQuality.Size = new System.Drawing.Size(68, 20);
 			this.tsmiQuality.Text = "產品檢驗";
 			// 
 			// tsmiInspectList
 			// 
 			this.tsmiInspectList.Name = "tsmiInspectList";
-			this.tsmiInspectList.Size = new System.Drawing.Size(166, 22);
+			this.tsmiInspectList.Size = new System.Drawing.Size(172, 22);
 			this.tsmiInspectList.Text = "待驗品清單";
 			this.tsmiInspectList.Visible = false;
 			this.tsmiInspectList.Click += new System.EventHandler(this.tsmiInspectList_Click);
@@ -185,14 +187,14 @@
 			// tsmiInspect
 			// 
 			this.tsmiInspect.Name = "tsmiInspect";
-			this.tsmiInspect.Size = new System.Drawing.Size(166, 22);
+			this.tsmiInspect.Size = new System.Drawing.Size(172, 22);
 			this.tsmiInspect.Text = "產品待驗登記";
 			this.tsmiInspect.Click += new System.EventHandler(this.tsmiInspect_Click);
 			// 
 			// tsmiInspectDel
 			// 
 			this.tsmiInspectDel.Name = "tsmiInspectDel";
-			this.tsmiInspectDel.Size = new System.Drawing.Size(166, 22);
+			this.tsmiInspectDel.Size = new System.Drawing.Size(172, 22);
 			this.tsmiInspectDel.Text = "已完成品再驗登記";
 			this.tsmiInspectDel.Click += new System.EventHandler(this.tsmiInspectDel_Click);
 			// 
@@ -202,41 +204,41 @@
             this.tsmiNewWorksheet,
             this.tsmiWorksheetSearch});
 			this.tsmiWorksheet.Name = "tsmiWorksheet";
-			this.tsmiWorksheet.Size = new System.Drawing.Size(53, 20);
+			this.tsmiWorksheet.Size = new System.Drawing.Size(56, 20);
 			this.tsmiWorksheet.Text = "工作單";
 			// 
 			// tsmiNewWorksheet
 			// 
 			this.tsmiNewWorksheet.Name = "tsmiNewWorksheet";
-			this.tsmiNewWorksheet.Size = new System.Drawing.Size(94, 22);
+			this.tsmiNewWorksheet.Size = new System.Drawing.Size(100, 22);
 			this.tsmiNewWorksheet.Text = "新增";
 			this.tsmiNewWorksheet.Click += new System.EventHandler(this.tsmiNewWorksheet_Click);
 			// 
 			// tsmiWorksheetSearch
 			// 
 			this.tsmiWorksheetSearch.Name = "tsmiWorksheetSearch";
-			this.tsmiWorksheetSearch.Size = new System.Drawing.Size(94, 22);
+			this.tsmiWorksheetSearch.Size = new System.Drawing.Size(100, 22);
 			this.tsmiWorksheetSearch.Text = "查詢";
 			this.tsmiWorksheetSearch.Click += new System.EventHandler(this.tsmiWorksheetSearch_Click);
 			// 
 			// tsmiDataFill
 			// 
 			this.tsmiDataFill.Name = "tsmiDataFill";
-			this.tsmiDataFill.Size = new System.Drawing.Size(89, 20);
+			this.tsmiDataFill.Size = new System.Drawing.Size(92, 20);
 			this.tsmiDataFill.Text = "工時資料登記";
 			this.tsmiDataFill.Click += new System.EventHandler(this.tsmiHourDataFill_Click);
 			// 
 			// tsmiReport
 			// 
 			this.tsmiReport.Name = "tsmiReport";
-			this.tsmiReport.Size = new System.Drawing.Size(65, 20);
+			this.tsmiReport.Size = new System.Drawing.Size(68, 20);
 			this.tsmiReport.Text = "輸出報表";
 			this.tsmiReport.Click += new System.EventHandler(this.tsmiReport_Click);
 			// 
 			// tsmiSettings
 			// 
 			this.tsmiSettings.Name = "tsmiSettings";
-			this.tsmiSettings.Size = new System.Drawing.Size(41, 20);
+			this.tsmiSettings.Size = new System.Drawing.Size(44, 20);
 			this.tsmiSettings.Text = "設定";
 			this.tsmiSettings.Visible = false;
 			this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
@@ -244,9 +246,16 @@
 			// tsmiLogout
 			// 
 			this.tsmiLogout.Name = "tsmiLogout";
-			this.tsmiLogout.Size = new System.Drawing.Size(41, 20);
+			this.tsmiLogout.Size = new System.Drawing.Size(44, 20);
 			this.tsmiLogout.Text = "登出";
 			this.tsmiLogout.Click += new System.EventHandler(this.tsmiLogout_Click);
+			// 
+			// tsmiBypassQA
+			// 
+			this.tsmiBypassQA.Name = "tsmiBypassQA";
+			this.tsmiBypassQA.Size = new System.Drawing.Size(172, 22);
+			this.tsmiBypassQA.Text = "略過產品檢驗";
+			this.tsmiBypassQA.Click += new System.EventHandler(this.tsmiBypassQA_Click);
 			// 
 			// MainForm
 			// 
@@ -260,9 +269,9 @@
 			this.Name = "MainForm";
 			this.Text = "SW生產工時管理系統";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.Shown += new System.EventHandler(this.MainForm_Shown);
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -294,6 +303,7 @@
 		private System.Windows.Forms.ToolStripMenuItem tsmiInspectList;
 		private System.Windows.Forms.ToolStripMenuItem tsmiInspectDel;
 		private System.Windows.Forms.ToolStripMenuItem tsmiInspect;
+		private System.Windows.Forms.ToolStripMenuItem tsmiBypassQA;
     }
 }
 
