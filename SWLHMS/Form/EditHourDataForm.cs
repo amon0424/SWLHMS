@@ -331,8 +331,17 @@ namespace Mong
                 if (MessageBox.Show("資料經送出後不可再修改，請確認後繼續", "送出確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
                 {
                     //SetFinishDate();
-					
 
+					if (Settings.BypassQA)
+					{
+						foreach (DataRow row in _dataTable.Rows)
+						{
+							if (row.RowState == DataRowState.Added)
+							{
+								row["數量"] = row["待驗數量"];
+							}
+						}
+					}
 					int update = 工時TableAdapter.Instance.Update((DatabaseSet.工時DataTable)_dataTable.Copy());
 					UpdateFinishDate();
 
@@ -556,7 +565,7 @@ namespace Mong
             if (dgvHoursData.CurrentRow != null)
             {
                 DataRow row = (dgvHoursData.CurrentRow.DataBoundItem as DataRowView).Row;
-                if (row.RowState == DataRowState.Unchanged && !AllowDeleteOldData)
+                if (row.RowState != DataRowState.Added && !AllowDeleteOldData)
                 {
                     e.Cancel = true;
                     MessageBox.Show("不能刪除舊資料");
@@ -704,6 +713,7 @@ namespace Mong
 				foreach (DataRow row in _dataTable)
 				{
 					row["工時類型名稱"] = ((HourType)row["工時類型"]).ToString();
+					row.AcceptChanges();
 				}
 
                 dgvHoursData.AutoResizeColumns();
@@ -932,6 +942,14 @@ namespace Mong
 					qaRow["檢驗"] = false;
 					qaRow["重驗"] = false;
 					qaRow["送檢日期"] = DateTime.Now;
+
+					if (Settings.BypassQA)
+					{
+						qaRow["檢驗"] = true;
+						qaRow["檢驗結果"] = true;
+						qaRow["日期"] = DateTime.Now;
+						qaRow["最後檢驗紀錄"] = true;
+					}
 					qaTable.Add產品檢驗Row(qaRow);
 				}
 			}
