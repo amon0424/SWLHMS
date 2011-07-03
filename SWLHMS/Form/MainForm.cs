@@ -403,6 +403,7 @@ namespace Mong
 				tsmiWorksheetManage.Tag = tsmiWorksheetManage.Visible = managerUp;
 				tsmiHourDataManage.Tag = tsmiHourDataManage.Visible = managerUp;
 				tsmiInspectDel.Tag = tsmiInspectDel.Visible = managerUp;
+				tsmiBypassQA.Tag = tsmiBypassQA.Visible = managerUp;
 
 				//for Administrator only
 				tsmiLaborManage.Tag = tsmiLaborManage.Visible = _user.IsAdministrator;
@@ -423,7 +424,7 @@ namespace Mong
 
 				//for QA Only
 				tsmiInspect.Tag = tsmiInspect.Visible = _user.IsQA || managerUp;
-				tsmiBypassQA.Tag = tsmiBypassQA.Visible = _user.IsQA;
+				
 
 #if DEBUG
 				tsmiInspect.Tag = tsmiInspect.Visible = true;
