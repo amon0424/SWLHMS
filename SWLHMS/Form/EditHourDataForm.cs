@@ -343,10 +343,11 @@ namespace Mong
 						}
 					}
 					int update = 工時TableAdapter.Instance.Update((DatabaseSet.工時DataTable)_dataTable.Copy());
-					UpdateFinishDate();
 
 					int reinspect;
 					int qa = UpdateQATable(out reinspect);
+
+					UpdateFinishDate();
 
 					string msg = "新增了 " + update + " 筆資料";
 					if (qa > 0)
@@ -395,10 +396,12 @@ namespace Mong
 					row.AcceptChanges();
 
 				update += 工時TableAdapter.Instance.Update(table);
-				UpdateFinishDate();
+				
 
 				int reinspect;
 				int qa = UpdateQATable(out reinspect);
+
+				UpdateFinishDate();
 
 				string msg = "更新了 " + update + " 筆資料";
 				if (qa > 0)
@@ -861,15 +864,15 @@ namespace Mong
 		{
 			foreach (DataRow row in _dataTable)
 			{
-				if (row.RowState == DataRowState.Deleted)
-				{
-					string worksheet = row["工作單號", DataRowVersion.Original] as string;
+				string worksheet;
+				int wpid;
 
-					if (!string.IsNullOrEmpty(worksheet))
-					{
-						int wpid = (int)row["工品編號", DataRowVersion.Original];
-						DatabaseSet.UpdateWorksheetItemFinishDate(worksheet, wpid, true);
-					}
+				worksheet = (string)(row.RowState == DataRowState.Deleted ?  row["工作單號", DataRowVersion.Original] : row["工作單號"]);
+
+				if (!string.IsNullOrEmpty(worksheet))
+				{
+					wpid = (int)(row.RowState == DataRowState.Deleted ? row["工品編號", DataRowVersion.Original] : row["工品編號"]);
+					DatabaseSet.UpdateWorksheetItemFinishDate(worksheet, wpid, true);
 				}
 			}
 		}
