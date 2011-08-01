@@ -172,19 +172,27 @@ namespace Mong
                 if (bsHourData.DataSource != null && dgvHourData.CurrentRow != null)
                 {
                     DatabaseSet.工時Row row = (dgvHourData.CurrentRow.DataBoundItem as DataRowView).Row as DatabaseSet.工時Row;
+					int count = 0;
                     if (MessageBox.Show("確定刪除" + row.編號 + "此筆資料?", "刪除提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                     {
-						string worksheet = row.工作單號;
-						int wpid = row.工品編號;
+						if (row["工作單號"] != DBNull.Value)
+						{
+							string worksheet = row.工作單號;
+							int wpid = row.工品編號;
 
-						/*
-                        row.Delete();
-						int count = 工時TableAdapter.Instance.Update(row);
-						*/
+							/*
+							row.Delete();
+							int count = 工時TableAdapter.Instance.Update(row);
+							*/
 
-						int count = 工時TableAdapter.Instance.DeleteEx(row.編號);
+							count = 工時TableAdapter.Instance.DeleteEx(row.編號);
 
-						DatabaseSet.UpdateWorksheetItemFinishDate(worksheet, wpid, true);
+							DatabaseSet.UpdateWorksheetItemFinishDate(worksheet, wpid, true);
+						}
+						else
+						{
+							count = 工時TableAdapter.Instance.DeleteEx(row.編號);
+						}
 						MessageBox.Show("刪除了 " + count + " 筆資料");
                     }
                 }

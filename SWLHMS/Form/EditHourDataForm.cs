@@ -867,7 +867,7 @@ namespace Mong
 				string worksheet;
 				int wpid;
 
-				worksheet = (string)(row.RowState == DataRowState.Deleted ?  row["工作單號", DataRowVersion.Original] : row["工作單號"]);
+				worksheet = (row.RowState == DataRowState.Deleted ?  row["工作單號", DataRowVersion.Original] : row["工作單號"]) as string;
 
 				if (!string.IsNullOrEmpty(worksheet))
 				{
